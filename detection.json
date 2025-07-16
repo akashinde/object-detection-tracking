@@ -1,0 +1,9110 @@
+[
+  {
+    "frame": 2,
+    "track_id": "1",
+    "bbox": [
+      242,
+      795,
+      947,
+      1342
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5379MX-B",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 2,
+    "track_id": "2",
+    "bbox": [
+      794,
+      691,
+      1024,
+      864
+    ],
+    "color": [
+      51,
+      49,
+      50
+    ],
+    "number_plate": "ceanae",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 2,
+    "track_id": "3",
+    "bbox": [
+      201,
+      737,
+      482,
+      987
+    ],
+    "color": [
+      60,
+      53,
+      48
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 2,
+    "track_id": "4",
+    "bbox": [
+      665,
+      656,
+      823,
+      786
+    ],
+    "color": [
+      81,
+      83,
+      82
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 3,
+    "track_id": "1",
+    "bbox": [
+      246,
+      799,
+      957,
+      1350
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5379MX-B",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 3,
+    "track_id": "2",
+    "bbox": [
+      791,
+      690,
+      1020,
+      863
+    ],
+    "color": [
+      51,
+      49,
+      50
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 3,
+    "track_id": "3",
+    "bbox": [
+      201,
+      738,
+      485,
+      991
+    ],
+    "color": [
+      60,
+      54,
+      49
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 3,
+    "track_id": "4",
+    "bbox": [
+      663,
+      656,
+      823,
+      788
+    ],
+    "color": [
+      79,
+      80,
+      80
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 4,
+    "track_id": "1",
+    "bbox": [
+      248,
+      803,
+      965,
+      1358
+    ],
+    "color": [
+      62,
+      59,
+      54
+    ],
+    "number_plate": "5379MX-B",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 4,
+    "track_id": "2",
+    "bbox": [
+      789,
+      689,
+      1016,
+      861
+    ],
+    "color": [
+      51,
+      49,
+      50
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 4,
+    "track_id": "3",
+    "bbox": [
+      204,
+      739,
+      486,
+      990
+    ],
+    "color": [
+      60,
+      54,
+      49
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 4,
+    "track_id": "4",
+    "bbox": [
+      662,
+      656,
+      821,
+      787
+    ],
+    "color": [
+      78,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 5,
+    "track_id": "1",
+    "bbox": [
+      253,
+      807,
+      976,
+      1367
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5379MX-Z",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 5,
+    "track_id": "2",
+    "bbox": [
+      789,
+      689,
+      1015,
+      860
+    ],
+    "color": [
+      51,
+      48,
+      50
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 5,
+    "track_id": "3",
+    "bbox": [
+      203,
+      739,
+      484,
+      988
+    ],
+    "color": [
+      62,
+      55,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 5,
+    "track_id": "4",
+    "bbox": [
+      660,
+      656,
+      819,
+      787
+    ],
+    "color": [
+      76,
+      78,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 6,
+    "track_id": "1",
+    "bbox": [
+      255,
+      809,
+      987,
+      1377
+    ],
+    "color": [
+      62,
+      59,
+      54
+    ],
+    "number_plate": "5379MX-Z",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 6,
+    "track_id": "2",
+    "bbox": [
+      786,
+      688,
+      1011,
+      857
+    ],
+    "color": [
+      52,
+      49,
+      50
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 6,
+    "track_id": "3",
+    "bbox": [
+      205,
+      741,
+      485,
+      991
+    ],
+    "color": [
+      62,
+      55,
+      50
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 6,
+    "track_id": "4",
+    "bbox": [
+      659,
+      655,
+      819,
+      787
+    ],
+    "color": [
+      74,
+      75,
+      74
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 7,
+    "track_id": "1",
+    "bbox": [
+      265,
+      812,
+      1004,
+      1385
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5379MX-Z",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 7,
+    "track_id": "2",
+    "bbox": [
+      784,
+      689,
+      1006,
+      856
+    ],
+    "color": [
+      53,
+      50,
+      51
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 7,
+    "track_id": "3",
+    "bbox": [
+      203,
+      744,
+      481,
+      990
+    ],
+    "color": [
+      63,
+      56,
+      51
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 7,
+    "track_id": "4",
+    "bbox": [
+      658,
+      655,
+      816,
+      787
+    ],
+    "color": [
+      74,
+      75,
+      75
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 7,
+    "track_id": "5",
+    "bbox": [
+      620,
+      633,
+      710,
+      711
+    ],
+    "color": [
+      60,
+      55,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 8,
+    "track_id": "1",
+    "bbox": [
+      270,
+      814,
+      1019,
+      1395
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5379MX-Z",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 8,
+    "track_id": "2",
+    "bbox": [
+      784,
+      689,
+      1002,
+      854
+    ],
+    "color": [
+      53,
+      50,
+      51
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 8,
+    "track_id": "3",
+    "bbox": [
+      204,
+      746,
+      480,
+      989
+    ],
+    "color": [
+      62,
+      56,
+      51
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 8,
+    "track_id": "4",
+    "bbox": [
+      658,
+      656,
+      814,
+      786
+    ],
+    "color": [
+      75,
+      77,
+      75
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 8,
+    "track_id": "5",
+    "bbox": [
+      618,
+      632,
+      710,
+      712
+    ],
+    "color": [
+      60,
+      56,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 9,
+    "track_id": "1",
+    "bbox": [
+      270,
+      816,
+      1026,
+      1402
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "5306",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 9,
+    "track_id": "2",
+    "bbox": [
+      782,
+      689,
+      999,
+      852
+    ],
+    "color": [
+      54,
+      51,
+      52
+    ],
+    "number_plate": "Bacuha",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 9,
+    "track_id": "3",
+    "bbox": [
+      200,
+      747,
+      482,
+      995
+    ],
+    "color": [
+      63,
+      57,
+      52
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 9,
+    "track_id": "4",
+    "bbox": [
+      658,
+      656,
+      813,
+      785
+    ],
+    "color": [
+      77,
+      79,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 9,
+    "track_id": "5",
+    "bbox": [
+      617,
+      631,
+      710,
+      712
+    ],
+    "color": [
+      61,
+      56,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 10,
+    "track_id": "1",
+    "bbox": [
+      270,
+      817,
+      1037,
+      1411
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "30F",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 10,
+    "track_id": "2",
+    "bbox": [
+      776,
+      686,
+      995,
+      851
+    ],
+    "color": [
+      54,
+      51,
+      52
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 10,
+    "track_id": "3",
+    "bbox": [
+      202,
+      748,
+      487,
+      998
+    ],
+    "color": [
+      63,
+      57,
+      52
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 10,
+    "track_id": "4",
+    "bbox": [
+      658,
+      654,
+      814,
+      783
+    ],
+    "color": [
+      80,
+      81,
+      80
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 10,
+    "track_id": "5",
+    "bbox": [
+      616,
+      631,
+      710,
+      712
+    ],
+    "color": [
+      61,
+      57,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 11,
+    "track_id": "1",
+    "bbox": [
+      279,
+      819,
+      1057,
+      1422
+    ],
+    "color": [
+      63,
+      60,
+      56
+    ],
+    "number_plate": "5306",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 11,
+    "track_id": "2",
+    "bbox": [
+      773,
+      685,
+      991,
+      850
+    ],
+    "color": [
+      55,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 11,
+    "track_id": "3",
+    "bbox": [
+      199,
+      748,
+      490,
+      1003
+    ],
+    "color": [
+      63,
+      57,
+      53
+    ],
+    "number_plate": "E306",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 11,
+    "track_id": "4",
+    "bbox": [
+      658,
+      653,
+      814,
+      783
+    ],
+    "color": [
+      80,
+      81,
+      81
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 11,
+    "track_id": "5",
+    "bbox": [
+      616,
+      630,
+      711,
+      713
+    ],
+    "color": [
+      61,
+      57,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 12,
+    "track_id": "1",
+    "bbox": [
+      285,
+      819,
+      1074,
+      1432
+    ],
+    "color": [
+      62,
+      60,
+      55
+    ],
+    "number_plate": "E306",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 12,
+    "track_id": "2",
+    "bbox": [
+      771,
+      684,
+      988,
+      849
+    ],
+    "color": [
+      54,
+      51,
+      52
+    ],
+    "number_plate": "Bootranr",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 12,
+    "track_id": "3",
+    "bbox": [
+      198,
+      748,
+      494,
+      1007
+    ],
+    "color": [
+      63,
+      57,
+      53
+    ],
+    "number_plate": "306",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 12,
+    "track_id": "4",
+    "bbox": [
+      654,
+      652,
+      811,
+      783
+    ],
+    "color": [
+      79,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 12,
+    "track_id": "5",
+    "bbox": [
+      615,
+      630,
+      711,
+      713
+    ],
+    "color": [
+      61,
+      57,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 13,
+    "track_id": "1",
+    "bbox": [
+      283,
+      819,
+      1087,
+      1445
+    ],
+    "color": [
+      62,
+      60,
+      56
+    ],
+    "number_plate": "E306e",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 13,
+    "track_id": "2",
+    "bbox": [
+      767,
+      684,
+      983,
+      847
+    ],
+    "color": [
+      55,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 13,
+    "track_id": "3",
+    "bbox": [
+      195,
+      750,
+      493,
+      1009
+    ],
+    "color": [
+      64,
+      58,
+      54
+    ],
+    "number_plate": "306f",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 13,
+    "track_id": "4",
+    "bbox": [
+      653,
+      652,
+      808,
+      782
+    ],
+    "color": [
+      79,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 13,
+    "track_id": "5",
+    "bbox": [
+      614,
+      630,
+      711,
+      714
+    ],
+    "color": [
+      63,
+      58,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 14,
+    "track_id": "1",
+    "bbox": [
+      278,
+      822,
+      1091,
+      1455
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "630661",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 14,
+    "track_id": "2",
+    "bbox": [
+      766,
+      684,
+      977,
+      844
+    ],
+    "color": [
+      55,
+      53,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 14,
+    "track_id": "3",
+    "bbox": [
+      195,
+      751,
+      493,
+      1009
+    ],
+    "color": [
+      64,
+      58,
+      54
+    ],
+    "number_plate": "3066",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 14,
+    "track_id": "4",
+    "bbox": [
+      653,
+      653,
+      803,
+      779
+    ],
+    "color": [
+      79,
+      81,
+      79
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 14,
+    "track_id": "5",
+    "bbox": [
+      614,
+      629,
+      711,
+      714
+    ],
+    "color": [
+      63,
+      59,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 15,
+    "track_id": "1",
+    "bbox": [
+      273,
+      822,
+      1098,
+      1468
+    ],
+    "color": [
+      62,
+      59,
+      55
+    ],
+    "number_plate": "E3066",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 15,
+    "track_id": "2",
+    "bbox": [
+      763,
+      684,
+      973,
+      843
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 15,
+    "track_id": "3",
+    "bbox": [
+      201,
+      752,
+      495,
+      1006
+    ],
+    "color": [
+      65,
+      60,
+      56
+    ],
+    "number_plate": "E3066}",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 15,
+    "track_id": "4",
+    "bbox": [
+      654,
+      653,
+      803,
+      780
+    ],
+    "color": [
+      79,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 15,
+    "track_id": "5",
+    "bbox": [
+      613,
+      629,
+      711,
+      715
+    ],
+    "color": [
+      63,
+      59,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 16,
+    "track_id": "1",
+    "bbox": [
+      276,
+      824,
+      1108,
+      1479
+    ],
+    "color": [
+      62,
+      59,
+      54
+    ],
+    "number_plate": "30660",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 16,
+    "track_id": "2",
+    "bbox": [
+      763,
+      685,
+      971,
+      842
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": "aelJ",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 16,
+    "track_id": "3",
+    "bbox": [
+      202,
+      755,
+      499,
+      1011
+    ],
+    "color": [
+      65,
+      59,
+      55
+    ],
+    "number_plate": "E30660",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 16,
+    "track_id": "4",
+    "bbox": [
+      653,
+      654,
+      801,
+      779
+    ],
+    "color": [
+      78,
+      80,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 16,
+    "track_id": "5",
+    "bbox": [
+      612,
+      628,
+      712,
+      715
+    ],
+    "color": [
+      62,
+      59,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 17,
+    "track_id": "1",
+    "bbox": [
+      269,
+      827,
+      1110,
+      1493
+    ],
+    "color": [
+      63,
+      59,
+      55
+    ],
+    "number_plate": "E30661",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 17,
+    "track_id": "2",
+    "bbox": [
+      761,
+      686,
+      966,
+      841
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 17,
+    "track_id": "3",
+    "bbox": [
+      197,
+      756,
+      501,
+      1016
+    ],
+    "color": [
+      66,
+      60,
+      57
+    ],
+    "number_plate": "30661",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 17,
+    "track_id": "4",
+    "bbox": [
+      653,
+      653,
+      800,
+      779
+    ],
+    "color": [
+      79,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 17,
+    "track_id": "5",
+    "bbox": [
+      611,
+      628,
+      712,
+      715
+    ],
+    "color": [
+      63,
+      60,
+      59
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 18,
+    "track_id": "1",
+    "bbox": [
+      267,
+      832,
+      1109,
+      1503
+    ],
+    "color": [
+      63,
+      60,
+      55
+    ],
+    "number_plate": "3066M\"",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 18,
+    "track_id": "2",
+    "bbox": [
+      758,
+      686,
+      963,
+      840
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 18,
+    "track_id": "3",
+    "bbox": [
+      194,
+      757,
+      503,
+      1021
+    ],
+    "color": [
+      66,
+      61,
+      57
+    ],
+    "number_plate": "E3o66M",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 18,
+    "track_id": "4",
+    "bbox": [
+      652,
+      655,
+      798,
+      780
+    ],
+    "color": [
+      77,
+      78,
+      77
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 18,
+    "track_id": "5",
+    "bbox": [
+      611,
+      628,
+      712,
+      716
+    ],
+    "color": [
+      63,
+      59,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 19,
+    "track_id": "1",
+    "bbox": [
+      260,
+      837,
+      1109,
+      1518
+    ],
+    "color": [
+      63,
+      60,
+      56
+    ],
+    "number_plate": "Ezo66MF",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 19,
+    "track_id": "2",
+    "bbox": [
+      757,
+      686,
+      961,
+      839
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": "Jianee",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 19,
+    "track_id": "3",
+    "bbox": [
+      193,
+      759,
+      506,
+      1023
+    ],
+    "color": [
+      67,
+      62,
+      58
+    ],
+    "number_plate": "E3o66MF",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 19,
+    "track_id": "4",
+    "bbox": [
+      652,
+      657,
+      796,
+      779
+    ],
+    "color": [
+      77,
+      79,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 19,
+    "track_id": "5",
+    "bbox": [
+      610,
+      627,
+      712,
+      716
+    ],
+    "color": [
+      63,
+      59,
+      58
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 20,
+    "track_id": "1",
+    "bbox": [
+      264,
+      839,
+      1117,
+      1529
+    ],
+    "color": [
+      63,
+      60,
+      56
+    ],
+    "number_plate": "3066MP",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 20,
+    "track_id": "2",
+    "bbox": [
+      755,
+      686,
+      958,
+      838
+    ],
+    "color": [
+      53,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 20,
+    "track_id": "3",
+    "bbox": [
+      191,
+      760,
+      511,
+      1028
+    ],
+    "color": [
+      66,
+      62,
+      58
+    ],
+    "number_plate": "E3O66MP",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 20,
+    "track_id": "4",
+    "bbox": [
+      649,
+      656,
+      791,
+      777
+    ],
+    "color": [
+      78,
+      79,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 20,
+    "track_id": "5",
+    "bbox": [
+      609,
+      627,
+      713,
+      717
+    ],
+    "color": [
+      62,
+      59,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 21,
+    "track_id": "1",
+    "bbox": [
+      271,
+      839,
+      1130,
+      1543
+    ],
+    "color": [
+      64,
+      61,
+      56
+    ],
+    "number_plate": "3066MP ",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 21,
+    "track_id": "2",
+    "bbox": [
+      753,
+      685,
+      954,
+      836
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 21,
+    "track_id": "3",
+    "bbox": [
+      187,
+      759,
+      517,
+      1034
+    ],
+    "color": [
+      67,
+      62,
+      59
+    ],
+    "number_plate": "3066MP",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 21,
+    "track_id": "4",
+    "bbox": [
+      649,
+      656,
+      789,
+      777
+    ],
+    "color": [
+      79,
+      80,
+      79
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 21,
+    "track_id": "5",
+    "bbox": [
+      608,
+      626,
+      713,
+      717
+    ],
+    "color": [
+      63,
+      60,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 22,
+    "track_id": "1",
+    "bbox": [
+      271,
+      839,
+      1138,
+      1560
+    ],
+    "color": [
+      64,
+      61,
+      57
+    ],
+    "number_plate": "3066MP-",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 22,
+    "track_id": "2",
+    "bbox": [
+      751,
+      684,
+      952,
+      834
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 22,
+    "track_id": "3",
+    "bbox": [
+      188,
+      760,
+      518,
+      1035
+    ],
+    "color": [
+      68,
+      63,
+      60
+    ],
+    "number_plate": "3066MP -",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 22,
+    "track_id": "4",
+    "bbox": [
+      650,
+      657,
+      788,
+      775
+    ],
+    "color": [
+      79,
+      80,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 22,
+    "track_id": "5",
+    "bbox": [
+      608,
+      626,
+      713,
+      718
+    ],
+    "color": [
+      63,
+      60,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 23,
+    "track_id": "1",
+    "bbox": [
+      267,
+      836,
+      1143,
+      1576
+    ],
+    "color": [
+      65,
+      62,
+      58
+    ],
+    "number_plate": "3066MP-L",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 23,
+    "track_id": "2",
+    "bbox": [
+      748,
+      684,
+      949,
+      834
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 23,
+    "track_id": "3",
+    "bbox": [
+      189,
+      761,
+      520,
+      1036
+    ],
+    "color": [
+      70,
+      65,
+      62
+    ],
+    "number_plate": "23066MP-@",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 23,
+    "track_id": "4",
+    "bbox": [
+      646,
+      654,
+      788,
+      776
+    ],
+    "color": [
+      78,
+      79,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 23,
+    "track_id": "5",
+    "bbox": [
+      607,
+      625,
+      713,
+      718
+    ],
+    "color": [
+      63,
+      60,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 24,
+    "track_id": "1",
+    "bbox": [
+      269,
+      839,
+      1145,
+      1591
+    ],
+    "color": [
+      65,
+      62,
+      58
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 24,
+    "track_id": "2",
+    "bbox": [
+      745,
+      683,
+      945,
+      833
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 24,
+    "track_id": "3",
+    "bbox": [
+      192,
+      761,
+      522,
+      1034
+    ],
+    "color": [
+      71,
+      66,
+      63
+    ],
+    "number_plate": "33066MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 24,
+    "track_id": "4",
+    "bbox": [
+      646,
+      654,
+      788,
+      776
+    ],
+    "color": [
+      77,
+      78,
+      76
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 24,
+    "track_id": "5",
+    "bbox": [
+      606,
+      625,
+      714,
+      718
+    ],
+    "color": [
+      63,
+      60,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 25,
+    "track_id": "1",
+    "bbox": [
+      265,
+      841,
+      1145,
+      1607
+    ],
+    "color": [
+      66,
+      63,
+      59
+    ],
+    "number_plate": "3O66MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 25,
+    "track_id": "2",
+    "bbox": [
+      742,
+      684,
+      941,
+      832
+    ],
+    "color": [
+      55,
+      53,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 25,
+    "track_id": "3",
+    "bbox": [
+      192,
+      762,
+      526,
+      1038
+    ],
+    "color": [
+      72,
+      67,
+      64
+    ],
+    "number_plate": "3O66MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 25,
+    "track_id": "4",
+    "bbox": [
+      646,
+      653,
+      787,
+      776
+    ],
+    "color": [
+      77,
+      78,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 25,
+    "track_id": "5",
+    "bbox": [
+      605,
+      625,
+      714,
+      719
+    ],
+    "color": [
+      64,
+      61,
+      60
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 26,
+    "track_id": "1",
+    "bbox": [
+      270,
+      840,
+      1150,
+      1620
+    ],
+    "color": [
+      65,
+      63,
+      59
+    ],
+    "number_plate": "E3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 26,
+    "track_id": "2",
+    "bbox": [
+      739,
+      684,
+      936,
+      831
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 26,
+    "track_id": "3",
+    "bbox": [
+      189,
+      762,
+      530,
+      1044
+    ],
+    "color": [
+      71,
+      67,
+      64
+    ],
+    "number_plate": "3O66MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 26,
+    "track_id": "4",
+    "bbox": [
+      649,
+      654,
+      787,
+      775
+    ],
+    "color": [
+      77,
+      78,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 26,
+    "track_id": "5",
+    "bbox": [
+      605,
+      624,
+      714,
+      719
+    ],
+    "color": [
+      64,
+      61,
+      60
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 27,
+    "track_id": "1",
+    "bbox": [
+      272,
+      840,
+      1155,
+      1636
+    ],
+    "color": [
+      66,
+      64,
+      60
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 27,
+    "track_id": "2",
+    "bbox": [
+      736,
+      683,
+      934,
+      829
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 27,
+    "track_id": "3",
+    "bbox": [
+      189,
+      763,
+      531,
+      1044
+    ],
+    "color": [
+      72,
+      67,
+      65
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 27,
+    "track_id": "4",
+    "bbox": [
+      647,
+      654,
+      785,
+      774
+    ],
+    "color": [
+      79,
+      79,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 27,
+    "track_id": "5",
+    "bbox": [
+      604,
+      624,
+      714,
+      720
+    ],
+    "color": [
+      65,
+      63,
+      61
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 28,
+    "track_id": "1",
+    "bbox": [
+      280,
+      849,
+      1158,
+      1656
+    ],
+    "color": [
+      65,
+      64,
+      59
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 28,
+    "track_id": "2",
+    "bbox": [
+      735,
+      683,
+      932,
+      829
+    ],
+    "color": [
+      55,
+      54,
+      54
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 28,
+    "track_id": "3",
+    "bbox": [
+      192,
+      764,
+      534,
+      1045
+    ],
+    "color": [
+      72,
+      68,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 28,
+    "track_id": "4",
+    "bbox": [
+      645,
+      654,
+      783,
+      774
+    ],
+    "color": [
+      78,
+      79,
+      77
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 28,
+    "track_id": "5",
+    "bbox": [
+      603,
+      623,
+      714,
+      720
+    ],
+    "color": [
+      64,
+      63,
+      61
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 29,
+    "track_id": "1",
+    "bbox": [
+      288,
+      857,
+      1161,
+      1675
+    ],
+    "color": [
+      65,
+      64,
+      60
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 29,
+    "track_id": "2",
+    "bbox": [
+      732,
+      682,
+      929,
+      828
+    ],
+    "color": [
+      57,
+      55,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 29,
+    "track_id": "3",
+    "bbox": [
+      185,
+      765,
+      538,
+      1054
+    ],
+    "color": [
+      73,
+      68,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 29,
+    "track_id": "4",
+    "bbox": [
+      644,
+      653,
+      782,
+      773
+    ],
+    "color": [
+      79,
+      79,
+      78
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 29,
+    "track_id": "5",
+    "bbox": [
+      602,
+      623,
+      715,
+      721
+    ],
+    "color": [
+      66,
+      64,
+      63
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 30,
+    "track_id": "1",
+    "bbox": [
+      290,
+      860,
+      1162,
+      1693
+    ],
+    "color": [
+      65,
+      64,
+      60
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 30,
+    "track_id": "2",
+    "bbox": [
+      731,
+      682,
+      927,
+      827
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 30,
+    "track_id": "3",
+    "bbox": [
+      185,
+      766,
+      545,
+      1059
+    ],
+    "color": [
+      72,
+      72,
+      66
+    ],
+    "number_plate": "ID:",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 30,
+    "track_id": "4",
+    "bbox": [
+      643,
+      653,
+      782,
+      773
+    ],
+    "color": [
+      72,
+      84,
+      72
+    ],
+    "number_plate": "70r2",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 30,
+    "track_id": "5",
+    "bbox": [
+      602,
+      622,
+      715,
+      721
+    ],
+    "color": [
+      60,
+      78,
+      57
+    ],
+    "number_plate": "ID:4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 31,
+    "track_id": "1",
+    "bbox": [
+      294,
+      859,
+      1168,
+      1712
+    ],
+    "color": [
+      66,
+      65,
+      61
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 31,
+    "track_id": "2",
+    "bbox": [
+      729,
+      683,
+      922,
+      826
+    ],
+    "color": [
+      57,
+      55,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 31,
+    "track_id": "3",
+    "bbox": [
+      190,
+      766,
+      547,
+      1058
+    ],
+    "color": [
+      74,
+      73,
+      67
+    ],
+    "number_plate": "ID:",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 31,
+    "track_id": "4",
+    "bbox": [
+      642,
+      652,
+      779,
+      773
+    ],
+    "color": [
+      73,
+      85,
+      73
+    ],
+    "number_plate": "IB.2",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 31,
+    "track_id": "5",
+    "bbox": [
+      601,
+      622,
+      715,
+      721
+    ],
+    "color": [
+      62,
+      80,
+      59
+    ],
+    "number_plate": "ID:4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 32,
+    "track_id": "1",
+    "bbox": [
+      297,
+      855,
+      1176,
+      1735
+    ],
+    "color": [
+      66,
+      66,
+      62
+    ],
+    "number_plate": "3066MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 32,
+    "track_id": "2",
+    "bbox": [
+      726,
+      683,
+      918,
+      825
+    ],
+    "color": [
+      57,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 32,
+    "track_id": "3",
+    "bbox": [
+      191,
+      766,
+      549,
+      1057
+    ],
+    "color": [
+      75,
+      76,
+      68
+    ],
+    "number_plate": "ID:1 hatchback",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 32,
+    "track_id": "4",
+    "bbox": [
+      640,
+      652,
+      778,
+      773
+    ],
+    "color": [
+      73,
+      85,
+      73
+    ],
+    "number_plate": "4B.2",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 32,
+    "track_id": "5",
+    "bbox": [
+      600,
+      622,
+      715,
+      722
+    ],
+    "color": [
+      62,
+      81,
+      59
+    ],
+    "number_plate": "I0:4 van",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 33,
+    "track_id": "1",
+    "bbox": [
+      305,
+      854,
+      1182,
+      1754
+    ],
+    "color": [
+      67,
+      67,
+      63
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 33,
+    "track_id": "2",
+    "bbox": [
+      724,
+      683,
+      914,
+      824
+    ],
+    "color": [
+      58,
+      56,
+      56
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 33,
+    "track_id": "3",
+    "bbox": [
+      189,
+      767,
+      555,
+      1064
+    ],
+    "color": [
+      76,
+      75,
+      69
+    ],
+    "number_plate": "ID:",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 33,
+    "track_id": "4",
+    "bbox": [
+      639,
+      652,
+      776,
+      773
+    ],
+    "color": [
+      73,
+      85,
+      73
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 33,
+    "track_id": "5",
+    "bbox": [
+      599,
+      621,
+      716,
+      722
+    ],
+    "color": [
+      63,
+      81,
+      60
+    ],
+    "number_plate": "ID:4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 34,
+    "track_id": "1",
+    "bbox": [
+      310,
+      854,
+      1187,
+      1776
+    ],
+    "color": [
+      67,
+      68,
+      64
+    ],
+    "number_plate": "3066MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 34,
+    "track_id": "2",
+    "bbox": [
+      723,
+      683,
+      912,
+      823
+    ],
+    "color": [
+      58,
+      56,
+      57
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 34,
+    "track_id": "3",
+    "bbox": [
+      188,
+      768,
+      561,
+      1071
+    ],
+    "color": [
+      75,
+      76,
+      69
+    ],
+    "number_plate": "ID:1 hatchback",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 34,
+    "track_id": "4",
+    "bbox": [
+      638,
+      653,
+      772,
+      772
+    ],
+    "color": [
+      74,
+      86,
+      73
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 34,
+    "track_id": "5",
+    "bbox": [
+      599,
+      621,
+      716,
+      723
+    ],
+    "color": [
+      63,
+      81,
+      60
+    ],
+    "number_plate": "ID:4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 35,
+    "track_id": "1",
+    "bbox": [
+      320,
+      864,
+      1187,
+      1800
+    ],
+    "color": [
+      67,
+      68,
+      65
+    ],
+    "number_plate": "3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 35,
+    "track_id": "2",
+    "bbox": [
+      720,
+      683,
+      909,
+      822
+    ],
+    "color": [
+      58,
+      56,
+      57
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 35,
+    "track_id": "3",
+    "bbox": [
+      189,
+      769,
+      566,
+      1075
+    ],
+    "color": [
+      75,
+      75,
+      68
+    ],
+    "number_plate": "ID:",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 35,
+    "track_id": "4",
+    "bbox": [
+      637,
+      653,
+      771,
+      773
+    ],
+    "color": [
+      73,
+      85,
+      72
+    ],
+    "number_plate": "ID2",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 35,
+    "track_id": "5",
+    "bbox": [
+      598,
+      620,
+      716,
+      723
+    ],
+    "color": [
+      63,
+      81,
+      60
+    ],
+    "number_plate": "ID:4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 36,
+    "track_id": "1",
+    "bbox": [
+      328,
+      872,
+      1187,
+      1823
+    ],
+    "color": [
+      68,
+      69,
+      66
+    ],
+    "number_plate": "E3O66MP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 36,
+    "track_id": "2",
+    "bbox": [
+      718,
+      683,
+      906,
+      821
+    ],
+    "color": [
+      58,
+      56,
+      57
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 36,
+    "track_id": "3",
+    "bbox": [
+      194,
+      770,
+      571,
+      1073
+    ],
+    "color": [
+      76,
+      76,
+      69
+    ],
+    "number_plate": "Id:",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 36,
+    "track_id": "4",
+    "bbox": [
+      637,
+      653,
+      770,
+      773
+    ],
+    "color": [
+      72,
+      84,
+      71
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 36,
+    "track_id": "5",
+    "bbox": [
+      597,
+      620,
+      716,
+      724
+    ],
+    "color": [
+      63,
+      82,
+      61
+    ],
+    "number_plate": "ID4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 37,
+    "track_id": "1",
+    "bbox": [
+      339,
+      880,
+      1187,
+      1845
+    ],
+    "color": [
+      68,
+      70,
+      68
+    ],
+    "number_plate": "E3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 37,
+    "track_id": "2",
+    "bbox": [
+      715,
+      682,
+      903,
+      820
+    ],
+    "color": [
+      59,
+      57,
+      57
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 37,
+    "track_id": "3",
+    "bbox": [
+      199,
+      771,
+      568,
+      1065
+    ],
+    "color": [
+      79,
+      78,
+      71
+    ],
+    "number_plate": "IDI convertible",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 37,
+    "track_id": "4",
+    "bbox": [
+      637,
+      655,
+      767,
+      772
+    ],
+    "color": [
+      72,
+      85,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 37,
+    "track_id": "5",
+    "bbox": [
+      596,
+      619,
+      717,
+      724
+    ],
+    "color": [
+      62,
+      83,
+      60
+    ],
+    "number_plate": "I0:4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 38,
+    "track_id": "1",
+    "bbox": [
+      349,
+      892,
+      1189,
+      1873
+    ],
+    "color": [
+      68,
+      70,
+      69
+    ],
+    "number_plate": "73066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 38,
+    "track_id": "2",
+    "bbox": [
+      713,
+      680,
+      901,
+      818
+    ],
+    "color": [
+      60,
+      57,
+      58
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 38,
+    "track_id": "3",
+    "bbox": [
+      206,
+      771,
+      569,
+      1059
+    ],
+    "color": [
+      82,
+      81,
+      73
+    ],
+    "number_plate": "ID:1",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 38,
+    "track_id": "4",
+    "bbox": [
+      638,
+      655,
+      765,
+      771
+    ],
+    "color": [
+      72,
+      86,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 38,
+    "track_id": "5",
+    "bbox": [
+      596,
+      619,
+      717,
+      724
+    ],
+    "color": [
+      63,
+      84,
+      60
+    ],
+    "number_plate": "I0:4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 39,
+    "track_id": "1",
+    "bbox": [
+      359,
+      894,
+      1194,
+      1900
+    ],
+    "color": [
+      69,
+      72,
+      70
+    ],
+    "number_plate": "3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 39,
+    "track_id": "2",
+    "bbox": [
+      712,
+      679,
+      900,
+      817
+    ],
+    "color": [
+      59,
+      57,
+      58
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 39,
+    "track_id": "3",
+    "bbox": [
+      208,
+      772,
+      575,
+      1061
+    ],
+    "color": [
+      82,
+      81,
+      73
+    ],
+    "number_plate": "ID:1",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 39,
+    "track_id": "4",
+    "bbox": [
+      638,
+      656,
+      765,
+      770
+    ],
+    "color": [
+      72,
+      86,
+      72
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 40,
+    "track_id": "1",
+    "bbox": [
+      373,
+      900,
+      1193,
+      1916
+    ],
+    "color": [
+      69,
+      72,
+      71
+    ],
+    "number_plate": "'066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 40,
+    "track_id": "2",
+    "bbox": [
+      709,
+      678,
+      896,
+      816
+    ],
+    "color": [
+      59,
+      58,
+      58
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 40,
+    "track_id": "3",
+    "bbox": [
+      199,
+      772,
+      587,
+      1078
+    ],
+    "color": [
+      78,
+      77,
+      70
+    ],
+    "number_plate": "I0:1 convortiblo",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 40,
+    "track_id": "4",
+    "bbox": [
+      638,
+      656,
+      763,
+      768
+    ],
+    "color": [
+      72,
+      86,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 41,
+    "track_id": "1",
+    "bbox": [
+      386,
+      898,
+      1191,
+      1923
+    ],
+    "color": [
+      69,
+      74,
+      72
+    ],
+    "number_plate": "166MP-4",
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 41,
+    "track_id": "2",
+    "bbox": [
+      707,
+      678,
+      893,
+      815
+    ],
+    "color": [
+      60,
+      58,
+      59
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 41,
+    "track_id": "3",
+    "bbox": [
+      192,
+      775,
+      594,
+      1092
+    ],
+    "color": [
+      77,
+      75,
+      69
+    ],
+    "number_plate": "ID:1 other",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 41,
+    "track_id": "4",
+    "bbox": [
+      638,
+      656,
+      763,
+      768
+    ],
+    "color": [
+      72,
+      86,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 42,
+    "track_id": "1",
+    "bbox": [
+      404,
+      892,
+      1192,
+      1927
+    ],
+    "color": [
+      70,
+      75,
+      74
+    ],
+    "number_plate": "SMP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 42,
+    "track_id": "2",
+    "bbox": [
+      706,
+      678,
+      891,
+      814
+    ],
+    "color": [
+      60,
+      58,
+      59
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 42,
+    "track_id": "3",
+    "bbox": [
+      191,
+      776,
+      601,
+      1098
+    ],
+    "color": [
+      77,
+      76,
+      70
+    ],
+    "number_plate": "Id:",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 42,
+    "track_id": "4",
+    "bbox": [
+      638,
+      657,
+      762,
+      768
+    ],
+    "color": [
+      72,
+      85,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 43,
+    "track_id": "1",
+    "bbox": [
+      424,
+      899,
+      1186,
+      1928
+    ],
+    "color": [
+      70,
+      75,
+      75
+    ],
+    "number_plate": "AP-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 43,
+    "track_id": "2",
+    "bbox": [
+      704,
+      677,
+      888,
+      813
+    ],
+    "color": [
+      60,
+      58,
+      59
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 43,
+    "track_id": "3",
+    "bbox": [
+      191,
+      780,
+      605,
+      1104
+    ],
+    "color": [
+      78,
+      76,
+      69
+    ],
+    "number_plate": "ID:1 hatchback",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 43,
+    "track_id": "4",
+    "bbox": [
+      638,
+      657,
+      762,
+      768
+    ],
+    "color": [
+      71,
+      85,
+      72
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 44,
+    "track_id": "1",
+    "bbox": [
+      442,
+      893,
+      1185,
+      1927
+    ],
+    "color": [
+      70,
+      76,
+      76
+    ],
+    "number_plate": "5-4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 44,
+    "track_id": "2",
+    "bbox": [
+      702,
+      677,
+      885,
+      812
+    ],
+    "color": [
+      61,
+      59,
+      59
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 44,
+    "track_id": "3",
+    "bbox": [
+      193,
+      782,
+      609,
+      1108
+    ],
+    "color": [
+      78,
+      77,
+      70
+    ],
+    "number_plate": "ID:",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 44,
+    "track_id": "4",
+    "bbox": [
+      639,
+      657,
+      761,
+      767
+    ],
+    "color": [
+      71,
+      85,
+      71
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 45,
+    "track_id": "1",
+    "bbox": [
+      465,
+      902,
+      1180,
+      1926
+    ],
+    "color": [
+      70,
+      76,
+      76
+    ],
+    "number_plate": "4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 45,
+    "track_id": "2",
+    "bbox": [
+      700,
+      677,
+      882,
+      811
+    ],
+    "color": [
+      61,
+      59,
+      60
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 45,
+    "track_id": "3",
+    "bbox": [
+      192,
+      783,
+      614,
+      1114
+    ],
+    "color": [
+      78,
+      76,
+      70
+    ],
+    "number_plate": "hatchbaer",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 45,
+    "track_id": "4",
+    "bbox": [
+      637,
+      658,
+      760,
+      768
+    ],
+    "color": [
+      71,
+      84,
+      71
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 46,
+    "track_id": "1",
+    "bbox": [
+      490,
+      912,
+      1177,
+      1925
+    ],
+    "color": [
+      70,
+      75,
+      76
+    ],
+    "number_plate": "Viu",
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 46,
+    "track_id": "2",
+    "bbox": [
+      697,
+      677,
+      879,
+      811
+    ],
+    "color": [
+      61,
+      59,
+      60
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 46,
+    "track_id": "3",
+    "bbox": [
+      187,
+      785,
+      620,
+      1123
+    ],
+    "color": [
+      78,
+      76,
+      70
+    ],
+    "number_plate": "B:1",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 46,
+    "track_id": "4",
+    "bbox": [
+      637,
+      658,
+      760,
+      768
+    ],
+    "color": [
+      70,
+      84,
+      71
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 47,
+    "track_id": "1",
+    "bbox": [
+      519,
+      939,
+      1167,
+      1919
+    ],
+    "color": [
+      69,
+      74,
+      75
+    ],
+    "number_plate": "VIu",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 47,
+    "track_id": "2",
+    "bbox": [
+      694,
+      678,
+      874,
+      810
+    ],
+    "color": [
+      61,
+      59,
+      59
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 47,
+    "track_id": "3",
+    "bbox": [
+      187,
+      790,
+      621,
+      1128
+    ],
+    "color": [
+      78,
+      75,
+      69
+    ],
+    "number_plate": "ID:",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 47,
+    "track_id": "4",
+    "bbox": [
+      635,
+      658,
+      759,
+      767
+    ],
+    "color": [
+      70,
+      85,
+      71
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 48,
+    "track_id": "1",
+    "bbox": [
+      546,
+      958,
+      1161,
+      1914
+    ],
+    "color": [
+      69,
+      75,
+      76
+    ],
+    "number_plate": "Vn",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 48,
+    "track_id": "2",
+    "bbox": [
+      692,
+      678,
+      869,
+      809
+    ],
+    "color": [
+      60,
+      58,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 48,
+    "track_id": "3",
+    "bbox": [
+      182,
+      791,
+      624,
+      1134
+    ],
+    "color": [
+      78,
+      75,
+      69
+    ],
+    "number_plate": "ID:",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 48,
+    "track_id": "4",
+    "bbox": [
+      634,
+      658,
+      756,
+      767
+    ],
+    "color": [
+      70,
+      85,
+      70
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 49,
+    "track_id": "1",
+    "bbox": [
+      572,
+      972,
+      1158,
+      1910
+    ],
+    "color": [
+      70,
+      76,
+      78
+    ],
+    "number_plate": "(",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 49,
+    "track_id": "2",
+    "bbox": [
+      690,
+      678,
+      866,
+      809
+    ],
+    "color": [
+      59,
+      57,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 49,
+    "track_id": "3",
+    "bbox": [
+      181,
+      792,
+      628,
+      1138
+    ],
+    "color": [
+      79,
+      75,
+      70
+    ],
+    "number_plate": "ID:1",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 49,
+    "track_id": "4",
+    "bbox": [
+      632,
+      659,
+      755,
+      767
+    ],
+    "color": [
+      70,
+      84,
+      71
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 50,
+    "track_id": "1",
+    "bbox": [
+      595,
+      985,
+      1159,
+      1915
+    ],
+    "color": [
+      71,
+      78,
+      80
+    ],
+    "number_plate": "Ok (",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 50,
+    "track_id": "2",
+    "bbox": [
+      690,
+      679,
+      863,
+      807
+    ],
+    "color": [
+      60,
+      57,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 50,
+    "track_id": "3",
+    "bbox": [
+      186,
+      792,
+      635,
+      1139
+    ],
+    "color": [
+      80,
+      76,
+      71
+    ],
+    "number_plate": "Id:",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 50,
+    "track_id": "4",
+    "bbox": [
+      631,
+      659,
+      754,
+      767
+    ],
+    "color": [
+      69,
+      84,
+      70
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 51,
+    "track_id": "1",
+    "bbox": [
+      617,
+      995,
+      1160,
+      1917
+    ],
+    "color": [
+      73,
+      81,
+      83
+    ],
+    "number_plate": "bl",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 51,
+    "track_id": "2",
+    "bbox": [
+      690,
+      679,
+      862,
+      806
+    ],
+    "color": [
+      60,
+      57,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 51,
+    "track_id": "3",
+    "bbox": [
+      187,
+      794,
+      640,
+      1143
+    ],
+    "color": [
+      81,
+      76,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 51,
+    "track_id": "4",
+    "bbox": [
+      628,
+      657,
+      752,
+      766
+    ],
+    "color": [
+      69,
+      83,
+      69
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 52,
+    "track_id": "1",
+    "bbox": [
+      642,
+      1008,
+      1160,
+      1919
+    ],
+    "color": [
+      75,
+      83,
+      85
+    ],
+    "number_plate": "Mch",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 52,
+    "track_id": "2",
+    "bbox": [
+      689,
+      679,
+      861,
+      806
+    ],
+    "color": [
+      59,
+      57,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 52,
+    "track_id": "3",
+    "bbox": [
+      190,
+      796,
+      647,
+      1147
+    ],
+    "color": [
+      81,
+      76,
+      72
+    ],
+    "number_plate": "3O66MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 52,
+    "track_id": "4",
+    "bbox": [
+      627,
+      657,
+      751,
+      766
+    ],
+    "color": [
+      67,
+      82,
+      68
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 53,
+    "track_id": "1",
+    "bbox": [
+      671,
+      1028,
+      1161,
+      1920
+    ],
+    "color": [
+      77,
+      85,
+      87
+    ],
+    "number_plate": "bd",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 53,
+    "track_id": "2",
+    "bbox": [
+      688,
+      680,
+      858,
+      805
+    ],
+    "color": [
+      58,
+      55,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 53,
+    "track_id": "3",
+    "bbox": [
+      189,
+      797,
+      653,
+      1153
+    ],
+    "color": [
+      82,
+      76,
+      72
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 53,
+    "track_id": "4",
+    "bbox": [
+      625,
+      656,
+      749,
+      765
+    ],
+    "color": [
+      67,
+      82,
+      68
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 54,
+    "track_id": "1",
+    "bbox": [
+      702,
+      1059,
+      1158,
+      1921
+    ],
+    "color": [
+      78,
+      87,
+      89
+    ],
+    "number_plate": "(al",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 54,
+    "track_id": "2",
+    "bbox": [
+      685,
+      679,
+      856,
+      805
+    ],
+    "color": [
+      56,
+      54,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 54,
+    "track_id": "3",
+    "bbox": [
+      192,
+      799,
+      660,
+      1158
+    ],
+    "color": [
+      82,
+      76,
+      72
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 54,
+    "track_id": "4",
+    "bbox": [
+      623,
+      656,
+      746,
+      765
+    ],
+    "color": [
+      67,
+      82,
+      67
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 55,
+    "track_id": "1",
+    "bbox": [
+      738,
+      1101,
+      1155,
+      1921
+    ],
+    "color": [
+      77,
+      86,
+      89
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 55,
+    "track_id": "2",
+    "bbox": [
+      685,
+      680,
+      853,
+      804
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 55,
+    "track_id": "3",
+    "bbox": [
+      190,
+      802,
+      665,
+      1166
+    ],
+    "color": [
+      81,
+      76,
+      72
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 55,
+    "track_id": "4",
+    "bbox": [
+      622,
+      655,
+      746,
+      765
+    ],
+    "color": [
+      66,
+      81,
+      66
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 56,
+    "track_id": "1",
+    "bbox": [
+      776,
+      1147,
+      1154,
+      1920
+    ],
+    "color": [
+      74,
+      82,
+      85
+    ],
+    "number_plate": "W",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 56,
+    "track_id": "2",
+    "bbox": [
+      684,
+      680,
+      852,
+      804
+    ],
+    "color": [
+      53,
+      51,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 56,
+    "track_id": "3",
+    "bbox": [
+      193,
+      804,
+      673,
+      1171
+    ],
+    "color": [
+      81,
+      76,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 56,
+    "track_id": "4",
+    "bbox": [
+      624,
+      656,
+      747,
+      765
+    ],
+    "color": [
+      65,
+      81,
+      65
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 57,
+    "track_id": "1",
+    "bbox": [
+      814,
+      1197,
+      1152,
+      1919
+    ],
+    "color": [
+      75,
+      82,
+      84
+    ],
+    "number_plate": "Uo",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 57,
+    "track_id": "2",
+    "bbox": [
+      683,
+      681,
+      849,
+      803
+    ],
+    "color": [
+      53,
+      50,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 57,
+    "track_id": "3",
+    "bbox": [
+      196,
+      806,
+      679,
+      1174
+    ],
+    "color": [
+      82,
+      76,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 57,
+    "track_id": "4",
+    "bbox": [
+      622,
+      655,
+      745,
+      765
+    ],
+    "color": [
+      65,
+      80,
+      65
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 58,
+    "track_id": "1",
+    "bbox": [
+      850,
+      1229,
+      1156,
+      1919
+    ],
+    "color": [
+      77,
+      84,
+      85
+    ],
+    "number_plate": "Ujo",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 58,
+    "track_id": "2",
+    "bbox": [
+      682,
+      681,
+      848,
+      803
+    ],
+    "color": [
+      53,
+      51,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 58,
+    "track_id": "3",
+    "bbox": [
+      197,
+      805,
+      688,
+      1179
+    ],
+    "color": [
+      81,
+      76,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 58,
+    "track_id": "4",
+    "bbox": [
+      623,
+      656,
+      744,
+      764
+    ],
+    "color": [
+      65,
+      80,
+      64
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 59,
+    "track_id": "1",
+    "bbox": [
+      869,
+      1254,
+      1165,
+      1921
+    ],
+    "color": [
+      84,
+      89,
+      89
+    ],
+    "number_plate": "4Ijo",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 59,
+    "track_id": "2",
+    "bbox": [
+      679,
+      681,
+      846,
+      804
+    ],
+    "color": [
+      54,
+      52,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 59,
+    "track_id": "3",
+    "bbox": [
+      200,
+      808,
+      695,
+      1185
+    ],
+    "color": [
+      81,
+      76,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 59,
+    "track_id": "4",
+    "bbox": [
+      625,
+      657,
+      745,
+      763
+    ],
+    "color": [
+      65,
+      81,
+      64
+    ],
+    "number_plate": "Va",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 60,
+    "track_id": "1",
+    "bbox": [
+      888,
+      1280,
+      1173,
+      1923
+    ],
+    "color": [
+      95,
+      98,
+      98
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 60,
+    "track_id": "2",
+    "bbox": [
+      679,
+      683,
+      843,
+      803
+    ],
+    "color": [
+      53,
+      51,
+      50
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 60,
+    "track_id": "3",
+    "bbox": [
+      201,
+      809,
+      704,
+      1192
+    ],
+    "color": [
+      81,
+      75,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 60,
+    "track_id": "4",
+    "bbox": [
+      622,
+      658,
+      738,
+      761
+    ],
+    "color": [
+      65,
+      82,
+      66
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 61,
+    "track_id": "1",
+    "bbox": [
+      907,
+      1305,
+      1182,
+      1925
+    ],
+    "color": [
+      105,
+      108,
+      108
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 61,
+    "track_id": "2",
+    "bbox": [
+      677,
+      682,
+      841,
+      803
+    ],
+    "color": [
+      54,
+      51,
+      52
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 61,
+    "track_id": "3",
+    "bbox": [
+      203,
+      810,
+      712,
+      1197
+    ],
+    "color": [
+      81,
+      75,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 61,
+    "track_id": "4",
+    "bbox": [
+      621,
+      658,
+      736,
+      761
+    ],
+    "color": [
+      65,
+      81,
+      65
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 62,
+    "track_id": "1",
+    "bbox": [
+      926,
+      1331,
+      1191,
+      1927
+    ],
+    "color": [
+      107,
+      110,
+      110
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 62,
+    "track_id": "2",
+    "bbox": [
+      677,
+      684,
+      837,
+      802
+    ],
+    "color": [
+      52,
+      50,
+      50
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 62,
+    "track_id": "3",
+    "bbox": [
+      202,
+      810,
+      721,
+      1204
+    ],
+    "color": [
+      81,
+      75,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 62,
+    "track_id": "4",
+    "bbox": [
+      622,
+      658,
+      736,
+      761
+    ],
+    "color": [
+      64,
+      80,
+      64
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 63,
+    "track_id": "1",
+    "bbox": [
+      945,
+      1356,
+      1199,
+      1929
+    ],
+    "color": [
+      107,
+      110,
+      110
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 63,
+    "track_id": "2",
+    "bbox": [
+      675,
+      684,
+      836,
+      802
+    ],
+    "color": [
+      53,
+      51,
+      51
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 63,
+    "track_id": "3",
+    "bbox": [
+      204,
+      811,
+      729,
+      1209
+    ],
+    "color": [
+      81,
+      75,
+      72
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 63,
+    "track_id": "4",
+    "bbox": [
+      622,
+      660,
+      734,
+      761
+    ],
+    "color": [
+      64,
+      80,
+      64
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 64,
+    "track_id": "1",
+    "bbox": [
+      964,
+      1382,
+      1208,
+      1931
+    ],
+    "color": [
+      107,
+      110,
+      110
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 64,
+    "track_id": "2",
+    "bbox": [
+      674,
+      684,
+      835,
+      802
+    ],
+    "color": [
+      52,
+      50,
+      50
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 64,
+    "track_id": "3",
+    "bbox": [
+      202,
+      811,
+      737,
+      1217
+    ],
+    "color": [
+      80,
+      75,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 64,
+    "track_id": "4",
+    "bbox": [
+      623,
+      664,
+      729,
+      760
+    ],
+    "color": [
+      63,
+      80,
+      64
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 65,
+    "track_id": "1",
+    "bbox": [
+      983,
+      1407,
+      1217,
+      1934
+    ],
+    "color": [
+      105,
+      108,
+      108
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 65,
+    "track_id": "2",
+    "bbox": [
+      672,
+      684,
+      833,
+      801
+    ],
+    "color": [
+      53,
+      51,
+      52
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 65,
+    "track_id": "3",
+    "bbox": [
+      203,
+      812,
+      747,
+      1226
+    ],
+    "color": [
+      80,
+      74,
+      71
+    ],
+    "number_plate": "3066MP-4",
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 65,
+    "track_id": "4",
+    "bbox": [
+      622,
+      664,
+      727,
+      759
+    ],
+    "color": [
+      63,
+      80,
+      65
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 66,
+    "track_id": "1",
+    "bbox": [
+      1002,
+      1433,
+      1225,
+      1936
+    ],
+    "color": [
+      104,
+      108,
+      108
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 66,
+    "track_id": "2",
+    "bbox": [
+      671,
+      683,
+      832,
+      802
+    ],
+    "color": [
+      54,
+      52,
+      52
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 66,
+    "track_id": "3",
+    "bbox": [
+      209,
+      816,
+      756,
+      1231
+    ],
+    "color": [
+      79,
+      74,
+      70
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 66,
+    "track_id": "4",
+    "bbox": [
+      621,
+      663,
+      725,
+      758
+    ],
+    "color": [
+      63,
+      80,
+      64
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 67,
+    "track_id": "1",
+    "bbox": [
+      1021,
+      1458,
+      1234,
+      1938
+    ],
+    "color": [
+      105,
+      108,
+      108
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 67,
+    "track_id": "2",
+    "bbox": [
+      669,
+      682,
+      831,
+      802
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 67,
+    "track_id": "3",
+    "bbox": [
+      213,
+      817,
+      765,
+      1236
+    ],
+    "color": [
+      79,
+      73,
+      70
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 67,
+    "track_id": "4",
+    "bbox": [
+      627,
+      678,
+      717,
+      759
+    ],
+    "color": [
+      63,
+      76,
+      66
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 68,
+    "track_id": "1",
+    "bbox": [
+      1040,
+      1484,
+      1243,
+      1940
+    ],
+    "color": [
+      104,
+      107,
+      108
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 68,
+    "track_id": "2",
+    "bbox": [
+      667,
+      682,
+      830,
+      802
+    ],
+    "color": [
+      57,
+      55,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 68,
+    "track_id": "3",
+    "bbox": [
+      215,
+      820,
+      773,
+      1242
+    ],
+    "color": [
+      78,
+      73,
+      69
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 68,
+    "track_id": "4",
+    "bbox": [
+      624,
+      675,
+      717,
+      757
+    ],
+    "color": [
+      62,
+      75,
+      64
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 69,
+    "track_id": "1",
+    "bbox": [
+      1059,
+      1509,
+      1251,
+      1942
+    ],
+    "color": [
+      103,
+      107,
+      107
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 69,
+    "track_id": "2",
+    "bbox": [
+      666,
+      682,
+      828,
+      802
+    ],
+    "color": [
+      57,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 69,
+    "track_id": "3",
+    "bbox": [
+      215,
+      821,
+      784,
+      1250
+    ],
+    "color": [
+      78,
+      72,
+      68
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 69,
+    "track_id": "4",
+    "bbox": [
+      623,
+      670,
+      721,
+      756
+    ],
+    "color": [
+      61,
+      75,
+      63
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 70,
+    "track_id": "1",
+    "bbox": [
+      1078,
+      1535,
+      1260,
+      1944
+    ],
+    "color": [
+      103,
+      107,
+      107
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 70,
+    "track_id": "2",
+    "bbox": [
+      666,
+      682,
+      826,
+      801
+    ],
+    "color": [
+      57,
+      56,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 70,
+    "track_id": "3",
+    "bbox": [
+      217,
+      823,
+      793,
+      1256
+    ],
+    "color": [
+      77,
+      72,
+      68
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 70,
+    "track_id": "4",
+    "bbox": [
+      623,
+      670,
+      719,
+      756
+    ],
+    "color": [
+      60,
+      75,
+      62
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 71,
+    "track_id": "1",
+    "bbox": [
+      1097,
+      1560,
+      1269,
+      1946
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 71,
+    "track_id": "2",
+    "bbox": [
+      665,
+      682,
+      824,
+      800
+    ],
+    "color": [
+      58,
+      56,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 71,
+    "track_id": "3",
+    "bbox": [
+      220,
+      824,
+      800,
+      1261
+    ],
+    "color": [
+      77,
+      72,
+      68
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 71,
+    "track_id": "4",
+    "bbox": [
+      622,
+      671,
+      718,
+      755
+    ],
+    "color": [
+      59,
+      73,
+      61
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 72,
+    "track_id": "1",
+    "bbox": [
+      1117,
+      1586,
+      1277,
+      1948
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 72,
+    "track_id": "2",
+    "bbox": [
+      665,
+      682,
+      820,
+      798
+    ],
+    "color": [
+      57,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 72,
+    "track_id": "3",
+    "bbox": [
+      223,
+      827,
+      808,
+      1265
+    ],
+    "color": [
+      77,
+      71,
+      67
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 72,
+    "track_id": "4",
+    "bbox": [
+      622,
+      671,
+      716,
+      755
+    ],
+    "color": [
+      58,
+      73,
+      60
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 73,
+    "track_id": "1",
+    "bbox": [
+      1136,
+      1611,
+      1286,
+      1950
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 73,
+    "track_id": "2",
+    "bbox": [
+      666,
+      684,
+      819,
+      798
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 73,
+    "track_id": "3",
+    "bbox": [
+      222,
+      830,
+      817,
+      1274
+    ],
+    "color": [
+      77,
+      71,
+      67
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 73,
+    "track_id": "4",
+    "bbox": [
+      622,
+      672,
+      715,
+      754
+    ],
+    "color": [
+      58,
+      73,
+      60
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 74,
+    "track_id": "1",
+    "bbox": [
+      1155,
+      1637,
+      1295,
+      1953
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 74,
+    "track_id": "2",
+    "bbox": [
+      664,
+      684,
+      818,
+      798
+    ],
+    "color": [
+      53,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 74,
+    "track_id": "3",
+    "bbox": [
+      231,
+      833,
+      833,
+      1280
+    ],
+    "color": [
+      76,
+      71,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 74,
+    "track_id": "4",
+    "bbox": [
+      622,
+      672,
+      713,
+      753
+    ],
+    "color": [
+      57,
+      73,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 75,
+    "track_id": "1",
+    "bbox": [
+      1174,
+      1663,
+      1303,
+      1955
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 75,
+    "track_id": "2",
+    "bbox": [
+      664,
+      682,
+      818,
+      798
+    ],
+    "color": [
+      54,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 75,
+    "track_id": "3",
+    "bbox": [
+      237,
+      833,
+      849,
+      1286
+    ],
+    "color": [
+      77,
+      71,
+      67
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 75,
+    "track_id": "4",
+    "bbox": [
+      622,
+      673,
+      712,
+      753
+    ],
+    "color": [
+      57,
+      71,
+      60
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 76,
+    "track_id": "1",
+    "bbox": [
+      1193,
+      1688,
+      1312,
+      1957
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 76,
+    "track_id": "2",
+    "bbox": [
+      663,
+      680,
+      818,
+      797
+    ],
+    "color": [
+      55,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 76,
+    "track_id": "3",
+    "bbox": [
+      240,
+      834,
+      862,
+      1294
+    ],
+    "color": [
+      76,
+      71,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 76,
+    "track_id": "4",
+    "bbox": [
+      621,
+      674,
+      710,
+      752
+    ],
+    "color": [
+      57,
+      70,
+      59
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 77,
+    "track_id": "1",
+    "bbox": [
+      1212,
+      1714,
+      1321,
+      1959
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 77,
+    "track_id": "2",
+    "bbox": [
+      664,
+      682,
+      816,
+      796
+    ],
+    "color": [
+      56,
+      54,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 77,
+    "track_id": "3",
+    "bbox": [
+      246,
+      836,
+      876,
+      1300
+    ],
+    "color": [
+      77,
+      71,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 77,
+    "track_id": "4",
+    "bbox": [
+      621,
+      674,
+      709,
+      752
+    ],
+    "color": [
+      56,
+      69,
+      58
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 78,
+    "track_id": "1",
+    "bbox": [
+      1231,
+      1739,
+      1329,
+      1961
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 78,
+    "track_id": "2",
+    "bbox": [
+      661,
+      681,
+      814,
+      796
+    ],
+    "color": [
+      57,
+      56,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 78,
+    "track_id": "3",
+    "bbox": [
+      252,
+      838,
+      891,
+      1308
+    ],
+    "color": [
+      76,
+      70,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 78,
+    "track_id": "4",
+    "bbox": [
+      621,
+      675,
+      707,
+      751
+    ],
+    "color": [
+      56,
+      70,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 79,
+    "track_id": "1",
+    "bbox": [
+      1250,
+      1765,
+      1338,
+      1963
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 79,
+    "track_id": "2",
+    "bbox": [
+      660,
+      681,
+      811,
+      795
+    ],
+    "color": [
+      58,
+      57,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 79,
+    "track_id": "3",
+    "bbox": [
+      257,
+      839,
+      909,
+      1316
+    ],
+    "color": [
+      76,
+      70,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 79,
+    "track_id": "4",
+    "bbox": [
+      621,
+      675,
+      706,
+      750
+    ],
+    "color": [
+      58,
+      72,
+      60
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 80,
+    "track_id": "1",
+    "bbox": [
+      1269,
+      1790,
+      1347,
+      1965
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 80,
+    "track_id": "2",
+    "bbox": [
+      660,
+      682,
+      808,
+      794
+    ],
+    "color": [
+      56,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 80,
+    "track_id": "3",
+    "bbox": [
+      265,
+      841,
+      923,
+      1322
+    ],
+    "color": [
+      76,
+      70,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 80,
+    "track_id": "4",
+    "bbox": [
+      621,
+      676,
+      704,
+      750
+    ],
+    "color": [
+      58,
+      73,
+      60
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 81,
+    "track_id": "1",
+    "bbox": [
+      1288,
+      1816,
+      1355,
+      1967
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 81,
+    "track_id": "2",
+    "bbox": [
+      661,
+      685,
+      805,
+      793
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 81,
+    "track_id": "3",
+    "bbox": [
+      270,
+      843,
+      941,
+      1331
+    ],
+    "color": [
+      77,
+      71,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 81,
+    "track_id": "4",
+    "bbox": [
+      620,
+      676,
+      703,
+      749
+    ],
+    "color": [
+      59,
+      74,
+      62
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 82,
+    "track_id": "1",
+    "bbox": [
+      1307,
+      1841,
+      1364,
+      1969
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 82,
+    "track_id": "2",
+    "bbox": [
+      662,
+      687,
+      804,
+      793
+    ],
+    "color": [
+      55,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 82,
+    "track_id": "3",
+    "bbox": [
+      275,
+      844,
+      959,
+      1340
+    ],
+    "color": [
+      76,
+      70,
+      65
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 82,
+    "track_id": "4",
+    "bbox": [
+      620,
+      677,
+      701,
+      749
+    ],
+    "color": [
+      59,
+      76,
+      62
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 83,
+    "track_id": "1",
+    "bbox": [
+      1326,
+      1867,
+      1373,
+      1972
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 83,
+    "track_id": "2",
+    "bbox": [
+      660,
+      685,
+      805,
+      792
+    ],
+    "color": [
+      57,
+      55,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 83,
+    "track_id": "3",
+    "bbox": [
+      280,
+      844,
+      977,
+      1349
+    ],
+    "color": [
+      76,
+      71,
+      66
+    ],
+    "number_plate": "BY",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 83,
+    "track_id": "4",
+    "bbox": [
+      620,
+      677,
+      699,
+      748
+    ],
+    "color": [
+      60,
+      75,
+      62
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 84,
+    "track_id": "1",
+    "bbox": [
+      1345,
+      1892,
+      1381,
+      1974
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 84,
+    "track_id": "2",
+    "bbox": [
+      659,
+      683,
+      805,
+      792
+    ],
+    "color": [
+      57,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 84,
+    "track_id": "3",
+    "bbox": [
+      286,
+      844,
+      996,
+      1357
+    ],
+    "color": [
+      76,
+      70,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 84,
+    "track_id": "4",
+    "bbox": [
+      620,
+      678,
+      698,
+      747
+    ],
+    "color": [
+      60,
+      76,
+      63
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 85,
+    "track_id": "1",
+    "bbox": [
+      1364,
+      1918,
+      1390,
+      1976
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 85,
+    "track_id": "2",
+    "bbox": [
+      657,
+      680,
+      806,
+      792
+    ],
+    "color": [
+      57,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 85,
+    "track_id": "3",
+    "bbox": [
+      290,
+      846,
+      1013,
+      1366
+    ],
+    "color": [
+      76,
+      70,
+      66
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 85,
+    "track_id": "4",
+    "bbox": [
+      620,
+      679,
+      696,
+      747
+    ],
+    "color": [
+      62,
+      79,
+      65
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 86,
+    "track_id": "1",
+    "bbox": [
+      1383,
+      1943,
+      1399,
+      1978
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 86,
+    "track_id": "2",
+    "bbox": [
+      656,
+      678,
+      806,
+      791
+    ],
+    "color": [
+      56,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 86,
+    "track_id": "3",
+    "bbox": [
+      297,
+      849,
+      1035,
+      1379
+    ],
+    "color": [
+      76,
+      70,
+      65
+    ],
+    "number_plate": "BY",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 86,
+    "track_id": "4",
+    "bbox": [
+      619,
+      679,
+      695,
+      746
+    ],
+    "color": [
+      66,
+      79,
+      69
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 87,
+    "track_id": "1",
+    "bbox": [
+      1403,
+      1969,
+      1407,
+      1980
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 87,
+    "track_id": "2",
+    "bbox": [
+      655,
+      678,
+      805,
+      790
+    ],
+    "color": [
+      56,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 87,
+    "track_id": "3",
+    "bbox": [
+      305,
+      853,
+      1055,
+      1389
+    ],
+    "color": [
+      76,
+      70,
+      65
+    ],
+    "number_plate": "BY",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 87,
+    "track_id": "4",
+    "bbox": [
+      619,
+      680,
+      693,
+      746
+    ],
+    "color": [
+      70,
+      81,
+      73
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 88,
+    "track_id": "1",
+    "bbox": [
+      1422,
+      1994,
+      1416,
+      1982
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 88,
+    "track_id": "2",
+    "bbox": [
+      653,
+      677,
+      803,
+      790
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 88,
+    "track_id": "3",
+    "bbox": [
+      312,
+      855,
+      1071,
+      1397
+    ],
+    "color": [
+      76,
+      70,
+      65
+    ],
+    "number_plate": "3066MP-4",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 88,
+    "track_id": "4",
+    "bbox": [
+      619,
+      680,
+      692,
+      745
+    ],
+    "color": [
+      73,
+      85,
+      76
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 89,
+    "track_id": "2",
+    "bbox": [
+      651,
+      675,
+      802,
+      790
+    ],
+    "color": [
+      55,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 89,
+    "track_id": "3",
+    "bbox": [
+      315,
+      858,
+      1079,
+      1403
+    ],
+    "color": [
+      77,
+      70,
+      65
+    ],
+    "number_plate": "BY",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 89,
+    "track_id": "4",
+    "bbox": [
+      619,
+      681,
+      690,
+      744
+    ],
+    "color": [
+      78,
+      89,
+      80
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 90,
+    "track_id": "2",
+    "bbox": [
+      654,
+      676,
+      802,
+      789
+    ],
+    "color": [
+      55,
+      54,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 90,
+    "track_id": "3",
+    "bbox": [
+      316,
+      860,
+      1088,
+      1412
+    ],
+    "color": [
+      77,
+      70,
+      65
+    ],
+    "number_plate": "BY",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 90,
+    "track_id": "4",
+    "bbox": [
+      618,
+      681,
+      689,
+      744
+    ],
+    "color": [
+      80,
+      93,
+      83
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 91,
+    "track_id": "2",
+    "bbox": [
+      654,
+      677,
+      801,
+      789
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 91,
+    "track_id": "3",
+    "bbox": [
+      314,
+      862,
+      1098,
+      1425
+    ],
+    "color": [
+      76,
+      70,
+      65
+    ],
+    "number_plate": "LAP 4?",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 91,
+    "track_id": "4",
+    "bbox": [
+      618,
+      682,
+      687,
+      743
+    ],
+    "color": [
+      85,
+      97,
+      87
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 92,
+    "track_id": "2",
+    "bbox": [
+      654,
+      678,
+      798,
+      789
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 92,
+    "track_id": "3",
+    "bbox": [
+      313,
+      864,
+      1106,
+      1437
+    ],
+    "color": [
+      76,
+      70,
+      64
+    ],
+    "number_plate": "EAP L89",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 92,
+    "track_id": "4",
+    "bbox": [
+      618,
+      683,
+      686,
+      743
+    ],
+    "color": [
+      86,
+      98,
+      89
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 93,
+    "track_id": "2",
+    "bbox": [
+      654,
+      677,
+      798,
+      788
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 93,
+    "track_id": "3",
+    "bbox": [
+      313,
+      865,
+      1113,
+      1448
+    ],
+    "color": [
+      76,
+      69,
+      64
+    ],
+    "number_plate": "EAP L855",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 93,
+    "track_id": "4",
+    "bbox": [
+      618,
+      683,
+      684,
+      742
+    ],
+    "color": [
+      90,
+      103,
+      92
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 94,
+    "track_id": "2",
+    "bbox": [
+      654,
+      679,
+      795,
+      787
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 94,
+    "track_id": "3",
+    "bbox": [
+      313,
+      867,
+      1121,
+      1463
+    ],
+    "color": [
+      75,
+      69,
+      63
+    ],
+    "number_plate": "EAP 4895.5",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 94,
+    "track_id": "4",
+    "bbox": [
+      618,
+      684,
+      683,
+      741
+    ],
+    "color": [
+      94,
+      107,
+      97
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 95,
+    "track_id": "2",
+    "bbox": [
+      653,
+      679,
+      793,
+      787
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 95,
+    "track_id": "3",
+    "bbox": [
+      313,
+      869,
+      1133,
+      1482
+    ],
+    "color": [
+      74,
+      68,
+      63
+    ],
+    "number_plate": "EAPle953",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 95,
+    "track_id": "4",
+    "bbox": [
+      617,
+      684,
+      681,
+      741
+    ],
+    "color": [
+      101,
+      114,
+      104
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 96,
+    "track_id": "2",
+    "bbox": [
+      655,
+      681,
+      791,
+      786
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 96,
+    "track_id": "3",
+    "bbox": [
+      315,
+      871,
+      1142,
+      1499
+    ],
+    "color": [
+      73,
+      67,
+      62
+    ],
+    "number_plate": "EAP [8955",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 96,
+    "track_id": "4",
+    "bbox": [
+      617,
+      685,
+      680,
+      740
+    ],
+    "color": [
+      106,
+      119,
+      109
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 97,
+    "track_id": "2",
+    "bbox": [
+      656,
+      681,
+      792,
+      787
+    ],
+    "color": [
+      56,
+      53,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 97,
+    "track_id": "3",
+    "bbox": [
+      320,
+      873,
+      1148,
+      1512
+    ],
+    "color": [
+      73,
+      67,
+      62
+    ],
+    "number_plate": "EAPL8S ",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 97,
+    "track_id": "4",
+    "bbox": [
+      617,
+      685,
+      678,
+      740
+    ],
+    "color": [
+      112,
+      126,
+      116
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 98,
+    "track_id": "2",
+    "bbox": [
+      656,
+      682,
+      791,
+      787
+    ],
+    "color": [
+      55,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 98,
+    "track_id": "3",
+    "bbox": [
+      326,
+      876,
+      1151,
+      1524
+    ],
+    "color": [
+      72,
+      66,
+      61
+    ],
+    "number_plate": "EAP L8953",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 98,
+    "track_id": "4",
+    "bbox": [
+      617,
+      686,
+      677,
+      739
+    ],
+    "color": [
+      115,
+      130,
+      123
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 99,
+    "track_id": "2",
+    "bbox": [
+      658,
+      685,
+      787,
+      786
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 99,
+    "track_id": "3",
+    "bbox": [
+      332,
+      878,
+      1157,
+      1539
+    ],
+    "color": [
+      72,
+      66,
+      61
+    ],
+    "number_plate": "EAP L8553",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 99,
+    "track_id": "4",
+    "bbox": [
+      617,
+      686,
+      675,
+      738
+    ],
+    "color": [
+      120,
+      137,
+      132
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 100,
+    "track_id": "2",
+    "bbox": [
+      665,
+      695,
+      782,
+      785
+    ],
+    "color": [
+      56,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "convertible",
+    "model": "unknown"
+  },
+  {
+    "frame": 100,
+    "track_id": "3",
+    "bbox": [
+      338,
+      882,
+      1163,
+      1558
+    ],
+    "color": [
+      71,
+      65,
+      60
+    ],
+    "number_plate": "EAP 48953",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 101,
+    "track_id": "2",
+    "bbox": [
+      670,
+      702,
+      778,
+      784
+    ],
+    "color": [
+      56,
+      53,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 101,
+    "track_id": "3",
+    "bbox": [
+      345,
+      886,
+      1169,
+      1576
+    ],
+    "color": [
+      70,
+      64,
+      60
+    ],
+    "number_plate": "EAP 48955",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 102,
+    "track_id": "2",
+    "bbox": [
+      668,
+      697,
+      783,
+      783
+    ],
+    "color": [
+      55,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 102,
+    "track_id": "3",
+    "bbox": [
+      353,
+      889,
+      1174,
+      1594
+    ],
+    "color": [
+      69,
+      64,
+      60
+    ],
+    "number_plate": "JAP L895.5",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 103,
+    "track_id": "2",
+    "bbox": [
+      670,
+      701,
+      781,
+      783
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 103,
+    "track_id": "3",
+    "bbox": [
+      365,
+      893,
+      1179,
+      1609
+    ],
+    "color": [
+      68,
+      63,
+      59
+    ],
+    "number_plate": "EAPL8S55",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 104,
+    "track_id": "2",
+    "bbox": [
+      674,
+      703,
+      782,
+      783
+    ],
+    "color": [
+      54,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 104,
+    "track_id": "3",
+    "bbox": [
+      377,
+      898,
+      1182,
+      1627
+    ],
+    "color": [
+      67,
+      63,
+      59
+    ],
+    "number_plate": "EAP 48953",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 105,
+    "track_id": "2",
+    "bbox": [
+      670,
+      696,
+      786,
+      783
+    ],
+    "color": [
+      55,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 105,
+    "track_id": "3",
+    "bbox": [
+      387,
+      903,
+      1188,
+      1648
+    ],
+    "color": [
+      67,
+      62,
+      59
+    ],
+    "number_plate": "EAP L895.5",
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 106,
+    "track_id": "2",
+    "bbox": [
+      668,
+      691,
+      789,
+      784
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 106,
+    "track_id": "3",
+    "bbox": [
+      399,
+      906,
+      1192,
+      1667
+    ],
+    "color": [
+      66,
+      62,
+      59
+    ],
+    "number_plate": "EAP 48955",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 107,
+    "track_id": "2",
+    "bbox": [
+      671,
+      696,
+      786,
+      784
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 107,
+    "track_id": "3",
+    "bbox": [
+      410,
+      907,
+      1200,
+      1691
+    ],
+    "color": [
+      66,
+      63,
+      60
+    ],
+    "number_plate": "JAP L895.5",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 108,
+    "track_id": "2",
+    "bbox": [
+      674,
+      696,
+      787,
+      783
+    ],
+    "color": [
+      57,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 108,
+    "track_id": "3",
+    "bbox": [
+      424,
+      914,
+      1204,
+      1712
+    ],
+    "color": [
+      67,
+      64,
+      61
+    ],
+    "number_plate": "AP 489555",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 109,
+    "track_id": "2",
+    "bbox": [
+      676,
+      699,
+      784,
+      783
+    ],
+    "color": [
+      56,
+      54,
+      55
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 109,
+    "track_id": "3",
+    "bbox": [
+      439,
+      919,
+      1207,
+      1733
+    ],
+    "color": [
+      67,
+      65,
+      62
+    ],
+    "number_plate": "L8ss5",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 110,
+    "track_id": "2",
+    "bbox": [
+      680,
+      705,
+      779,
+      781
+    ],
+    "color": [
+      55,
+      52,
+      55
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 110,
+    "track_id": "3",
+    "bbox": [
+      456,
+      925,
+      1211,
+      1756
+    ],
+    "color": [
+      68,
+      66,
+      64
+    ],
+    "number_plate": "406o 4",
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 111,
+    "track_id": "2",
+    "bbox": [
+      682,
+      707,
+      778,
+      781
+    ],
+    "color": [
+      55,
+      52,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 111,
+    "track_id": "3",
+    "bbox": [
+      473,
+      931,
+      1216,
+      1780
+    ],
+    "color": [
+      69,
+      68,
+      66
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 112,
+    "track_id": "2",
+    "bbox": [
+      685,
+      710,
+      777,
+      781
+    ],
+    "color": [
+      54,
+      51,
+      54
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 112,
+    "track_id": "3",
+    "bbox": [
+      495,
+      936,
+      1216,
+      1792
+    ],
+    "color": [
+      70,
+      70,
+      68
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 113,
+    "track_id": "2",
+    "bbox": [
+      686,
+      711,
+      776,
+      780
+    ],
+    "color": [
+      55,
+      52,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 113,
+    "track_id": "3",
+    "bbox": [
+      545,
+      942,
+      1189,
+      1733
+    ],
+    "color": [
+      68,
+      67,
+      66
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 114,
+    "track_id": "2",
+    "bbox": [
+      686,
+      712,
+      775,
+      780
+    ],
+    "color": [
+      56,
+      54,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 114,
+    "track_id": "3",
+    "bbox": [
+      588,
+      949,
+      1171,
+      1687
+    ],
+    "color": [
+      68,
+      67,
+      66
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 115,
+    "track_id": "2",
+    "bbox": [
+      688,
+      713,
+      775,
+      779
+    ],
+    "color": [
+      57,
+      54,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 115,
+    "track_id": "3",
+    "bbox": [
+      621,
+      958,
+      1164,
+      1668
+    ],
+    "color": [
+      69,
+      68,
+      67
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 116,
+    "track_id": "2",
+    "bbox": [
+      691,
+      714,
+      775,
+      778
+    ],
+    "color": [
+      57,
+      54,
+      59
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 116,
+    "track_id": "3",
+    "bbox": [
+      648,
+      963,
+      1164,
+      1661
+    ],
+    "color": [
+      71,
+      70,
+      69
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 117,
+    "track_id": "2",
+    "bbox": [
+      693,
+      716,
+      774,
+      777
+    ],
+    "color": [
+      56,
+      54,
+      58
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 117,
+    "track_id": "3",
+    "bbox": [
+      675,
+      972,
+      1167,
+      1662
+    ],
+    "color": [
+      73,
+      72,
+      71
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 118,
+    "track_id": "2",
+    "bbox": [
+      695,
+      717,
+      773,
+      777
+    ],
+    "color": [
+      55,
+      53,
+      57
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 118,
+    "track_id": "3",
+    "bbox": [
+      701,
+      992,
+      1167,
+      1671
+    ],
+    "color": [
+      73,
+      73,
+      72
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 119,
+    "track_id": "2",
+    "bbox": [
+      697,
+      719,
+      772,
+      776
+    ],
+    "color": [
+      55,
+      53,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 119,
+    "track_id": "3",
+    "bbox": [
+      731,
+      1022,
+      1167,
+      1685
+    ],
+    "color": [
+      73,
+      73,
+      72
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 120,
+    "track_id": "2",
+    "bbox": [
+      699,
+      720,
+      771,
+      775
+    ],
+    "color": [
+      55,
+      53,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 120,
+    "track_id": "3",
+    "bbox": [
+      763,
+      1059,
+      1168,
+      1705
+    ],
+    "color": [
+      73,
+      72,
+      72
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 121,
+    "track_id": "2",
+    "bbox": [
+      700,
+      721,
+      771,
+      775
+    ],
+    "color": [
+      55,
+      54,
+      56
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 121,
+    "track_id": "3",
+    "bbox": [
+      795,
+      1104,
+      1169,
+      1731
+    ],
+    "color": [
+      72,
+      71,
+      70
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 122,
+    "track_id": "2",
+    "bbox": [
+      702,
+      723,
+      770,
+      774
+    ],
+    "color": [
+      55,
+      55,
+      55
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 122,
+    "track_id": "3",
+    "bbox": [
+      830,
+      1151,
+      1170,
+      1754
+    ],
+    "color": [
+      72,
+      71,
+      70
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 123,
+    "track_id": "2",
+    "bbox": [
+      704,
+      724,
+      769,
+      774
+    ],
+    "color": [
+      55,
+      55,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 123,
+    "track_id": "3",
+    "bbox": [
+      861,
+      1177,
+      1176,
+      1773
+    ],
+    "color": [
+      76,
+      76,
+      75
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 124,
+    "track_id": "2",
+    "bbox": [
+      706,
+      725,
+      768,
+      773
+    ],
+    "color": [
+      54,
+      54,
+      53
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 124,
+    "track_id": "3",
+    "bbox": [
+      878,
+      1199,
+      1187,
+      1784
+    ],
+    "color": [
+      85,
+      85,
+      84
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 125,
+    "track_id": "2",
+    "bbox": [
+      707,
+      727,
+      768,
+      773
+    ],
+    "color": [
+      54,
+      54,
+      54
+    ],
+    "number_plate": null,
+    "type": "van",
+    "model": "unknown"
+  },
+  {
+    "frame": 125,
+    "track_id": "3",
+    "bbox": [
+      895,
+      1221,
+      1198,
+      1795
+    ],
+    "color": [
+      95,
+      97,
+      95
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 126,
+    "track_id": "2",
+    "bbox": [
+      709,
+      728,
+      767,
+      772
+    ],
+    "color": [
+      52,
+      52,
+      53
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 126,
+    "track_id": "3",
+    "bbox": [
+      912,
+      1243,
+      1209,
+      1806
+    ],
+    "color": [
+      99,
+      101,
+      100
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 127,
+    "track_id": "2",
+    "bbox": [
+      711,
+      730,
+      766,
+      771
+    ],
+    "color": [
+      54,
+      53,
+      54
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 127,
+    "track_id": "3",
+    "bbox": [
+      929,
+      1265,
+      1221,
+      1817
+    ],
+    "color": [
+      102,
+      104,
+      104
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 128,
+    "track_id": "2",
+    "bbox": [
+      713,
+      731,
+      765,
+      771
+    ],
+    "color": [
+      55,
+      55,
+      56
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 128,
+    "track_id": "3",
+    "bbox": [
+      946,
+      1287,
+      1232,
+      1828
+    ],
+    "color": [
+      104,
+      106,
+      106
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 129,
+    "track_id": "2",
+    "bbox": [
+      714,
+      732,
+      764,
+      770
+    ],
+    "color": [
+      59,
+      60,
+      61
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 129,
+    "track_id": "3",
+    "bbox": [
+      963,
+      1309,
+      1243,
+      1839
+    ],
+    "color": [
+      103,
+      106,
+      106
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 130,
+    "track_id": "2",
+    "bbox": [
+      716,
+      734,
+      764,
+      770
+    ],
+    "color": [
+      62,
+      63,
+      64
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 130,
+    "track_id": "3",
+    "bbox": [
+      980,
+      1331,
+      1254,
+      1850
+    ],
+    "color": [
+      102,
+      106,
+      106
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 131,
+    "track_id": "2",
+    "bbox": [
+      718,
+      735,
+      763,
+      769
+    ],
+    "color": [
+      66,
+      67,
+      68
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 131,
+    "track_id": "3",
+    "bbox": [
+      997,
+      1353,
+      1265,
+      1861
+    ],
+    "color": [
+      102,
+      105,
+      105
+    ],
+    "number_plate": null,
+    "type": "truck",
+    "model": "unknown"
+  },
+  {
+    "frame": 132,
+    "track_id": "2",
+    "bbox": [
+      720,
+      736,
+      762,
+      769
+    ],
+    "color": [
+      67,
+      68,
+      69
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 132,
+    "track_id": "3",
+    "bbox": [
+      1014,
+      1375,
+      1276,
+      1872
+    ],
+    "color": [
+      102,
+      105,
+      105
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 133,
+    "track_id": "2",
+    "bbox": [
+      722,
+      738,
+      761,
+      768
+    ],
+    "color": [
+      71,
+      72,
+      74
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 133,
+    "track_id": "3",
+    "bbox": [
+      1031,
+      1397,
+      1288,
+      1883
+    ],
+    "color": [
+      100,
+      103,
+      104
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 134,
+    "track_id": "2",
+    "bbox": [
+      723,
+      739,
+      761,
+      768
+    ],
+    "color": [
+      73,
+      75,
+      77
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 134,
+    "track_id": "3",
+    "bbox": [
+      1048,
+      1419,
+      1299,
+      1894
+    ],
+    "color": [
+      100,
+      103,
+      104
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 135,
+    "track_id": "2",
+    "bbox": [
+      725,
+      741,
+      760,
+      767
+    ],
+    "color": [
+      78,
+      80,
+      83
+    ],
+    "number_plate": null,
+    "type": "hatchback",
+    "model": "unknown"
+  },
+  {
+    "frame": 135,
+    "track_id": "3",
+    "bbox": [
+      1065,
+      1441,
+      1310,
+      1905
+    ],
+    "color": [
+      100,
+      103,
+      104
+    ],
+    "number_plate": null,
+    "type": "coupe",
+    "model": "unknown"
+  },
+  {
+    "frame": 136,
+    "track_id": "2",
+    "bbox": [
+      727,
+      742,
+      759,
+      766
+    ],
+    "color": [
+      78,
+      80,
+      83
+    ],
+    "number_plate": null,
+    "type": "sedan",
+    "model": "unknown"
+  },
+  {
+    "frame": 136,
+    "track_id": "3",
+    "bbox": [
+      1082,
+      1463,
+      1321,
+      1916
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 137,
+    "track_id": "2",
+    "bbox": [
+      729,
+      743,
+      758,
+      766
+    ],
+    "color": [
+      83,
+      86,
+      89
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 137,
+    "track_id": "3",
+    "bbox": [
+      1099,
+      1485,
+      1332,
+      1928
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 138,
+    "track_id": "2",
+    "bbox": [
+      730,
+      745,
+      757,
+      765
+    ],
+    "color": [
+      77,
+      80,
+      84
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 138,
+    "track_id": "3",
+    "bbox": [
+      1116,
+      1507,
+      1343,
+      1939
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 139,
+    "track_id": "2",
+    "bbox": [
+      732,
+      746,
+      757,
+      765
+    ],
+    "color": [
+      70,
+      72,
+      77
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 139,
+    "track_id": "3",
+    "bbox": [
+      1133,
+      1529,
+      1355,
+      1950
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 140,
+    "track_id": "2",
+    "bbox": [
+      734,
+      748,
+      756,
+      764
+    ],
+    "color": [
+      59,
+      61,
+      70
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 140,
+    "track_id": "3",
+    "bbox": [
+      1150,
+      1551,
+      1366,
+      1961
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 141,
+    "track_id": "2",
+    "bbox": [
+      736,
+      749,
+      755,
+      764
+    ],
+    "color": [
+      45,
+      48,
+      67
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 141,
+    "track_id": "3",
+    "bbox": [
+      1167,
+      1573,
+      1377,
+      1972
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 142,
+    "track_id": "2",
+    "bbox": [
+      738,
+      750,
+      754,
+      763
+    ],
+    "color": [
+      47,
+      53,
+      88
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 142,
+    "track_id": "3",
+    "bbox": [
+      1184,
+      1595,
+      1388,
+      1983
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 143,
+    "track_id": "2",
+    "bbox": [
+      739,
+      752,
+      753,
+      762
+    ],
+    "color": [
+      52,
+      65,
+      132
+    ],
+    "number_plate": null,
+    "type": "other",
+    "model": "unknown"
+  },
+  {
+    "frame": 143,
+    "track_id": "3",
+    "bbox": [
+      1201,
+      1617,
+      1399,
+      1994
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 144,
+    "track_id": "2",
+    "bbox": [
+      741,
+      753,
+      753,
+      762
+    ],
+    "color": [
+      61,
+      80,
+      182
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 144,
+    "track_id": "3",
+    "bbox": [
+      1218,
+      1639,
+      1410,
+      2005
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 145,
+    "track_id": "2",
+    "bbox": [
+      743,
+      754,
+      752,
+      761
+    ],
+    "color": [
+      66,
+      90,
+      222
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 145,
+    "track_id": "3",
+    "bbox": [
+      1235,
+      1661,
+      1422,
+      2016
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 146,
+    "track_id": "2",
+    "bbox": [
+      745,
+      756,
+      751,
+      761
+    ],
+    "color": [
+      67,
+      91,
+      227
+    ],
+    "number_plate": null,
+    "type": "wagon",
+    "model": "unknown"
+  },
+  {
+    "frame": 146,
+    "track_id": "3",
+    "bbox": [
+      1252,
+      1683,
+      1433,
+      2027
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 147,
+    "track_id": "3",
+    "bbox": [
+      1268,
+      1705,
+      1444,
+      2038
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 148,
+    "track_id": "3",
+    "bbox": [
+      1285,
+      1727,
+      1455,
+      2049
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 149,
+    "track_id": "3",
+    "bbox": [
+      1302,
+      1749,
+      1466,
+      2060
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 150,
+    "track_id": "3",
+    "bbox": [
+      1319,
+      1771,
+      1477,
+      2071
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 151,
+    "track_id": "3",
+    "bbox": [
+      1336,
+      1793,
+      1489,
+      2082
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 152,
+    "track_id": "3",
+    "bbox": [
+      1353,
+      1815,
+      1500,
+      2093
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  },
+  {
+    "frame": 153,
+    "track_id": "3",
+    "bbox": [
+      1370,
+      1837,
+      1511,
+      2104
+    ],
+    "color": null,
+    "number_plate": null,
+    "type": "unknown",
+    "model": "unknown"
+  }
+]
