@@ -4,5 +4,11 @@ numpy
 easyocr
 deep_sort_realtime
 torch
+torchvision
 scikit-learn
 requests 
+redis
+rq
+flask
+flask-cors
+webcolors

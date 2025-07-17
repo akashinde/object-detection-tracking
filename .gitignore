@@ -16,3 +16,8 @@ Thumbs.db
 # Frontend build artifacts
 **/node_modules
 **/build
+
+
+videos/
+
+.env

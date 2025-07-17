@@ -4,106 +4,207 @@ import os
 import re
 
 def create_tables(conn):
+    """Create normalized database tables"""
     conn.execute('''
-        CREATE TABLE IF NOT EXISTS CARS (
+        CREATE TABLE IF NOT EXISTS CAR_TYPES (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            model TEXT,
-            type TEXT,
-            color TEXT
+            name TEXT UNIQUE
         )
     ''')
     conn.execute('''
-        CREATE TABLE IF NOT EXISTS NUMBER_PLATES (
+        CREATE TABLE IF NOT EXISTS CAR_MODELS (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            plate TEXT UNIQUE,
-            car_id INTEGER,
-            FOREIGN KEY(car_id) REFERENCES CARS(id)
+            name TEXT UNIQUE
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS CAR_COLORS (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT UNIQUE
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS VIDEOS (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            filename TEXT UNIQUE
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS CARS (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            video_id INTEGER,
+            track_id INTEGER,
+            label TEXT,
+            type_id INTEGER,
+            model_id INTEGER,
+            color_id INTEGER,
+            license_plate TEXT,
+            track_frame_counts INTEGER,
+            scene_count INTEGER,
+            dwell_time_seconds REAL,
+            FOREIGN KEY(video_id) REFERENCES VIDEOS(id),
+            FOREIGN KEY(type_id) REFERENCES CAR_TYPES(id),
+            FOREIGN KEY(model_id) REFERENCES CAR_MODELS(id),
+            FOREIGN KEY(color_id) REFERENCES CAR_COLORS(id)
         )
     ''')
     conn.execute('''
         CREATE TABLE IF NOT EXISTS STATES (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             state TEXT,
-            number_plate_id INTEGER,
-            FOREIGN KEY(number_plate_id) REFERENCES NUMBER_PLATES(id)
+            car_id INTEGER,
+            FOREIGN KEY(car_id) REFERENCES CARS(id)
+        )
+    ''')
+    conn.execute('''
+        CREATE TABLE IF NOT EXISTS SUMMARY_STATS (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            total_cars INTEGER,
+            unique_models INTEGER,
+            unique_license_plates INTEGER,
+            average_dwell_time REAL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     conn.commit()
 
-def get_or_create_car(conn, model, type_, color):
-    color_str = f"rgb({','.join(str(c) for c in color)})" if isinstance(color, list) else str(color)
-    cur = conn.execute('SELECT id FROM CARS WHERE model=? AND type=? AND color=?', (model, type_, color_str))
+def get_or_create_car_type(conn, type_name):
+    """Get car type record (static table, no insert)"""
+    cur = conn.execute('SELECT id FROM CAR_TYPES WHERE name=?', (type_name,))
     row = cur.fetchone()
     if row:
         return row[0]
-    cur = conn.execute('INSERT INTO CARS (model, type, color) VALUES (?, ?, ?)', (model, type_, color_str))
+    # If not found, return None (or handle as needed)
+    return None
+
+def get_or_create_car_model(conn, model_name):
+    """Get or create car model record"""
+    cur = conn.execute('SELECT id FROM CAR_MODELS WHERE name=?', (model_name,))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur = conn.execute('INSERT INTO CAR_MODELS (name) VALUES (?)', (model_name,))
     conn.commit()
     return cur.lastrowid
 
-def get_or_create_number_plate(conn, plate, car_id):
-    cur = conn.execute('SELECT id FROM NUMBER_PLATES WHERE plate=?', (plate,))
+def get_or_create_car_color(conn, color_name):
+    """Get or create car color record"""
+    cur = conn.execute('SELECT id FROM CAR_COLORS WHERE name=?', (color_name,))
     row = cur.fetchone()
     if row:
         return row[0]
-    cur = conn.execute('INSERT INTO NUMBER_PLATES (plate, car_id) VALUES (?, ?)', (plate, car_id))
+    cur = conn.execute('INSERT INTO CAR_COLORS (name) VALUES (?)', (color_name,))
     conn.commit()
     return cur.lastrowid
 
-def get_or_create_state(conn, state, number_plate_id):
-    cur = conn.execute('SELECT id FROM STATES WHERE state=? AND number_plate_id=?', (state, number_plate_id))
+def get_or_create_video(conn, filename):
+    cur = conn.execute('SELECT id FROM VIDEOS WHERE filename=?', (filename,))
     row = cur.fetchone()
     if row:
         return row[0]
-    cur = conn.execute('INSERT INTO STATES (state, number_plate_id) VALUES (?, ?)', (state, number_plate_id))
+    cur = conn.execute('INSERT INTO VIDEOS (filename) VALUES (?)', (filename,))
+    conn.commit()
+    return cur.lastrowid
+
+def get_or_create_car(conn, car_data, video_id):
+    """Get or create car record for a specific video"""
+    type_id = get_or_create_car_type(conn, car_data['type'])
+    if type_id is None:
+        type_id = get_or_create_car_type(conn, 'other')
+    model_id = get_or_create_car_model(conn, car_data['model'])
+    color_id = get_or_create_car_color(conn, car_data['color'])
+    # Check if car already exists for this video and track_id
+    cur = conn.execute('SELECT id FROM CARS WHERE video_id=? AND track_id=?', (video_id, car_data['track_id']))
+    row = cur.fetchone()
+    if row:
+        # Update existing car
+        conn.execute('''
+            UPDATE CARS SET 
+                label=?, type_id=?, model_id=?, color_id=?, license_plate=?, 
+                track_frame_counts=?, scene_count=?, dwell_time_seconds=?
+            WHERE id=?
+        ''', (
+            car_data['label'], type_id, model_id, color_id, car_data['license_plate'],
+            car_data['track_frame_counts'], car_data['scene_count'], car_data['dwell_time_seconds'],
+            row[0]
+        ))
+        conn.commit()
+        return row[0]
+    else:
+        # Create new car
+        cur = conn.execute('''
+            INSERT INTO CARS (video_id, track_id, label, type_id, model_id, color_id, license_plate, 
+                            track_frame_counts, scene_count, dwell_time_seconds)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            video_id, car_data['track_id'], car_data['label'], type_id, model_id, color_id,
+            car_data['license_plate'], car_data['track_frame_counts'], 
+            car_data['scene_count'], car_data['dwell_time_seconds']
+        ))
+        conn.commit()
+        return cur.lastrowid
+
+def get_or_create_state(conn, state, car_id):
+    """Get or create state record"""
+    cur = conn.execute('SELECT id FROM STATES WHERE state=? AND car_id=?', (state, car_id))
+    row = cur.fetchone()
+    if row:
+        return row[0]
+    cur = conn.execute('INSERT INTO STATES (state, car_id) VALUES (?, ?)', (state, car_id))
     conn.commit()
     return cur.lastrowid
 
 def extract_state_from_plate(plate):
-    if not plate:
+    """Extract state code from license plate"""
+    if not plate or plate.startswith('UNKNOWN'):
         return None
     match = re.match(r'([A-Z]{2})', plate.upper())
     return match.group(1) if match else None
 
-def main():
-    json_path = 'detection.json'
+def store_summary_stats(conn, summary_data):
+    """Store summary statistics"""
+    conn.execute('''
+        INSERT INTO SUMMARY_STATS (total_cars, unique_models, unique_license_plates, average_dwell_time)
+        VALUES (?, ?, ?, ?)
+    ''', (
+        summary_data['total_cars'],
+        summary_data['unique_models'],
+        summary_data['unique_license_plates'],
+        summary_data['average_dwell_time']
+    ))
+    conn.commit()
+
+def main(video_filename=None):
+    json_path = 'frontend_data.json'  # Use transformed data
     db_path = 'detections.db'
     if not os.path.exists(json_path):
-        print(f"File {json_path} not found.")
+        print(f"File {json_path} not found. Please run transform.py first to generate transformed data.")
         return
     with open(json_path, 'r') as f:
-        detections = json.load(f)
+        transformed_data = json.load(f)
     conn = sqlite3.connect(db_path)
     create_tables(conn)
-    # Optional: clear old data
-    conn.execute('DELETE FROM STATES')
-    conn.execute('DELETE FROM NUMBER_PLATES')
-    conn.execute('DELETE FROM CARS')
+    # Only clear summary stats, not cars or videos
+    conn.execute('DELETE FROM SUMMARY_STATS')
     conn.commit()
-    car_cache = {}
-    plate_cache = {}
-    for det in detections:
-        model = det.get('model')
-        type_ = det.get('type')
-        color = det.get('color')
-        plate = det.get('number_plate')
-        if not (model and type_ and color and plate):
-            continue
-        car_key = (model, type_, tuple(color) if isinstance(color, list) else color)
-        if car_key in car_cache:
-            car_id = car_cache[car_key]
-        else:
-            car_id = get_or_create_car(conn, model, type_, color)
-            car_cache[car_key] = car_id
-        if plate in plate_cache:
-            plate_id = plate_cache[plate]
-        else:
-            plate_id = get_or_create_number_plate(conn, plate, car_id)
-            plate_cache[plate] = plate_id
-        state = extract_state_from_plate(plate)
+    # Insert video row
+    if video_filename is None:
+        video_filename = 'unknown_video.mp4'
+    video_id = get_or_create_video(conn, video_filename)
+    # Process each unique car for this video
+    for car_data in transformed_data['cars']:
+        car_id = get_or_create_car(conn, car_data, video_id)
+        # Extract and store state information
+        state = extract_state_from_plate(car_data['license_plate'])
         if state:
-            get_or_create_state(conn, state, plate_id)
+            get_or_create_state(conn, state, car_id)
+    # Store summary statistics
+    store_summary_stats(conn, transformed_data['summary'])
     conn.close()
-    print(f"Processed {len(detections)} detections into normalized tables in {db_path}.")
-
+    print(f"Processed {len(transformed_data['cars'])} unique cars for video '{video_filename}' into normalized tables in {db_path}.")
+    print(f"Summary: {transformed_data['summary']['total_cars']} total cars, "
+          f"{transformed_data['summary']['unique_license_plates']} unique license plates")
 if __name__ == '__main__':
-    main() 
+    import sys
+    video_filename = sys.argv[1] if len(sys.argv) > 1 else None
+    main(video_filename)

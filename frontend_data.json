@@ -1,0 +1,44 @@
+{
+  "cars": [
+    {
+      "track_id": "1",
+      "label": "car1",
+      "model": "unknown",
+      "color": "blue",
+      "license_plate": "UNKNOWN_1",
+      "track_frame_counts": 211,
+      "scene_count": 1,
+      "dwell_time_seconds": 8.4,
+      "type": "sedan"
+    },
+    {
+      "track_id": "3",
+      "label": "car3",
+      "model": "unknown",
+      "color": "cyan",
+      "license_plate": "UNKNOWN_3",
+      "track_frame_counts": 34,
+      "scene_count": 1,
+      "dwell_time_seconds": 1.4,
+      "type": "sedan"
+    }
+  ],
+  "summary": {
+    "total_cars": 2,
+    "unique_models": 1,
+    "unique_license_plates": 2,
+    "average_dwell_time": 4.9
+  },
+  "demographics": {
+    "type_distribution": {
+      "sedan": 2
+    },
+    "color_distribution": {
+      "blue": 1,
+      "cyan": 1
+    },
+    "model_distribution": {
+      "unknown": 2
+    }
+  }
+}
