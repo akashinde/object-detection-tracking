@@ -1,4167 +1,2032 @@
 [
   {
     "frame": 2,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      242,
+      795,
+      947,
+      1342
     ],
-    "color": [
-      141,
-      140,
-      153
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 2,
+    "track_id": 2,
+    "bbox": [
+      794,
+      691,
+      1024,
+      864
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 2,
+    "track_id": 3,
+    "bbox": [
+      201,
+      737,
+      482,
+      987
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 2,
+    "track_id": 4,
+    "bbox": [
+      665,
+      656,
+      823,
+      786
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 3,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      246,
+      799,
+      957,
+      1350
     ],
-    "color": [
-      141,
-      140,
-      153
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 3,
+    "track_id": 2,
+    "bbox": [
+      791,
+      690,
+      1020,
+      863
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 3,
+    "track_id": 3,
+    "bbox": [
+      201,
+      738,
+      485,
+      991
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 3,
+    "track_id": 4,
+    "bbox": [
+      663,
+      656,
+      823,
+      788
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 4,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      248,
+      803,
+      965,
+      1358
     ],
-    "color": [
-      141,
-      140,
-      153
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 4,
+    "track_id": 2,
+    "bbox": [
+      789,
+      689,
+      1016,
+      861
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 4,
+    "track_id": 3,
+    "bbox": [
+      204,
+      739,
+      486,
+      990
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 4,
+    "track_id": 4,
+    "bbox": [
+      662,
+      656,
+      821,
+      787
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 5,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      253,
+      807,
+      976,
+      1367
     ],
-    "color": [
-      141,
-      140,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 5,
+    "track_id": 2,
+    "bbox": [
+      789,
+      689,
+      1015,
+      860
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 5,
+    "track_id": 3,
+    "bbox": [
+      203,
+      739,
+      484,
+      988
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 5,
+    "track_id": 4,
+    "bbox": [
+      660,
+      656,
+      819,
+      787
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 6,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      255,
+      809,
+      987,
+      1377
     ],
-    "color": [
-      141,
-      140,
-      153
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 6,
+    "track_id": 2,
+    "bbox": [
+      786,
+      688,
+      1011,
+      857
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 6,
+    "track_id": 3,
+    "bbox": [
+      205,
+      741,
+      485,
+      991
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 6,
+    "track_id": 4,
+    "bbox": [
+      659,
+      655,
+      819,
+      787
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 7,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      265,
+      812,
+      1004,
+      1385
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 7,
+    "track_id": 2,
+    "bbox": [
+      784,
+      689,
+      1006,
+      856
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 7,
+    "track_id": 3,
+    "bbox": [
+      203,
+      744,
+      481,
+      990
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 7,
+    "track_id": 4,
+    "bbox": [
+      658,
+      655,
+      816,
+      787
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 7,
+    "track_id": 5,
+    "bbox": [
+      620,
+      633,
+      710,
+      711
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 8,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      270,
+      814,
+      1019,
+      1395
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 8,
+    "track_id": 2,
+    "bbox": [
+      784,
+      689,
+      1002,
+      854
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 8,
+    "track_id": 3,
+    "bbox": [
+      204,
+      746,
+      480,
+      989
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 8,
+    "track_id": 4,
+    "bbox": [
+      658,
+      656,
+      814,
+      786
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 8,
+    "track_id": 5,
+    "bbox": [
+      618,
+      632,
+      710,
+      712
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 9,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      270,
+      816,
+      1026,
+      1402
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 9,
+    "track_id": 2,
+    "bbox": [
+      782,
+      689,
+      999,
+      852
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 9,
+    "track_id": 3,
+    "bbox": [
+      200,
+      747,
+      482,
+      995
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 9,
+    "track_id": 4,
+    "bbox": [
+      658,
+      656,
+      813,
+      785
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 9,
+    "track_id": 5,
+    "bbox": [
+      617,
+      631,
+      710,
+      712
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 10,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      270,
+      817,
+      1037,
+      1411
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 10,
+    "track_id": 2,
+    "bbox": [
+      776,
+      686,
+      995,
+      851
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 10,
+    "track_id": 3,
+    "bbox": [
+      202,
+      748,
+      487,
+      998
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 10,
+    "track_id": 4,
+    "bbox": [
+      658,
+      654,
+      814,
+      783
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 10,
+    "track_id": 5,
+    "bbox": [
+      616,
+      631,
+      710,
+      712
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 11,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      279,
+      819,
+      1057,
+      1422
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 11,
+    "track_id": 2,
+    "bbox": [
+      773,
+      685,
+      991,
+      850
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 11,
+    "track_id": 3,
+    "bbox": [
+      199,
+      748,
+      490,
+      1003
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 11,
+    "track_id": 4,
+    "bbox": [
+      658,
+      653,
+      814,
+      783
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 11,
+    "track_id": 5,
+    "bbox": [
+      616,
+      630,
+      711,
+      713
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 12,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      285,
+      819,
+      1074,
+      1432
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 12,
+    "track_id": 2,
+    "bbox": [
+      771,
+      684,
+      988,
+      849
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 12,
+    "track_id": 3,
+    "bbox": [
+      198,
+      748,
+      494,
+      1007
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 12,
+    "track_id": 4,
+    "bbox": [
+      654,
+      652,
+      811,
+      783
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 12,
+    "track_id": 5,
+    "bbox": [
+      615,
+      630,
+      711,
+      713
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 13,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      283,
+      819,
+      1087,
+      1445
     ],
-    "color": [
-      141,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 13,
+    "track_id": 2,
+    "bbox": [
+      767,
+      684,
+      983,
+      847
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 13,
+    "track_id": 3,
+    "bbox": [
+      195,
+      750,
+      493,
+      1009
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 13,
+    "track_id": 4,
+    "bbox": [
+      653,
+      652,
+      808,
+      782
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 13,
+    "track_id": 5,
+    "bbox": [
+      614,
+      630,
+      711,
+      714
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 14,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      278,
+      822,
+      1091,
+      1455
     ],
-    "color": [
-      140,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 14,
+    "track_id": 2,
+    "bbox": [
+      766,
+      684,
+      977,
+      844
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 14,
+    "track_id": 3,
+    "bbox": [
+      195,
+      751,
+      493,
+      1009
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 14,
+    "track_id": 4,
+    "bbox": [
+      653,
+      653,
+      803,
+      779
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 14,
+    "track_id": 5,
+    "bbox": [
+      614,
+      629,
+      711,
+      714
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 15,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      106,
-      387,
-      168
+      273,
+      822,
+      1098,
+      1468
     ],
-    "color": [
-      140,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 15,
+    "track_id": 2,
+    "bbox": [
+      763,
+      684,
+      973,
+      843
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 15,
+    "track_id": 3,
+    "bbox": [
+      201,
+      752,
+      495,
+      1006
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 15,
+    "track_id": 4,
+    "bbox": [
+      654,
+      653,
+      803,
+      780
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 15,
+    "track_id": 5,
+    "bbox": [
+      613,
+      629,
+      711,
+      715
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 16,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      276,
+      824,
+      1108,
+      1479
     ],
-    "color": [
-      140,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 16,
+    "track_id": 2,
+    "bbox": [
+      763,
+      685,
+      971,
+      842
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 16,
+    "track_id": 3,
+    "bbox": [
+      202,
+      755,
+      499,
+      1011
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 16,
+    "track_id": 4,
+    "bbox": [
+      653,
+      654,
+      801,
+      779
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 16,
+    "track_id": 5,
+    "bbox": [
+      612,
+      628,
+      712,
+      715
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 17,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      168
+      269,
+      827,
+      1110,
+      1493
     ],
-    "color": [
-      140,
-      141,
-      152
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 17,
+    "track_id": 2,
+    "bbox": [
+      761,
+      686,
+      966,
+      841
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 17,
+    "track_id": 3,
+    "bbox": [
+      197,
+      756,
+      501,
+      1016
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 17,
+    "track_id": 4,
+    "bbox": [
+      653,
+      653,
+      800,
+      779
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 17,
+    "track_id": 5,
+    "bbox": [
+      611,
+      628,
+      712,
+      715
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 18,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      106,
-      387,
-      167
+      267,
+      832,
+      1109,
+      1503
     ],
-    "color": [
-      140,
-      141,
-      149
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 18,
+    "track_id": 2,
+    "bbox": [
+      758,
+      686,
+      963,
+      840
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 18,
+    "track_id": 3,
+    "bbox": [
+      194,
+      757,
+      503,
+      1021
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 18,
+    "track_id": 4,
+    "bbox": [
+      652,
+      655,
+      798,
+      780
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 18,
+    "track_id": 5,
+    "bbox": [
+      611,
+      628,
+      712,
+      716
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 19,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      105,
-      386,
-      167
+      260,
+      837,
+      1109,
+      1518
     ],
-    "color": [
-      140,
-      141,
-      148
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 19,
+    "track_id": 2,
+    "bbox": [
+      757,
+      686,
+      961,
+      839
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 19,
+    "track_id": 3,
+    "bbox": [
+      193,
+      759,
+      506,
+      1023
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 19,
+    "track_id": 4,
+    "bbox": [
+      652,
+      657,
+      796,
+      779
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 19,
+    "track_id": 5,
+    "bbox": [
+      610,
+      627,
+      712,
+      716
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 20,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      105,
-      386,
-      166
+      264,
+      839,
+      1117,
+      1529
     ],
-    "color": [
-      141,
-      142,
-      148
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 20,
+    "track_id": 2,
+    "bbox": [
+      755,
+      686,
+      958,
+      838
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 20,
+    "track_id": 3,
+    "bbox": [
+      191,
+      760,
+      511,
+      1028
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 20,
+    "track_id": 4,
+    "bbox": [
+      649,
+      656,
+      791,
+      777
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 20,
+    "track_id": 5,
+    "bbox": [
+      609,
+      627,
+      713,
+      717
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 21,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      104,
-      386,
-      166
+      271,
+      839,
+      1130,
+      1543
     ],
-    "color": [
-      140,
-      142,
-      147
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 21,
+    "track_id": 2,
+    "bbox": [
+      753,
+      685,
+      954,
+      836
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 21,
+    "track_id": 3,
+    "bbox": [
+      187,
+      759,
+      517,
+      1034
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 21,
+    "track_id": 4,
+    "bbox": [
+      649,
+      656,
+      789,
+      777
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 21,
+    "track_id": 5,
+    "bbox": [
+      608,
+      626,
+      713,
+      717
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 22,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      316,
-      104,
-      387,
-      166
+      271,
+      839,
+      1138,
+      1560
     ],
-    "color": [
-      140,
-      142,
-      146
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 22,
+    "track_id": 2,
+    "bbox": [
+      751,
+      684,
+      952,
+      834
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 22,
+    "track_id": 3,
+    "bbox": [
+      188,
+      760,
+      518,
+      1035
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 22,
+    "track_id": 4,
+    "bbox": [
+      650,
+      657,
+      788,
+      775
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 22,
+    "track_id": 5,
+    "bbox": [
+      608,
+      626,
+      713,
+      718
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 23,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      104,
-      386,
-      166
+      267,
+      836,
+      1143,
+      1576
     ],
-    "color": [
-      142,
-      143,
-      148
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 23,
+    "track_id": 2,
+    "bbox": [
+      748,
+      684,
+      949,
+      834
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 23,
+    "track_id": 3,
+    "bbox": [
+      189,
+      761,
+      520,
+      1036
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 23,
+    "track_id": 4,
+    "bbox": [
+      646,
+      654,
+      788,
+      776
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 23,
+    "track_id": 5,
+    "bbox": [
+      607,
+      625,
+      713,
+      718
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 24,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      104,
-      387,
-      166
+      269,
+      839,
+      1145,
+      1591
     ],
-    "color": [
-      142,
-      143,
-      151
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 24,
+    "track_id": 2,
+    "bbox": [
+      745,
+      683,
+      945,
+      833
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 24,
+    "track_id": 3,
+    "bbox": [
+      192,
+      761,
+      522,
+      1034
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 24,
+    "track_id": 4,
+    "bbox": [
+      646,
+      654,
+      788,
+      776
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 24,
+    "track_id": 5,
+    "bbox": [
+      606,
+      625,
+      714,
+      718
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 25,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      317,
-      104,
-      387,
-      165
+      265,
+      841,
+      1145,
+      1607
     ],
-    "color": [
-      144,
-      145,
-      154
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 25,
+    "track_id": 2,
+    "bbox": [
+      742,
+      684,
+      941,
+      832
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 25,
+    "track_id": 3,
+    "bbox": [
+      192,
+      762,
+      526,
+      1038
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 25,
+    "track_id": 4,
+    "bbox": [
+      646,
+      653,
+      787,
+      776
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 25,
+    "track_id": 5,
+    "bbox": [
+      605,
+      625,
+      714,
+      719
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 26,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      318,
-      104,
-      386,
-      164
+      270,
+      840,
+      1150,
+      1620
     ],
-    "color": [
-      147,
-      147,
-      156
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 26,
+    "track_id": 2,
+    "bbox": [
+      739,
+      684,
+      936,
+      831
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 26,
+    "track_id": 3,
+    "bbox": [
+      189,
+      762,
+      530,
+      1044
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 26,
+    "track_id": 4,
+    "bbox": [
+      649,
+      654,
+      787,
+      775
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 26,
+    "track_id": 5,
+    "bbox": [
+      605,
+      624,
+      714,
+      719
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 27,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      318,
-      104,
-      386,
-      164
+      272,
+      840,
+      1155,
+      1636
     ],
-    "color": [
-      147,
-      147,
-      157
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 27,
+    "track_id": 2,
+    "bbox": [
+      736,
+      683,
+      934,
+      829
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 27,
+    "track_id": 3,
+    "bbox": [
+      189,
+      763,
+      531,
+      1044
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 27,
+    "track_id": 4,
+    "bbox": [
+      647,
+      654,
+      785,
+      774
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 27,
+    "track_id": 5,
+    "bbox": [
+      604,
+      624,
+      714,
+      720
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 28,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      320,
-      104,
-      387,
-      163
+      280,
+      849,
+      1158,
+      1656
     ],
-    "color": [
-      147,
-      147,
-      157
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 28,
+    "track_id": 2,
+    "bbox": [
+      735,
+      683,
+      932,
+      829
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 28,
+    "track_id": 3,
+    "bbox": [
+      192,
+      764,
+      534,
+      1045
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 28,
+    "track_id": 4,
+    "bbox": [
+      645,
+      654,
+      783,
+      774
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 28,
+    "track_id": 5,
+    "bbox": [
+      603,
+      623,
+      714,
+      720
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 29,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      321,
-      104,
-      387,
-      162
+      288,
+      857,
+      1161,
+      1675
     ],
-    "color": [
-      149,
-      148,
-      160
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 29,
+    "track_id": 2,
+    "bbox": [
+      732,
+      682,
+      929,
+      828
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 29,
+    "track_id": 3,
+    "bbox": [
+      185,
+      765,
+      538,
+      1054
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 29,
+    "track_id": 4,
+    "bbox": [
+      644,
+      653,
+      782,
+      773
+    ],
+    "color": "blue",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 29,
+    "track_id": 5,
+    "bbox": [
+      602,
+      623,
+      715,
+      721
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 30,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      320,
-      104,
-      388,
-      162
+      290,
+      860,
+      1162,
+      1693
     ],
-    "color": [
-      149,
-      148,
-      161
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
+  },
+  {
+    "frame": 30,
+    "track_id": 2,
+    "bbox": [
+      731,
+      682,
+      927,
+      827
     ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 30,
+    "track_id": 3,
+    "bbox": [
+      185,
+      766,
+      545,
+      1059
+    ],
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
+  },
+  {
+    "frame": 30,
+    "track_id": 4,
+    "bbox": [
+      643,
+      653,
+      782,
+      773
+    ],
+    "color": "black",
+    "label": "car4",
+    "number_plate": null,
+    "number_plate_confidence": null
+  },
+  {
+    "frame": 30,
+    "track_id": 5,
+    "bbox": [
+      602,
+      622,
+      715,
+      721
+    ],
+    "color": "black",
+    "label": "car5",
+    "number_plate": null,
+    "number_plate_confidence": null
   },
   {
     "frame": 31,
-    "track_id": "1",
+    "track_id": 1,
     "bbox": [
-      320,
-      104,
-      388,
-      162
+      291,
+      856,
+      1180,
+      1728
     ],
-    "color": [
-      149,
-      148,
-      161
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 32,
-    "track_id": "1",
-    "bbox": [
-      320,
-      103,
-      388,
-      161
-    ],
-    "color": [
-      149,
-      149,
-      162
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 33,
-    "track_id": "1",
-    "bbox": [
-      320,
-      103,
-      388,
-      161
-    ],
-    "color": [
-      149,
-      148,
-      162
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 34,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      389,
-      161
-    ],
-    "color": [
-      148,
-      147,
-      162
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 35,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      147,
-      146,
-      163
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 36,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      147,
-      145,
-      163
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 37,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      147,
-      145,
-      163
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 38,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      147,
-      145,
-      163
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 39,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      145,
-      145,
-      158
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 40,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      161
-    ],
-    "color": [
-      144,
-      145,
-      155
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 41,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      160
-    ],
-    "color": [
-      146,
-      147,
-      157
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 42,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      160
-    ],
-    "color": [
-      146,
-      147,
-      157
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 43,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      390,
-      160
-    ],
-    "color": [
-      145,
-      146,
-      156
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 44,
-    "track_id": "1",
-    "bbox": [
-      320,
-      103,
-      390,
-      160
-    ],
-    "color": [
-      145,
-      146,
-      156
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 45,
-    "track_id": "1",
-    "bbox": [
-      320,
-      103,
-      390,
-      160
-    ],
-    "color": [
-      145,
-      146,
-      156
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 46,
-    "track_id": "1",
-    "bbox": [
-      320,
-      103,
-      391,
-      160
-    ],
-    "color": [
-      144,
-      145,
-      154
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 47,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      391,
-      160
-    ],
-    "color": [
-      143,
-      145,
-      153
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 48,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      391,
-      160
-    ],
-    "color": [
-      143,
-      144,
-      153
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 49,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      391,
-      159
-    ],
-    "color": [
-      145,
-      145,
-      154
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 50,
-    "track_id": "1",
-    "bbox": [
-      321,
-      103,
-      391,
-      159
-    ],
-    "color": [
-      144,
-      145,
-      154
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 51,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      391,
-      159
-    ],
-    "color": [
-      143,
-      144,
-      153
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 52,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      390,
-      158
-    ],
-    "color": [
-      145,
-      146,
-      154
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 53,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      390,
-      158
-    ],
-    "color": [
-      145,
-      146,
-      155
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 54,
-    "track_id": "1",
-    "bbox": [
-      322,
-      102,
-      390,
-      157
-    ],
-    "color": [
-      147,
-      147,
-      155
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 55,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      389,
-      158
-    ],
-    "color": [
-      145,
-      145,
-      154
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 56,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      387,
-      157
-    ],
-    "color": [
-      148,
-      147,
-      156
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 57,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      387,
-      157
-    ],
-    "color": [
-      147,
-      146,
-      157
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 58,
-    "track_id": "1",
-    "bbox": [
-      320,
-      102,
-      385,
-      156
-    ],
-    "color": [
-      153,
-      147,
-      173
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 59,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      385,
-      156
-    ],
-    "color": [
-      153,
-      145,
-      177
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 60,
-    "track_id": "1",
-    "bbox": [
-      321,
-      102,
-      383,
-      154
-    ],
-    "color": [
-      158,
-      150,
-      180
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 61,
-    "track_id": "1",
-    "bbox": [
-      320,
-      102,
-      382,
-      154
-    ],
-    "color": [
-      159,
-      150,
-      181
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 62,
-    "track_id": "1",
-    "bbox": [
-      320,
-      101,
-      381,
-      153
-    ],
-    "color": [
-      160,
-      151,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 63,
-    "track_id": "1",
-    "bbox": [
-      321,
-      101,
-      381,
-      152
-    ],
-    "color": [
-      161,
-      152,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 64,
-    "track_id": "1",
-    "bbox": [
-      322,
-      101,
-      381,
-      152
-    ],
-    "color": [
-      161,
-      152,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 65,
-    "track_id": "1",
-    "bbox": [
-      323,
-      100,
-      381,
-      151
-    ],
-    "color": [
-      162,
-      152,
-      185
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 66,
-    "track_id": "1",
-    "bbox": [
-      323,
-      100,
-      381,
-      151
-    ],
-    "color": [
-      160,
-      151,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 67,
-    "track_id": "1",
-    "bbox": [
-      323,
-      100,
-      381,
-      151
-    ],
-    "color": [
-      159,
-      150,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 68,
-    "track_id": "1",
-    "bbox": [
-      324,
-      100,
-      381,
-      151
-    ],
-    "color": [
-      158,
-      149,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 69,
-    "track_id": "1",
-    "bbox": [
-      324,
-      100,
-      380,
-      150
-    ],
-    "color": [
-      161,
-      151,
-      185
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 70,
-    "track_id": "1",
-    "bbox": [
-      324,
-      100,
-      380,
-      149
-    ],
-    "color": [
-      162,
-      152,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 71,
-    "track_id": "1",
-    "bbox": [
-      324,
-      100,
-      380,
-      149
-    ],
-    "color": [
-      161,
-      151,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 72,
-    "track_id": "1",
-    "bbox": [
-      324,
-      99,
-      380,
-      149
-    ],
-    "color": [
-      161,
-      150,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 73,
-    "track_id": "1",
-    "bbox": [
-      325,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      162,
-      151,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 74,
-    "track_id": "1",
-    "bbox": [
-      325,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      161,
-      150,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 75,
-    "track_id": "1",
-    "bbox": [
-      325,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      161,
-      150,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 76,
-    "track_id": "1",
-    "bbox": [
-      325,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      161,
-      150,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 77,
-    "track_id": "1",
-    "bbox": [
-      325,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      161,
-      150,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 78,
-    "track_id": "1",
-    "bbox": [
-      326,
-      99,
-      380,
-      148
-    ],
-    "color": [
-      161,
-      149,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 79,
-    "track_id": "1",
-    "bbox": [
-      326,
-      99,
-      380,
-      147
-    ],
-    "color": [
-      161,
-      150,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 80,
-    "track_id": "1",
-    "bbox": [
-      326,
-      99,
-      380,
-      147
-    ],
-    "color": [
-      160,
-      149,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 81,
-    "track_id": "1",
-    "bbox": [
-      326,
-      99,
-      380,
-      147
-    ],
-    "color": [
-      159,
-      148,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 82,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      147
-    ],
-    "color": [
-      161,
-      149,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 83,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      380,
-      146
-    ],
-    "color": [
-      161,
-      150,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 84,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      145
-    ],
-    "color": [
-      164,
-      154,
-      191
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 85,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      145
-    ],
-    "color": [
-      163,
-      153,
-      191
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 86,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      378,
-      145
-    ],
-    "color": [
-      163,
-      153,
-      191
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 87,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      162,
-      152,
-      190
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 88,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      378,
-      145
-    ],
-    "color": [
-      164,
-      153,
-      191
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 89,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      144
-    ],
-    "color": [
-      162,
-      151,
-      190
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 90,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      144
-    ],
-    "color": [
-      162,
-      151,
-      190
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 91,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      162,
-      151,
-      190
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 92,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      162,
-      150,
-      189
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 93,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      161,
-      150,
-      189
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 94,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      161,
-      149,
-      189
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 95,
-    "track_id": "1",
-    "bbox": [
-      327,
-      98,
-      379,
-      145
-    ],
-    "color": [
-      159,
-      148,
-      188
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 96,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      145
-    ],
-    "color": [
-      160,
-      149,
-      188
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 97,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      145
-    ],
-    "color": [
-      159,
-      148,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 98,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      145
-    ],
-    "color": [
-      158,
-      147,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 99,
-    "track_id": "1",
-    "bbox": [
-      327,
-      100,
-      379,
-      145
-    ],
-    "color": [
-      157,
-      146,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 100,
-    "track_id": "1",
-    "bbox": [
-      327,
-      100,
-      378,
-      144
-    ],
-    "color": [
-      160,
-      148,
-      188
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 101,
-    "track_id": "1",
-    "bbox": [
-      327,
-      100,
-      378,
-      144
-    ],
-    "color": [
-      160,
-      148,
-      188
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 102,
-    "track_id": "1",
-    "bbox": [
-      327,
-      99,
-      379,
-      144
-    ],
-    "color": [
-      157,
-      145,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 103,
-    "track_id": "1",
-    "bbox": [
-      328,
-      99,
-      378,
-      144
-    ],
-    "color": [
-      157,
-      146,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 104,
-    "track_id": "1",
-    "bbox": [
-      328,
-      99,
-      378,
-      144
-    ],
-    "color": [
-      157,
-      145,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 105,
-    "track_id": "1",
-    "bbox": [
-      328,
-      99,
-      378,
-      143
-    ],
-    "color": [
-      159,
-      147,
-      189
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 106,
-    "track_id": "1",
-    "bbox": [
-      328,
-      99,
-      379,
-      143
-    ],
-    "color": [
-      157,
-      145,
-      188
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 107,
-    "track_id": "1",
-    "bbox": [
-      329,
-      98,
-      379,
-      143
-    ],
-    "color": [
-      155,
-      143,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 108,
-    "track_id": "1",
-    "bbox": [
-      329,
-      98,
-      379,
-      143
-    ],
-    "color": [
-      155,
-      143,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 109,
-    "track_id": "1",
-    "bbox": [
-      329,
-      98,
-      379,
-      143
-    ],
-    "color": [
-      155,
-      142,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 110,
-    "track_id": "1",
-    "bbox": [
-      329,
-      98,
-      379,
-      143
-    ],
-    "color": [
-      154,
-      141,
-      187
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 111,
-    "track_id": "1",
-    "bbox": [
-      329,
-      98,
-      379,
-      143
-    ],
-    "color": [
-      153,
-      140,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 112,
-    "track_id": "1",
-    "bbox": [
-      328,
-      97,
-      379,
-      143
-    ],
-    "color": [
-      151,
-      138,
-      185
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 113,
-    "track_id": "1",
-    "bbox": [
-      328,
-      97,
-      379,
-      143
-    ],
-    "color": [
-      151,
-      138,
-      185
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 114,
-    "track_id": "1",
-    "bbox": [
-      328,
-      96,
-      379,
-      142
-    ],
-    "color": [
-      151,
-      137,
-      186
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 115,
-    "track_id": "1",
-    "bbox": [
-      328,
-      96,
-      379,
-      143
-    ],
-    "color": [
-      148,
-      135,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 116,
-    "track_id": "1",
-    "bbox": [
-      328,
-      96,
-      379,
-      143
-    ],
-    "color": [
-      147,
-      134,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 117,
-    "track_id": "1",
-    "bbox": [
-      328,
-      96,
-      379,
-      143
-    ],
-    "color": [
-      146,
-      134,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 118,
-    "track_id": "1",
-    "bbox": [
-      329,
-      96,
-      378,
-      142
-    ],
-    "color": [
-      149,
-      136,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 119,
-    "track_id": "1",
-    "bbox": [
-      329,
-      96,
-      379,
-      142
-    ],
-    "color": [
-      147,
-      134,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 120,
-    "track_id": "1",
-    "bbox": [
-      329,
-      96,
-      379,
-      141
-    ],
-    "color": [
-      149,
-      136,
-      185
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 121,
-    "track_id": "1",
-    "bbox": [
-      329,
-      96,
-      379,
-      141
-    ],
-    "color": [
-      144,
-      137,
-      165
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 122,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      379,
-      141
-    ],
-    "color": [
-      142,
-      138,
-      156
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 123,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      140
-    ],
-    "color": [
-      144,
-      140,
-      155
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 124,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      140
-    ],
-    "color": [
-      147,
-      136,
-      176
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 125,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      151,
-      137,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 126,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      140
-    ],
-    "color": [
-      148,
-      134,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 127,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      140
-    ],
-    "color": [
-      147,
-      133,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 128,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      148,
-      134,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 129,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      147,
-      133,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 130,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      146,
-      132,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 131,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      145,
-      130,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 132,
-    "track_id": "1",
-    "bbox": [
-      330,
-      96,
-      378,
-      139
-    ],
-    "color": [
-      143,
-      128,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 133,
-    "track_id": "1",
-    "bbox": [
-      331,
-      96,
-      378,
-      138
-    ],
-    "color": [
-      145,
-      130,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 134,
-    "track_id": "1",
-    "bbox": [
-      331,
-      96,
-      378,
-      138
-    ],
-    "color": [
-      144,
-      128,
-      184
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 135,
-    "track_id": "1",
-    "bbox": [
-      331,
-      96,
-      379,
-      138
-    ],
-    "color": [
-      141,
-      127,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 136,
-    "track_id": "1",
-    "bbox": [
-      331,
-      95,
-      379,
-      138
-    ],
-    "color": [
-      140,
-      125,
-      180
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 137,
-    "track_id": "1",
-    "bbox": [
-      331,
-      95,
-      379,
-      138
-    ],
-    "color": [
-      139,
-      124,
-      180
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 138,
-    "track_id": "1",
-    "bbox": [
-      331,
-      95,
-      379,
-      137
-    ],
-    "color": [
-      141,
-      125,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 139,
-    "track_id": "1",
-    "bbox": [
-      332,
-      95,
-      378,
-      137
-    ],
-    "color": [
-      141,
-      125,
-      181
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 140,
-    "track_id": "1",
-    "bbox": [
-      332,
-      95,
-      378,
-      136
-    ],
-    "color": [
-      143,
-      126,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 141,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      136
-    ],
-    "color": [
-      144,
-      128,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 142,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      378,
-      136
-    ],
-    "color": [
-      141,
-      126,
-      181
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 143,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      378,
-      136
-    ],
-    "color": [
-      140,
-      124,
-      180
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 144,
-    "track_id": "1",
-    "bbox": [
-      333,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      144,
-      127,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 144,
-    "track_id": "3",
-    "bbox": [
-      372,
-      92,
-      413,
-      140
-    ],
-    "color": [
-      84,
-      102,
-      116
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 145,
-    "track_id": "1",
-    "bbox": [
-      333,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      144,
-      126,
-      183
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 145,
-    "track_id": "3",
-    "bbox": [
-      372,
-      92,
-      413,
-      140
-    ],
-    "color": [
-      84,
-      102,
-      116
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 146,
-    "track_id": "1",
-    "bbox": [
-      333,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      143,
-      125,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 146,
-    "track_id": "3",
-    "bbox": [
-      372,
-      92,
-      412,
-      140
-    ],
-    "color": [
-      84,
-      103,
-      116
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 147,
-    "track_id": "1",
-    "bbox": [
-      333,
-      97,
-      377,
-      135
-    ],
-    "color": [
-      143,
-      127,
-      182
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 147,
-    "track_id": "3",
-    "bbox": [
-      372,
-      92,
-      412,
-      140
-    ],
-    "color": [
-      84,
-      102,
-      116
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 148,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      136,
-      127,
-      160
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 148,
-    "track_id": "3",
-    "bbox": [
-      372,
-      92,
-      412,
-      140
-    ],
-    "color": [
-      83,
-      104,
-      111
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 149,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      134,
-      128,
-      149
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 149,
-    "track_id": "3",
-    "bbox": [
-      371,
-      92,
-      412,
-      140
-    ],
-    "color": [
-      83,
-      106,
-      106
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 150,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      133,
-      128,
-      147
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 150,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      104
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 151,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      135
-    ],
-    "color": [
-      132,
-      127,
-      145
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 151,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      103
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 152,
-    "track_id": "1",
-    "bbox": [
-      331,
-      97,
-      377,
-      135
-    ],
-    "color": [
-      132,
-      127,
-      145
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 152,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      103
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 153,
-    "track_id": "1",
-    "bbox": [
-      332,
-      97,
-      377,
-      135
-    ],
-    "color": [
-      131,
-      127,
-      143
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 153,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 154,
-    "track_id": "1",
-    "bbox": [
-      332,
-      97,
-      377,
-      135
-    ],
-    "color": [
-      130,
-      126,
-      142
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 154,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 155,
-    "track_id": "1",
-    "bbox": [
-      331,
-      97,
-      377,
-      134
-    ],
-    "color": [
-      132,
-      126,
-      143
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 155,
-    "track_id": "3",
-    "bbox": [
-      371,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      101
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 156,
-    "track_id": "1",
-    "bbox": [
-      332,
-      97,
-      376,
-      134
-    ],
-    "color": [
-      133,
-      127,
-      143
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 156,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      106,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 157,
-    "track_id": "1",
-    "bbox": [
-      332,
-      97,
-      377,
-      134
-    ],
-    "color": [
-      130,
-      125,
-      140
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 157,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      412,
-      140
-    ],
-    "color": [
-      82,
-      107,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 158,
-    "track_id": "1",
-    "bbox": [
-      332,
-      96,
-      377,
-      133
-    ],
-    "color": [
-      131,
-      125,
-      141
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 158,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      411,
-      140
-    ],
-    "color": [
-      82,
-      108,
-      103
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 159,
-    "track_id": "1",
-    "bbox": [
-      333,
-      96,
-      378,
-      133
-    ],
-    "color": [
-      129,
-      123,
-      139
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 159,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      411,
-      140
-    ],
-    "color": [
-      82,
-      109,
-      101
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 160,
-    "track_id": "1",
-    "bbox": [
-      333,
-      96,
-      378,
-      133
-    ],
-    "color": [
-      128,
-      121,
-      138
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 160,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      411,
-      140
-    ],
-    "color": [
-      82,
-      108,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 161,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      133
-    ],
-    "color": [
-      125,
-      119,
-      135
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 161,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      81,
-      109,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 162,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      132
-    ],
-    "color": [
-      126,
-      119,
-      135
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 162,
-    "track_id": "3",
-    "bbox": [
-      370,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      81,
-      108,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 163,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      132
-    ],
-    "color": [
-      125,
-      118,
-      135
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 163,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      81,
-      109,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 164,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      133
-    ],
-    "color": [
-      122,
-      116,
-      132
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 164,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      81,
-      109,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 165,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      133
-    ],
-    "color": [
-      121,
-      116,
-      131
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 165,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      81,
-      109,
-      102
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 166,
-    "track_id": "1",
-    "bbox": [
-      333,
-      95,
-      378,
-      133
-    ],
-    "color": [
-      120,
-      116,
-      130
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 166,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      80,
-      109,
-      101
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 167,
-    "track_id": "1",
-    "bbox": [
-      334,
-      95,
-      380,
-      133
-    ],
-    "color": [
-      118,
-      113,
-      128
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 167,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      80,
-      110,
-      100
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 168,
-    "track_id": "1",
-    "bbox": [
-      335,
-      96,
-      380,
-      133
-    ],
-    "color": [
-      118,
-      114,
-      128
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 168,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      80,
-      109,
-      100
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 169,
-    "track_id": "1",
-    "bbox": [
-      336,
-      96,
-      379,
-      132
-    ],
-    "color": [
-      119,
-      115,
-      128
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 169,
-    "track_id": "3",
-    "bbox": [
-      369,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      79,
-      108,
-      100
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 170,
-    "track_id": "1",
-    "bbox": [
-      336,
-      96,
-      380,
-      132
-    ],
-    "color": [
-      116,
-      113,
-      126
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 170,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      411,
-      141
-    ],
-    "color": [
-      79,
-      109,
-      100
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 171,
-    "track_id": "1",
-    "bbox": [
-      337,
-      96,
-      382,
-      132
-    ],
-    "color": [
-      114,
-      109,
-      122
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 171,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      141
-    ],
-    "color": [
-      79,
-      110,
-      99
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 172,
-    "track_id": "1",
-    "bbox": [
-      339,
-      95,
-      385,
-      132
-    ],
-    "color": [
-      110,
-      105,
-      118
-    ],
-    "number_plate": null,
-    "label": "car1"
+    "color": "black",
+    "label": "car1",
+    "number_plate": "5379MX-B",
+    "number_plate_confidence": 0.7154085511154984
   },
   {
-    "frame": 172,
-    "track_id": "3",
+    "frame": 31,
+    "track_id": 2,
     "bbox": [
-      368,
-      91,
-      410,
-      141
+      727,
+      683,
+      920,
+      826
     ],
-    "color": [
-      78,
-      111,
-      97
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 173,
-    "track_id": "1",
-    "bbox": [
-      340,
-      95,
-      386,
-      132
-    ],
-    "color": [
-      109,
-      103,
-      117
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 173,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      141
-    ],
-    "color": [
-      77,
-      111,
-      96
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 174,
-    "track_id": "1",
-    "bbox": [
-      338,
-      95,
-      383,
-      132
-    ],
-    "color": [
-      110,
-      104,
-      116
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 174,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      141
-    ],
-    "color": [
-      78,
-      109,
-      95
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 175,
-    "track_id": "1",
-    "bbox": [
-      338,
-      95,
-      383,
-      132
-    ],
-    "color": [
-      109,
-      104,
-      115
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 175,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      142
-    ],
-    "color": [
-      76,
-      108,
-      94
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 176,
-    "track_id": "1",
-    "bbox": [
-      338,
-      95,
-      383,
-      131
-    ],
-    "color": [
-      112,
-      104,
-      116
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 176,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      142
-    ],
-    "color": [
-      77,
-      108,
-      94
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 177,
-    "track_id": "1",
-    "bbox": [
-      339,
-      95,
-      382,
-      131
-    ],
-    "color": [
-      114,
-      105,
-      115
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 177,
-    "track_id": "3",
-    "bbox": [
-      368,
-      91,
-      410,
-      142
-    ],
-    "color": [
-      77,
-      108,
-      94
-    ],
-    "number_plate": null,
-    "label": "car3"
-  },
-  {
-    "frame": 178,
-    "track_id": "1",
-    "bbox": [
-      339,
-      95,
-      382,
-      131
-    ],
-    "color": [
-      113,
-      106,
-      115
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 179,
-    "track_id": "1",
-    "bbox": [
-      341,
-      95,
-      385,
-      130
-    ],
-    "color": [
-      112,
-      104,
-      113
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 180,
-    "track_id": "1",
-    "bbox": [
-      342,
-      94,
-      386,
-      130
-    ],
-    "color": [
-      111,
-      102,
-      110
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 181,
-    "track_id": "1",
-    "bbox": [
-      344,
-      94,
-      389,
-      130
-    ],
-    "color": [
-      109,
-      101,
-      108
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 182,
-    "track_id": "1",
-    "bbox": [
-      345,
-      94,
-      391,
-      129
-    ],
-    "color": [
-      110,
-      101,
-      108
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 183,
-    "track_id": "1",
-    "bbox": [
-      346,
-      94,
-      391,
-      129
-    ],
-    "color": [
-      113,
-      102,
-      109
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 184,
-    "track_id": "1",
-    "bbox": [
-      344,
-      94,
-      387,
-      129
-    ],
-    "color": [
-      116,
-      105,
-      112
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 185,
-    "track_id": "1",
-    "bbox": [
-      346,
-      93,
-      391,
-      128
-    ],
-    "color": [
-      116,
-      104,
-      111
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 186,
-    "track_id": "1",
-    "bbox": [
-      347,
-      93,
-      392,
-      128
-    ],
-    "color": [
-      115,
-      104,
-      110
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 187,
-    "track_id": "1",
-    "bbox": [
-      349,
-      93,
-      395,
-      128
-    ],
-    "color": [
-      113,
-      101,
-      108
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 188,
-    "track_id": "1",
-    "bbox": [
-      351,
-      93,
-      395,
-      128
-    ],
-    "color": [
-      114,
-      102,
-      108
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 189,
-    "track_id": "1",
-    "bbox": [
-      352,
-      93,
-      396,
-      127
-    ],
-    "color": [
-      117,
-      102,
-      110
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 190,
-    "track_id": "1",
-    "bbox": [
-      353,
-      93,
-      396,
-      127
-    ],
-    "color": [
-      117,
-      103,
-      110
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 191,
-    "track_id": "1",
-    "bbox": [
-      355,
-      93,
-      397,
-      127
-    ],
-    "color": [
-      117,
-      103,
-      110
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 192,
-    "track_id": "1",
-    "bbox": [
-      355,
-      93,
-      397,
-      127
-    ],
-    "color": [
-      118,
-      103,
-      111
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 193,
-    "track_id": "1",
-    "bbox": [
-      357,
-      93,
-      397,
-      127
-    ],
-    "color": [
-      120,
-      104,
-      112
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 194,
-    "track_id": "1",
-    "bbox": [
-      358,
-      92,
-      398,
-      126
-    ],
-    "color": [
-      121,
-      105,
-      113
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 195,
-    "track_id": "1",
-    "bbox": [
-      363,
-      91,
-      405,
-      126
-    ],
-    "color": [
-      119,
-      104,
-      111
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 196,
-    "track_id": "1",
-    "bbox": [
-      365,
-      91,
-      406,
-      125
-    ],
-    "color": [
-      120,
-      105,
-      112
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 197,
-    "track_id": "1",
-    "bbox": [
-      366,
-      90,
-      408,
-      125
-    ],
-    "color": [
-      116,
-      101,
-      107
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 198,
-    "track_id": "1",
-    "bbox": [
-      370,
-      91,
-      410,
-      125
-    ],
-    "color": [
-      115,
-      100,
-      106
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 199,
-    "track_id": "1",
-    "bbox": [
-      372,
-      91,
-      412,
-      124
-    ],
-    "color": [
-      113,
-      99,
-      104
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 200,
-    "track_id": "1",
-    "bbox": [
-      373,
-      91,
-      414,
-      124
-    ],
-    "color": [
-      110,
-      97,
-      102
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 201,
-    "track_id": "1",
-    "bbox": [
-      375,
-      91,
-      415,
-      124
-    ],
-    "color": [
-      107,
-      95,
-      100
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 202,
-    "track_id": "1",
-    "bbox": [
-      377,
-      91,
-      417,
-      123
-    ],
-    "color": [
-      108,
-      95,
-      100
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 203,
-    "track_id": "1",
-    "bbox": [
-      379,
-      90,
-      418,
-      123
-    ],
-    "color": [
-      104,
-      93,
-      97
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 204,
-    "track_id": "1",
-    "bbox": [
-      380,
-      90,
-      420,
-      123
-    ],
-    "color": [
-      100,
-      91,
-      94
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 205,
-    "track_id": "1",
-    "bbox": [
-      382,
-      90,
-      421,
-      122
-    ],
-    "color": [
-      98,
-      89,
-      93
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 206,
-    "track_id": "1",
-    "bbox": [
-      384,
-      90,
-      423,
-      122
-    ],
-    "color": [
-      91,
-      85,
-      89
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 207,
-    "track_id": "1",
-    "bbox": [
-      386,
-      90,
-      424,
-      122
-    ],
-    "color": [
-      88,
-      83,
-      86
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 208,
-    "track_id": "1",
-    "bbox": [
-      387,
-      89,
-      426,
-      121
-    ],
-    "color": [
-      84,
-      80,
-      83
-    ],
-    "number_plate": null,
-    "label": "car1"
-  },
-  {
-    "frame": 209,
-    "track_id": "1",
-    "bbox": [
-      389,
-      89,
-      428,
-      121
-    ],
-    "color": [
-      80,
-      76,
-      80
-    ],
+    "color": "black",
+    "label": "car2",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
   },
   {
-    "frame": 210,
-    "track_id": "1",
+    "frame": 31,
+    "track_id": 3,
     "bbox": [
-      391,
-      89,
-      429,
-      121
-    ],
-    "color": [
-      77,
-      74,
-      78
+      190,
+      766,
+      548,
+      1058
     ],
-    "number_plate": null,
-    "label": "car1"
+    "color": "black",
+    "label": "car3",
+    "number_plate": "3066MP-4",
+    "number_plate_confidence": 0.6520581937213983
   },
   {
-    "frame": 211,
-    "track_id": "1",
+    "frame": 31,
+    "track_id": 4,
     "bbox": [
-      392,
-      89,
-      431,
-      120
+      641,
+      652,
+      779,
+      773
     ],
-    "color": [
-      75,
-      72,
-      76
-    ],
+    "color": "blue",
+    "label": "car4",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
   },
   {
-    "frame": 212,
-    "track_id": "1",
+    "frame": 31,
+    "track_id": 5,
     "bbox": [
-      394,
-      89,
-      432,
-      120
-    ],
-    "color": [
-      73,
-      70,
-      74
+      601,
+      622,
+      715,
+      721
     ],
+    "color": "black",
+    "label": "car5",
     "number_plate": null,
-    "label": "car1"
+    "number_plate_confidence": null
   }
 ]

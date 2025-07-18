@@ -21,6 +21,8 @@ function Dashboard() {
   // Remove jobId and pollingRef state
   // const [jobId, setJobId] = useState(null);
   // const pollingRef = useRef(null);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [modalImageUrl, setModalImageUrl] = useState(null);
 
   useEffect(() => {
     fetchData();
@@ -155,8 +157,8 @@ function Dashboard() {
     }
   };
 
-  const handleVideoSelect = (filename) => {
-    setSelectedVideo(filename);
+  const handleVideoSelect = (videoObj) => {
+    setSelectedVideo(videoObj);
     setShowOverlay(true);
   };
 
@@ -187,28 +189,33 @@ function Dashboard() {
   const colorLabels = Object.keys(data.demographics.color_distribution);
   const colorCounts = Object.values(data.demographics.color_distribution);
   const totalColors = colorCounts.reduce((sum, count) => sum + count, 0);
-  // Assign a color palette (dark theme friendly)
-  const colorPalette = [
-    '#60a5fa', // blue-400
-    '#f87171', // red-400
-    '#fbbf24', // yellow-400
-    '#34d399', // green-400
-    '#a78bfa', // purple-400
-    '#f472b6', // pink-400
-    '#facc15', // amber-400
-    '#38bdf8', // sky-400
-    '#818cf8', // indigo-400
-    '#f97316', // orange-400
-    '#6ee7b7', // teal-300
-    '#d1d5db', // gray-300
-    '#64748b', // slate-500
-  ];
+  // Assign a color palette (dark theme friendly, now mapped to color names)
+  const colorNameToCss = {
+    white: "#f5f5f5",
+    black: "#0f0f0f",
+    silver: "#c0c0c0",
+    gray: "#808080",
+    blue: "#192a60",
+    red: "#8a0303",
+    green: "#00563f",
+    brown: "#654321",
+    gold: "#d4af37",
+    beige: "#f5f5dc",
+    yellow: "#ffd300",
+    orange: "#ff8c00",
+    maroon: "#800000",
+    purple: "#4b0082",
+    teal: "#008080",
+    pink: "#ffb6c1",
+    navy: "#000080",
+    cyan: "#00ffff",
+  };
   const pieData = {
     labels: colorLabels,
     datasets: [
       {
         data: colorCounts,
-        backgroundColor: colorLabels.map((_, i) => colorPalette[i % colorPalette.length]),
+        backgroundColor: colorLabels.map(label => colorNameToCss[label.toLowerCase()] || 'dimgray'),
         borderColor: '#1e293b', // dark border
         borderWidth: 2,
       },
@@ -221,6 +228,22 @@ function Dashboard() {
         labels: {
           color: '#cbd5e1', // slate-300
           font: { size: 14 },
+          generateLabels: (chart) => {
+            const data = chart.data;
+            if (!data.labels) return [];
+            return data.labels.map((label, i) => {
+              const value = data.datasets[0].data[i];
+              const percentage = totalColors ? ((value / totalColors) * 100).toFixed(1) : 0;
+              return {
+                text: `${label} (${percentage}%)`,
+                fillStyle: data.datasets[0].backgroundColor[i],
+                strokeStyle: data.datasets[0].borderColor,
+                lineWidth: data.datasets[0].borderWidth,
+                hidden: isNaN(data.datasets[0].data[i]) || chart.getDataVisibility(i) === false,
+                index: i
+              };
+            });
+          }
         },
       },
       tooltip: {
@@ -228,7 +251,7 @@ function Dashboard() {
           label: function(context) {
             const label = context.label || '';
             const value = context.parsed;
-            const percentage = ((value / totalColors) * 100).toFixed(1);
+            const percentage = totalColors ? ((value / totalColors) * 100).toFixed(1) : 0;
             return `${label}: ${value} (${percentage}%)`;
           }
         }
@@ -238,9 +261,10 @@ function Dashboard() {
 
   // Assign a unique color to each video_id
   const videoIds = Array.from(new Set(data.cars.map(car => car.video_id)));
+  const colorKeys = Object.keys(colorNameToCss);
   const videoIdToColor = {};
   videoIds.forEach((vid, idx) => {
-    videoIdToColor[vid] = colorPalette[idx % colorPalette.length];
+    videoIdToColor[vid] = colorNameToCss[colorKeys[idx % colorKeys.length]] || 'lightblue';
   });
   // Prepare dwell time data for Bar chart
   const dwellLabels = data.cars.map(car => car.label);
@@ -253,7 +277,6 @@ function Dashboard() {
         label: 'Dwell Time (s)',
         data: dwellTimes,
         backgroundColor: dwellBarColors,
-        borderColor: '#1e293b',
         borderWidth: 2,
       },
     ],
@@ -306,11 +329,11 @@ function Dashboard() {
       value: data.summary.unique_models,
       color: 'bg-purple-700',
     },
-    // {
-    //   label: 'Unique License Plates',
-    //   value: data.summary.unique_license_plates,
-    //   color: 'bg-green-700',
-    // },
+    {
+      label: 'Total Number Plates',
+      value: data.summary.unique_license_plates,
+      color: 'bg-green-700',
+    },
     {
       label: 'Avg. Dwell Time (s)',
       value: data.summary.average_dwell_time,
@@ -381,17 +404,17 @@ function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {videoList.map((filename) => (
+                {videoList.map((videoObj) => (
                   <tr
-                    key={filename}
+                    key={videoObj.folder + '-' + videoObj.filename}
                     className={`border-b border-gray-600 hover:bg-gray-700 cursor-pointer`}
-                    onClick={() => handleVideoSelect(filename)}
+                    onClick={() => handleVideoSelect(videoObj)}
                   >
-                    <td className="px-4 py-2 text-left">{filename}</td>
+                    <td className="px-4 py-2 text-left">{videoObj.filename}</td>
                     <td className="px-4 py-2 text-left">
                       <button
                         className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded"
-                        onClick={e => { e.stopPropagation(); handleVideoSelect(filename); }}
+                        onClick={e => { e.stopPropagation(); handleVideoSelect(videoObj); }}
                       >
                         Play
                       </button>
@@ -420,11 +443,11 @@ function Dashboard() {
               controls
               preload="metadata"
               poster="/video-poster.jpg"
-              key={selectedVideo}
+              key={selectedVideo.folder + '-' + selectedVideo.filename}
               autoPlay
               style={{ height: '80vh' }}
             >
-              <source src={`${API_BASE_URL}/api/videos/${selectedVideo}`} type="video/mp4" />
+              <source src={`${API_BASE_URL}/api/videos/${selectedVideo.folder}/${selectedVideo.filename}`} type="video/mp4" />
               Your browser does not support the video tag.
             </video>
             <div className="mt-4 text-sm text-gray-300 text-center">
@@ -492,6 +515,7 @@ function Dashboard() {
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Dwell Time</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Video</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Video ID</th>
+                <th className="px-6 py-4 text-left font-semibold text-gray-300">Car Image</th>
               </tr>
             </thead>
             <tbody>
@@ -529,12 +553,51 @@ function Dashboard() {
                  <td className="px-6 py-4 text-gray-300 text-left">
                    {car.video_id}
                  </td>
+                <td className="px-6 py-4 text-gray-300 text-left">
+                  {car.image_path || (car.video_filename && car.track_id) ? (
+                    <button
+                      className="px-3 py-1 bg-blue-600 hover:bg-blue-700 text-white rounded"
+                      onClick={() => {
+                        // Use video name (without extension) and car track_id
+                        let videoName = car.video_filename ? car.video_filename.split('.')[0] : 'unknown_video';
+                        let imagePath = `videos/processed/${videoName}/car_${car.track_id}.jpg`;
+                        setModalImageUrl(`${API_BASE_URL}/api/car_image?path=${encodeURIComponent(imagePath)}`);
+                        setShowImageModal(true);
+                      }}
+                    >
+                      View Image
+                    </button>
+                    ) : (
+                      <span className="text-gray-500">No Image</span>
+                  )}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {/* Car Image Modal */}
+      {showImageModal && modalImageUrl && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80"
+          onClick={() => setShowImageModal(false)}
+        >
+          <div
+            className="relative bg-gray-900 rounded-lg shadow-lg p-6 border border-gray-700 flex flex-col items-center"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 z-10 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded shadow-lg"
+              onClick={() => setShowImageModal(false)}
+            >
+              Close
+            </button>
+            <img style={{height: '500px'}} src={modalImageUrl} alt="Car" className="mt-10 max-w-full max-h-[80vh] rounded-lg shadow-lg" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

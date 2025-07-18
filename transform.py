@@ -70,46 +70,52 @@ def transform_detections(input_file, output_file, fps=25.0):
         dwell_time = frame_count / fps  # Assuming 25 fps, adjust as needed
         dwell_times.append(dwell_time)
         
-        # Get all colors for this car
-        colors = [det['color'] for det in car_detections if det['color']]
-        dominant_color = get_dominant_color(colors)
+        # Find the most common color for this car
+        color_counts = Counter([det.get('color', 'unknown') for det in car_detections if det.get('color')])
+        color_name = color_counts.most_common(1)[0][0] if color_counts else 'unknown'
         
-        # Get license plate - keep the first valid detection, don't replace with subsequent ones
-        license_plate = f"UNKNOWN_{track_id}"  # Default fallback
-        
-        for det in car_detections:
-            if det['number_plate'] and det['number_plate'] != 'None':
-                # Clean the license plate text
-                plate = det['number_plate'].strip().upper()
-                if len(plate) >= 4:  # Minimum length for a valid plate
-                    license_plate = plate
-                    break  # Use the first valid detection, don't look for more
-        
+        # Use the number_plate from the first detection (already aggregated in detection step)
+        best_plate = car_detections[0].get('number_plate', f"UNKNOWN_{track_id}")
+        # Get video name for image path
+        video_name = car_detections[0].get('video_name') if 'video_name' in car_detections[0] else None
+        if not video_name:
+            # Try to infer from label or fallback
+            video_name = car_detections[0].get('label', '').split('_')[0] or 'unknown_video'
+        image_path = f"videos/processed/{video_name}/car_{track_id}.jpg"
         # Create unique car object
         car_obj = {
             "track_id": track_id,
             "label": f"car{track_id}",
             "model": "unknown",  # Placeholder - you can add model detection later
-            "color": dominant_color,
-            "license_plate": license_plate,
+            "color": color_name,
+            "license_plate": best_plate,
             "track_frame_counts": frame_count,
             "scene_count": 1,  # Placeholder - you can calculate actual scene count
             "dwell_time_seconds": round(dwell_time, 1),
-            "type": "sedan"  # Placeholder - you can add type detection later
+            "type": "sedan",  # Placeholder - you can add type detection later
+            "image_path": image_path
         }
         unique_cars.append(car_obj)
     
     # Calculate demographics
     type_distribution = Counter([car['type'] for car in unique_cars])
-    color_distribution = Counter([car['color'] for car in unique_cars])
+    # color_distribution = Counter([car['color'] for car in unique_cars])
     model_distribution = Counter([car['model'] for car in unique_cars])
-    
+
+    # Calculate all detected colors across all frames
+    all_detected_colors_counter = Counter()
+    for car_detections in cars_by_track.values():
+        for det in car_detections:
+            color = det.get('color')
+            if color:
+                all_detected_colors_counter[color] += 1
+
     # Calculate summary statistics
     total_cars = len(unique_cars)
     unique_models = len(set(car['model'] for car in unique_cars))
     unique_license_plates = len(set(car['license_plate'] for car in unique_cars))
     avg_dwell_time = np.mean(dwell_times) if dwell_times else 0
-    
+
     # Create the final structure
     transformed_data = {
         "cars": unique_cars,
@@ -121,7 +127,7 @@ def transform_detections(input_file, output_file, fps=25.0):
         },
         "demographics": {
             "type_distribution": dict(type_distribution),
-            "color_distribution": dict(color_distribution),
+            "color_distribution": dict(all_detected_colors_counter),
             "model_distribution": dict(model_distribution)
         }
     }
@@ -137,7 +143,7 @@ def transform_detections(input_file, output_file, fps=25.0):
     print(f"Average dwell time: {avg_dwell_time:.1f}s")
     
     # Print license plate detection statistics
-    detected_plates = [car['license_plate'] for car in unique_cars if not car['license_plate'].startswith('UNKNOWN')]
+    detected_plates = [car['license_plate'] for car in unique_cars if car['license_plate'] and not car['license_plate'].startswith('UNKNOWN')]
     print(f"License plates detected: {len(detected_plates)}/{total_cars}")
     if detected_plates:
         print(f"Detected plates: {', '.join(detected_plates)}")

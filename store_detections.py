@@ -42,6 +42,7 @@ def create_tables(conn):
             track_frame_counts INTEGER,
             scene_count INTEGER,
             dwell_time_seconds REAL,
+            image_path TEXT,
             FOREIGN KEY(video_id) REFERENCES VIDEOS(id),
             FOREIGN KEY(type_id) REFERENCES CAR_TYPES(id),
             FOREIGN KEY(model_id) REFERENCES CAR_MODELS(id),
@@ -63,6 +64,7 @@ def create_tables(conn):
             unique_models INTEGER,
             unique_license_plates INTEGER,
             average_dwell_time REAL,
+            color_counts_json TEXT,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -112,7 +114,15 @@ def get_or_create_car(conn, car_data, video_id):
     if type_id is None:
         type_id = get_or_create_car_type(conn, 'other')
     model_id = get_or_create_car_model(conn, car_data['model'])
-    color_id = get_or_create_car_color(conn, car_data['color'])
+    color_name = car_data['color'] if car_data.get('color') else 'unknown'
+    color_id = get_or_create_car_color(conn, color_name)
+    # Fix image_path: always use videos/processed/<video_name>/car_<track_id>.jpg
+    image_path = car_data.get('image_path')
+    if not image_path:
+        # Get video filename from car_data or fallback
+        video_filename = car_data.get('video_filename') or car_data.get('label', '').split('_')[0] or 'unknown_video.mp4'
+        video_name = os.path.splitext(os.path.basename(video_filename))[0]
+        image_path = f"videos/processed/{video_name}/car_{car_data['track_id']}.jpg"
     # Check if car already exists for this video and track_id
     cur = conn.execute('SELECT id FROM CARS WHERE video_id=? AND track_id=?', (video_id, car_data['track_id']))
     row = cur.fetchone()
@@ -121,11 +131,12 @@ def get_or_create_car(conn, car_data, video_id):
         conn.execute('''
             UPDATE CARS SET 
                 label=?, type_id=?, model_id=?, color_id=?, license_plate=?, 
-                track_frame_counts=?, scene_count=?, dwell_time_seconds=?
+                track_frame_counts=?, scene_count=?, dwell_time_seconds=?, image_path=?
             WHERE id=?
         ''', (
             car_data['label'], type_id, model_id, color_id, car_data['license_plate'],
             car_data['track_frame_counts'], car_data['scene_count'], car_data['dwell_time_seconds'],
+            image_path,
             row[0]
         ))
         conn.commit()
@@ -134,12 +145,12 @@ def get_or_create_car(conn, car_data, video_id):
         # Create new car
         cur = conn.execute('''
             INSERT INTO CARS (video_id, track_id, label, type_id, model_id, color_id, license_plate, 
-                            track_frame_counts, scene_count, dwell_time_seconds)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            track_frame_counts, scene_count, dwell_time_seconds, image_path)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             video_id, car_data['track_id'], car_data['label'], type_id, model_id, color_id,
             car_data['license_plate'], car_data['track_frame_counts'], 
-            car_data['scene_count'], car_data['dwell_time_seconds']
+            car_data['scene_count'], car_data['dwell_time_seconds'], image_path
         ))
         conn.commit()
         return cur.lastrowid
@@ -163,14 +174,16 @@ def extract_state_from_plate(plate):
 
 def store_summary_stats(conn, summary_data):
     """Store summary statistics"""
+    import json as _json
     conn.execute('''
-        INSERT INTO SUMMARY_STATS (total_cars, unique_models, unique_license_plates, average_dwell_time)
-        VALUES (?, ?, ?, ?)
+        INSERT INTO SUMMARY_STATS (total_cars, unique_models, unique_license_plates, average_dwell_time, color_counts_json)
+        VALUES (?, ?, ?, ?, ?)
     ''', (
         summary_data['total_cars'],
         summary_data['unique_models'],
         summary_data['unique_license_plates'],
-        summary_data['average_dwell_time']
+        summary_data['average_dwell_time'],
+        _json.dumps(summary_data.get('all_detected_colors', {}))
     ))
     conn.commit()
 

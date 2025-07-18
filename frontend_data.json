@@ -1,44 +1,82 @@
 {
   "cars": [
     {
-      "track_id": "1",
+      "track_id": 1,
       "label": "car1",
       "model": "unknown",
-      "color": "blue",
-      "license_plate": "UNKNOWN_1",
-      "track_frame_counts": 211,
+      "color": "black",
+      "license_plate": "5379MX-B",
+      "track_frame_counts": 30,
       "scene_count": 1,
-      "dwell_time_seconds": 8.4,
-      "type": "sedan"
+      "dwell_time_seconds": 1.2,
+      "type": "sedan",
+      "image_path": "videos/processed/car1/car_1.jpg"
     },
     {
-      "track_id": "3",
+      "track_id": 2,
+      "label": "car2",
+      "model": "unknown",
+      "color": "black",
+      "license_plate": null,
+      "track_frame_counts": 30,
+      "scene_count": 1,
+      "dwell_time_seconds": 1.2,
+      "type": "sedan",
+      "image_path": "videos/processed/car2/car_2.jpg"
+    },
+    {
+      "track_id": 3,
       "label": "car3",
       "model": "unknown",
-      "color": "cyan",
-      "license_plate": "UNKNOWN_3",
-      "track_frame_counts": 34,
+      "color": "black",
+      "license_plate": "3066MP-4",
+      "track_frame_counts": 30,
       "scene_count": 1,
-      "dwell_time_seconds": 1.4,
-      "type": "sedan"
+      "dwell_time_seconds": 1.2,
+      "type": "sedan",
+      "image_path": "videos/processed/car3/car_3.jpg"
+    },
+    {
+      "track_id": 4,
+      "label": "car4",
+      "model": "unknown",
+      "color": "black",
+      "license_plate": null,
+      "track_frame_counts": 30,
+      "scene_count": 1,
+      "dwell_time_seconds": 1.2,
+      "type": "sedan",
+      "image_path": "videos/processed/car4/car_4.jpg"
+    },
+    {
+      "track_id": 5,
+      "label": "car5",
+      "model": "unknown",
+      "color": "black",
+      "license_plate": null,
+      "track_frame_counts": 25,
+      "scene_count": 1,
+      "dwell_time_seconds": 1.0,
+      "type": "sedan",
+      "image_path": "videos/processed/car5/car_5.jpg"
     }
   ],
   "summary": {
-    "total_cars": 2,
+    "total_cars": 5,
     "unique_models": 1,
-    "unique_license_plates": 2,
-    "average_dwell_time": 4.9
+    "unique_license_plates": 3,
+    "average_dwell_time": 1.2
   },
   "demographics": {
     "type_distribution": {
-      "sedan": 2
+      "sedan": 5
     },
     "color_distribution": {
-      "blue": 1,
-      "cyan": 1
+      "black": 138,
+      "blue": 7
     },
     "model_distribution": {
-      "unknown": 2
+      "unknown": 5
     }
   }
 }

@@ -21,7 +21,7 @@ docker build -t detection-app .
 ### 2. Run the Container
 
 ```
-docker run -p 3000:3000 -p 5000:5000 detection-app
+docker run --rm -p 3000:3000 -p 5000:5000 detection-app
 ```
 
 - The **frontend** will be available at [http://localhost:3000](http://localhost:3000)
