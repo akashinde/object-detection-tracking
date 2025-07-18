@@ -26,6 +26,7 @@ function Dashboard() {
 
   useEffect(() => {
     fetchData();
+    fetchSummary();
     fetchVideos();
   }, []);
 
@@ -36,42 +37,38 @@ function Dashboard() {
       const res = await fetch(`${API_BASE_URL}/api/cars`);
       if (!res.ok) throw new Error('Failed to fetch car data');
       const json = await res.json();
-      // Transform backend data to frontend format
-      // If backend returns { cars: [...] }, wrap in demographics/summary as needed
       const cars = json.cars || [];
-      // Calculate demographics and summary
-      const type_distribution = {};
-      const color_distribution = {};
-      const model_distribution = {};
-      let total_dwell = 0;
-      const license_plates = new Set();
-      const models = new Set();
-      cars.forEach(car => {
-        // Type
-        if (car.type) type_distribution[car.type] = (type_distribution[car.type] || 0) + 1;
-        // Color
-        if (car.color) color_distribution[car.color] = (color_distribution[car.color] || 0) + 1;
-        // Model
-        if (car.model) {
-          model_distribution[car.model] = (model_distribution[car.model] || 0) + 1;
-          models.add(car.model);
-        }
-        // Dwell
-        if (car.dwell_time_seconds) total_dwell += car.dwell_time_seconds;
-        // License plates
-        if (car.license_plate) license_plates.add(car.license_plate);
-      });
-      const summary = {
-        total_cars: cars.length,
-        unique_models: models.size,
-        unique_license_plates: license_plates.size,
-        average_dwell_time: cars.length ? Math.round((total_dwell / cars.length) * 10) / 10 : 0
-      };
-      setData({ cars, demographics: { type_distribution, color_distribution, model_distribution }, summary });
+      setData(prev => ({ ...(prev || {}), cars }));
     } catch (err) {
       setError(err.message || 'Failed to load data');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSummary = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/summary`);
+      if (!res.ok) throw new Error('Failed to fetch summary');
+      const summary = await res.json();
+      // Convert color_counts_json to demographics.color_distribution
+      setData(prev => ({
+        ...(prev || {}),
+        summary: {
+          total_cars: summary.total_cars,
+          unique_models: summary.unique_models,
+          unique_license_plates: summary.unique_license_plates,
+          average_dwell_time: summary.average_dwell_time,
+          peak_hour_range: summary.peak_hour_range,
+          peak_hour_count: summary.peak_hour_count
+        },
+        demographics: {
+          ...(prev && prev.demographics ? prev.demographics : {}),
+          color_distribution: summary.color_counts_json || {},
+        }
+      }));
+    } catch (err) {
+      // fallback: do nothing
     }
   };
 
@@ -186,8 +183,8 @@ function Dashboard() {
   }
 
   // Prepare color distribution data for Pie chart
-  const colorLabels = Object.keys(data.demographics.color_distribution);
-  const colorCounts = Object.values(data.demographics.color_distribution);
+  const colorLabels = data?.demographics?.color_distribution ? Object.keys(data.demographics.color_distribution) : [];
+  const colorCounts = data?.demographics?.color_distribution ? Object.values(data.demographics.color_distribution) : [];
   const totalColors = colorCounts.reduce((sum, count) => sum + count, 0);
   // Assign a color palette (dark theme friendly, now mapped to color names)
   const colorNameToCss = {
@@ -226,8 +223,9 @@ function Dashboard() {
       legend: {
         position: 'bottom',
         labels: {
-          color: '#cbd5e1', // slate-300
+          color: '#fff', // white for better visibility
           font: { size: 14 },
+          // Use a custom render function to set label color to white
           generateLabels: (chart) => {
             const data = chart.data;
             if (!data.labels) return [];
@@ -240,10 +238,14 @@ function Dashboard() {
                 strokeStyle: data.datasets[0].borderColor,
                 lineWidth: data.datasets[0].borderWidth,
                 hidden: isNaN(data.datasets[0].data[i]) || chart.getDataVisibility(i) === false,
-                index: i
+                index: i,
+                fontColor: '#fff', // <-- This is for Chart.js v2, but v3+ uses 'color' above
+                font: { size: 14, color: '#fff' }, // Try to enforce white font
               };
             });
-          }
+          },
+          // For Chart.js v3+, use a 'color' function to force white
+          color: (context) => '#fff',
         },
       },
       tooltip: {
@@ -318,32 +320,56 @@ function Dashboard() {
   };
 
   // Prepare summary cards data
+  const totalCars = data?.summary?.total_cars ?? 0;
+  // Unreadable plates: license_plate is empty
+  const unreadablePlates = data?.cars ? data.cars.filter(car => !car.license_plate || car.license_plate.trim() === '').length : 0;
+  const unreadablePlatesPercent = totalCars > 0 ? ((unreadablePlates / totalCars) * 100).toFixed(1) : '0.0';
+  // Most common make/model (show 'NA')
+  const mostCommonMakeModel = 'NA';
+  // Peak traffic time (show 'NA' unless you have timestamps)
+  const peakTrafficTime = data?.summary?.peak_hour_range || 'NA';
+
   const summaryCards = [
     {
       label: 'Total Cars',
-      value: data.summary.total_cars,
+      value: data?.summary?.total_cars ?? 0,
       color: 'bg-blue-700',
     },
     {
+      label: 'Peak Traffic Time',
+      value: data?.summary?.peak_hour_range || 'NA',
+      color: 'bg-blue-700',
+    },
+    {
+      label: 'Unreadable Plates',
+      value: totalCars > 0 ? `${unreadablePlatesPercent}%` : '0.0%',
+      color: 'bg-green-700',
+    },
+    {
+      label: 'Most Common Make/Model',
+      value: mostCommonMakeModel,
+      color: 'bg-purple-700',
+    },
+    {
       label: 'Unique Models',
-      value: data.summary.unique_models,
+      value: data?.summary?.unique_models ?? 0,
       color: 'bg-purple-700',
     },
     {
       label: 'Total Number Plates',
-      value: data.summary.unique_license_plates,
+      value: data?.summary?.unique_license_plates ?? 0,
       color: 'bg-green-700',
     },
     {
       label: 'Avg. Dwell Time (s)',
-      value: data.summary.average_dwell_time,
+      value: data?.summary?.average_dwell_time ?? 0,
       color: 'bg-yellow-700',
     },
   ];
 
   return (
     <div className="p-6 font-sans bg-gray-900 min-h-screen text-gray-100">
-      <h1 className="mt-8 mb-20 text-5xl font-bold">
+      <h1 className="mt-8 mb-12 text-5xl font-bold">
         Car Detection & Tracking Dashboard
       </h1>
 
@@ -374,17 +400,17 @@ function Dashboard() {
         )}
       </div>
 
-      <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Summary Cards */}
-        <div className="mb-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 gap-6">
+        {/* Summary Cards (now includes high-level KPIs) */}
+        <div className="mb-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-6">
           {summaryCards.map(card => {
             return (
               <div
                 key={card.label}
                 className={`rounded-lg shadow-lg p-6 flex flex-col items-center justify-center border border-gray-700 bg-gray-800`}
               >
-                <div className="text-8xl font-bold mb-2">{card.value}</div>
-                <div className="text-xl font-semibold text-blue-400">{card.label}</div>
+                <div className="text-4xl font-bold mb-2">{card.value}</div>
+                <div className="text-lg font-semibold text-blue-400">{card.label}</div>
               </div>
             );
           })}
@@ -425,38 +451,38 @@ function Dashboard() {
             </table>
           )}
         </div>
-      </div>
-
-
-      {/* Video Overlay Modal */}
-      {showOverlay && selectedVideo && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
-          <div className="relative w-full max-w-4xl mx-4 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-            <button
-              className="absolute top-2 right-2 z-10 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded shadow-lg"
-              onClick={handleCloseOverlay}
-            >
-              Close
-            </button>
-            <video
-              className="w-full rounded-lg shadow-lg"
-              controls
-              preload="metadata"
-              poster="/video-poster.jpg"
-              key={selectedVideo.folder + '-' + selectedVideo.filename}
-              autoPlay
-              style={{ height: '80vh' }}
-            >
-              <source src={`${API_BASE_URL}/api/videos/${selectedVideo.folder}/${selectedVideo.filename}`} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="mt-4 text-sm text-gray-300 text-center">
-              <p>Video showing car detection and tracking with bounding boxes and labels</p>
-              <p className="mt-1">Green boxes indicate detected cars with their track IDs</p>
+        {/* Video Overlay Modal */}
+        {showOverlay && selectedVideo && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80">
+            <div className="relative w-full max-w-4xl mx-4 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
+              <button
+                className="absolute top-2 right-2 z-10 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded shadow-lg"
+                onClick={handleCloseOverlay}
+              >
+                Close
+              </button>
+              <video
+                className="w-full rounded-lg shadow-lg"
+                controls
+                preload="metadata"
+                poster="/video-poster.jpg"
+                key={selectedVideo.folder + '-' + selectedVideo.filename}
+                autoPlay
+                style={{ height: '80vh' }}
+              >
+                <source src={`${API_BASE_URL}/api/videos/${selectedVideo.folder}/${selectedVideo.filename}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div className="mt-4 text-sm text-gray-300 text-center">
+                <p>Video showing car detection and tracking with bounding boxes and labels</p>
+                <p className="mt-1">Green boxes indicate detected cars with their track IDs</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+
+      </div>
+
 
       {/* Demographics Section */}
       <div className="mb-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -510,6 +536,7 @@ function Dashboard() {
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Model</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Color</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">License Plate</th>
+                <th className="px-6 py-4 text-left font-semibold text-gray-300">Plate Conf.</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Type</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Track Frames</th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-300">Dwell Time</th>
@@ -536,7 +563,10 @@ function Dashboard() {
                     {car.color}
                   </td>
                   <td className="px-6 py-4 font-mono font-bold text-blue-300 text-left">
-                    {car.license_plate}
+                    {car.license_plate && car.license_plate.trim() !== '' ? car.license_plate : '-'}
+                  </td>
+                  <td className="px-6 py-4 text-gray-300 text-left">
+                    {car.license_plate_confidence !== undefined && car.license_plate_confidence !== null && car.license_plate_confidence !== '' ? car.license_plate_confidence.toFixed(3) : '-'}
                   </td>
                   <td className="px-6 py-4 text-gray-300 text-left">
                     {car.type}

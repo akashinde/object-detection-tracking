@@ -2,6 +2,7 @@ import json
 import numpy as np
 from collections import defaultdict, Counter
 import colorsys
+import datetime
 
 def rgb_to_color_name(rgb):
     """Convert RGB values to a color name"""
@@ -74,8 +75,16 @@ def transform_detections(input_file, output_file, fps=25.0):
         color_counts = Counter([det.get('color', 'unknown') for det in car_detections if det.get('color')])
         color_name = color_counts.most_common(1)[0][0] if color_counts else 'unknown'
         
-        # Use the number_plate from the first detection (already aggregated in detection step)
-        best_plate = car_detections[0].get('number_plate', f"UNKNOWN_{track_id}")
+        # Find the most common license plate and its confidence
+        plate_counts = Counter([det.get('number_plate', '') for det in car_detections if det.get('number_plate')])
+        best_plate = plate_counts.most_common(1)[0][0] if plate_counts else ''
+        # Find the highest confidence for this plate
+        best_conf = None
+        for det in car_detections:
+            if det.get('number_plate') == best_plate:
+                conf = det.get('number_plate_confidence')
+                if conf is not None and (best_conf is None or conf > best_conf):
+                    best_conf = conf
         # Get video name for image path
         video_name = car_detections[0].get('video_name') if 'video_name' in car_detections[0] else None
         if not video_name:
@@ -89,6 +98,7 @@ def transform_detections(input_file, output_file, fps=25.0):
             "model": "unknown",  # Placeholder - you can add model detection later
             "color": color_name,
             "license_plate": best_plate,
+            "license_plate_confidence": best_conf,
             "track_frame_counts": frame_count,
             "scene_count": 1,  # Placeholder - you can calculate actual scene count
             "dwell_time_seconds": round(dwell_time, 1),
@@ -116,6 +126,36 @@ def transform_detections(input_file, output_file, fps=25.0):
     unique_license_plates = len(set(car['license_plate'] for car in unique_cars))
     avg_dwell_time = np.mean(dwell_times) if dwell_times else 0
 
+    # --- New: Aggregate by hour of day ---
+    hour_to_track_ids = defaultdict(set)
+    for detection in detections:
+        ts = detection.get('timestamp')
+        if ts:
+            try:
+                dt = datetime.datetime.fromisoformat(ts)
+                hour = dt.hour
+                hour_to_track_ids[hour].add(detection['track_id'])
+            except Exception:
+                continue
+    hour_counts = {h: len(s) for h, s in hour_to_track_ids.items()}
+    if hour_counts:
+        max_count = max(hour_counts.values())
+        peak_hours = [h for h, c in hour_counts.items() if c == max_count]
+        # Format as a range if consecutive, else as a list
+        if len(peak_hours) == 1:
+            peak_hour_range = f"{peak_hours[0]:02d}:00-{(peak_hours[0]+1)%24:02d}:00"
+        else:
+            sorted_hours = sorted(peak_hours)
+            # Check if consecutive
+            if all(sorted_hours[i]+1 == sorted_hours[i+1] for i in range(len(sorted_hours)-1)):
+                peak_hour_range = f"{sorted_hours[0]:02d}:00-{(sorted_hours[-1]+1)%24:02d}:00"
+            else:
+                peak_hour_range = ','.join(f"{h:02d}:00" for h in sorted_hours)
+        peak_hour_count = max_count
+    else:
+        peak_hour_range = 'NA'
+        peak_hour_count = 0
+
     # Create the final structure
     transformed_data = {
         "cars": unique_cars,
@@ -123,7 +163,10 @@ def transform_detections(input_file, output_file, fps=25.0):
             "total_cars": total_cars,
             "unique_models": unique_models,
             "unique_license_plates": unique_license_plates,
-            "average_dwell_time": round(avg_dwell_time, 1)
+            "average_dwell_time": round(avg_dwell_time, 1),
+            # --- New: Add peak hour info ---
+            "peak_hour_range": peak_hour_range,
+            "peak_hour_count": peak_hour_count
         },
         "demographics": {
             "type_distribution": dict(type_distribution),

@@ -39,6 +39,7 @@ def create_tables(conn):
             model_id INTEGER,
             color_id INTEGER,
             license_plate TEXT,
+            license_plate_confidence REAL,
             track_frame_counts INTEGER,
             scene_count INTEGER,
             dwell_time_seconds REAL,
@@ -57,6 +58,7 @@ def create_tables(conn):
             FOREIGN KEY(car_id) REFERENCES CARS(id)
         )
     ''')
+    # --- Add peak_hour_range and peak_hour_count to SUMMARY_STATS ---
     conn.execute('''
         CREATE TABLE IF NOT EXISTS SUMMARY_STATS (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,6 +67,8 @@ def create_tables(conn):
             unique_license_plates INTEGER,
             average_dwell_time REAL,
             color_counts_json TEXT,
+            peak_hour_range TEXT,
+            peak_hour_count INTEGER,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
@@ -116,6 +120,7 @@ def get_or_create_car(conn, car_data, video_id):
     model_id = get_or_create_car_model(conn, car_data['model'])
     color_name = car_data['color'] if car_data.get('color') else 'unknown'
     color_id = get_or_create_car_color(conn, color_name)
+    license_plate_confidence = car_data.get('license_plate_confidence')
     # Fix image_path: always use videos/processed/<video_name>/car_<track_id>.jpg
     image_path = car_data.get('image_path')
     if not image_path:
@@ -130,11 +135,11 @@ def get_or_create_car(conn, car_data, video_id):
         # Update existing car
         conn.execute('''
             UPDATE CARS SET 
-                label=?, type_id=?, model_id=?, color_id=?, license_plate=?, 
+                label=?, type_id=?, model_id=?, color_id=?, license_plate=?, license_plate_confidence=?,
                 track_frame_counts=?, scene_count=?, dwell_time_seconds=?, image_path=?
             WHERE id=?
         ''', (
-            car_data['label'], type_id, model_id, color_id, car_data['license_plate'],
+            car_data['label'], type_id, model_id, color_id, car_data['license_plate'], license_plate_confidence,
             car_data['track_frame_counts'], car_data['scene_count'], car_data['dwell_time_seconds'],
             image_path,
             row[0]
@@ -144,12 +149,12 @@ def get_or_create_car(conn, car_data, video_id):
     else:
         # Create new car
         cur = conn.execute('''
-            INSERT INTO CARS (video_id, track_id, label, type_id, model_id, color_id, license_plate, 
+            INSERT INTO CARS (video_id, track_id, label, type_id, model_id, color_id, license_plate, license_plate_confidence,
                             track_frame_counts, scene_count, dwell_time_seconds, image_path)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
             video_id, car_data['track_id'], car_data['label'], type_id, model_id, color_id,
-            car_data['license_plate'], car_data['track_frame_counts'], 
+            car_data['license_plate'], license_plate_confidence, car_data['track_frame_counts'], 
             car_data['scene_count'], car_data['dwell_time_seconds'], image_path
         ))
         conn.commit()
@@ -167,23 +172,33 @@ def get_or_create_state(conn, state, car_id):
 
 def extract_state_from_plate(plate):
     """Extract state code from license plate"""
-    if not plate or plate.startswith('UNKNOWN'):
+    if not plate:
         return None
     match = re.match(r'([A-Z]{2})', plate.upper())
     return match.group(1) if match else None
 
-def store_summary_stats(conn, summary_data):
+def store_summary_stats(conn, summary_data, demographics=None):
     """Store summary statistics"""
     import json as _json
+    # Use color_distribution from demographics if provided, else fallback
+    color_counts = None
+    if demographics and 'color_distribution' in demographics:
+        color_counts = demographics['color_distribution']
+    elif 'color_distribution' in summary_data:
+        color_counts = summary_data['color_distribution']
+    else:
+        color_counts = summary_data.get('all_detected_colors', {})
     conn.execute('''
-        INSERT INTO SUMMARY_STATS (total_cars, unique_models, unique_license_plates, average_dwell_time, color_counts_json)
-        VALUES (?, ?, ?, ?, ?)
+        INSERT INTO SUMMARY_STATS (total_cars, unique_models, unique_license_plates, average_dwell_time, color_counts_json, peak_hour_range, peak_hour_count)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     ''', (
         summary_data['total_cars'],
         summary_data['unique_models'],
         summary_data['unique_license_plates'],
         summary_data['average_dwell_time'],
-        _json.dumps(summary_data.get('all_detected_colors', {}))
+        _json.dumps(color_counts),
+        summary_data.get('peak_hour_range'),
+        summary_data.get('peak_hour_count')
     ))
     conn.commit()
 
@@ -211,8 +226,8 @@ def main(video_filename=None):
         state = extract_state_from_plate(car_data['license_plate'])
         if state:
             get_or_create_state(conn, state, car_id)
-    # Store summary statistics
-    store_summary_stats(conn, transformed_data['summary'])
+    # Store summary statistics, pass demographics for color_distribution
+    store_summary_stats(conn, transformed_data['summary'], demographics=transformed_data.get('demographics'))
     conn.close()
     print(f"Processed {len(transformed_data['cars'])} unique cars for video '{video_filename}' into normalized tables in {db_path}.")
     print(f"Summary: {transformed_data['summary']['total_cars']} total cars, "

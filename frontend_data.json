@@ -5,7 +5,8 @@
       "label": "car1",
       "model": "unknown",
       "color": "black",
-      "license_plate": "5379MX-B",
+      "license_plate": "5379mx4",
+      "license_plate_confidence": 1.0,
       "track_frame_counts": 30,
       "scene_count": 1,
       "dwell_time_seconds": 1.2,
@@ -17,7 +18,8 @@
       "label": "car2",
       "model": "unknown",
       "color": "black",
-      "license_plate": null,
+      "license_plate": "8684ka4",
+      "license_plate_confidence": 0.963,
       "track_frame_counts": 30,
       "scene_count": 1,
       "dwell_time_seconds": 1.2,
@@ -29,7 +31,8 @@
       "label": "car3",
       "model": "unknown",
       "color": "black",
-      "license_plate": "3066MP-4",
+      "license_plate": "",
+      "license_plate_confidence": null,
       "track_frame_counts": 30,
       "scene_count": 1,
       "dwell_time_seconds": 1.2,
@@ -41,7 +44,8 @@
       "label": "car4",
       "model": "unknown",
       "color": "black",
-      "license_plate": null,
+      "license_plate": "3891mk4",
+      "license_plate_confidence": 0.788,
       "track_frame_counts": 30,
       "scene_count": 1,
       "dwell_time_seconds": 1.2,
@@ -53,7 +57,8 @@
       "label": "car5",
       "model": "unknown",
       "color": "black",
-      "license_plate": null,
+      "license_plate": "",
+      "license_plate_confidence": null,
       "track_frame_counts": 25,
       "scene_count": 1,
       "dwell_time_seconds": 1.0,
@@ -64,16 +69,18 @@
   "summary": {
     "total_cars": 5,
     "unique_models": 1,
-    "unique_license_plates": 3,
-    "average_dwell_time": 1.2
+    "unique_license_plates": 4,
+    "average_dwell_time": 1.2,
+    "peak_hour_range": "16:00-17:00",
+    "peak_hour_count": 5
   },
   "demographics": {
     "type_distribution": {
       "sedan": 5
     },
     "color_distribution": {
-      "black": 138,
-      "blue": 7
+      "black": 141,
+      "blue": 4
     },
     "model_distribution": {
       "unknown": 5

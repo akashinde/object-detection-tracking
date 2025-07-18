@@ -79,7 +79,8 @@ def get_cars():
             t.name as type, 
             m.name as model, 
             col.name as color, 
-            c.license_plate, 
+            c.license_plate,
+            c.license_plate_confidence, 
             c.track_frame_counts, 
             c.scene_count, 
             c.dwell_time_seconds,
@@ -178,6 +179,23 @@ def get_car_image():
     if not os.path.exists(abs_path):
         return abort(404)
     return send_from_directory(dir_name, file_name)
+
+@app.route('/api/summary', methods=['GET'])
+def get_summary():
+    conn = get_db_connection()
+    row = conn.execute('SELECT * FROM SUMMARY_STATS ORDER BY created_at DESC LIMIT 1').fetchone()
+    conn.close()
+    if not row:
+        return jsonify({"error": "No summary stats found"}), 404
+    # Parse color_counts_json
+    import json as _json
+    summary = dict(row)
+    if 'color_counts_json' in summary and summary['color_counts_json']:
+        try:
+            summary['color_counts_json'] = _json.loads(summary['color_counts_json'])
+        except Exception:
+            summary['color_counts_json'] = {}
+    return jsonify(summary)
 
 # Comment out job status endpoint
 # @app.route('/api/job_status/<job_id>', methods=['GET'])

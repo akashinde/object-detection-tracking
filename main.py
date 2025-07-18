@@ -13,6 +13,10 @@ import argparse
 from collections import defaultdict, Counter
 import re
 from sklearn.cluster import KMeans
+import requests
+import base64
+import io
+import time
 
 CAR_TYPE_CLASSES = ['sedan', 'suv', 'hatchback', 'truck', 'van', 'coupe', 'convertible', 'wagon', 'other']
 
@@ -90,6 +94,37 @@ def convert_to_h264(input_path, output_path="output_tracked.mp4"):
         raise RuntimeError("FFMPEG conversion to H.264 failed.")
     print(f"H.264 MP4 video written to {output_path}")
 
+def get_video_creation_time(video_path):
+    """Try to extract the video creation time using ffprobe. Returns a datetime string or None."""
+    import subprocess, json, datetime
+    try:
+        cmd = [
+            'ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_format', '-show_streams', video_path
+        ]
+        result = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode != 0:
+            return None
+        info = json.loads(result.stdout.decode())
+        # Try to get creation_time from format tags or stream tags
+        creation_time = None
+        if 'format' in info and 'tags' in info['format']:
+            creation_time = info['format']['tags'].get('creation_time')
+        if not creation_time and 'streams' in info:
+            for stream in info['streams']:
+                if 'tags' in stream and 'creation_time' in stream['tags']:
+                    creation_time = stream['tags']['creation_time']
+                    break
+        if creation_time:
+            # Normalize to ISO format if possible
+            try:
+                dt = datetime.datetime.fromisoformat(creation_time.replace('Z', '+00:00'))
+                return dt.isoformat()
+            except Exception:
+                return creation_time
+        return None
+    except Exception:
+        return None
+
 def detect_and_track(video_path):
     # Load models
     detector = YOLO('yolov8n.pt')  # Use YOLOv8 nano for speed; replace with better weights if needed
@@ -109,15 +144,26 @@ def detect_and_track(video_path):
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
+    # Use OpenCV's VideoWriter_fourcc (modern OpenCV >= 3.x)
     fourcc = cv2.VideoWriter_fourcc(*'MJPG')
     temp_avi_path = os.path.join(output_dir, 'temp_output.avi')
     out = cv2.VideoWriter(temp_avi_path, fourcc, fps, (width, height))
+
+    # --- New: Extract video creation time ---
+    video_capture_time = get_video_creation_time(video_path)
+    if video_capture_time is None:
+        # Fallback: use file modification time
+        import datetime
+        ts = os.path.getmtime(video_path)
+        video_capture_time = datetime.datetime.fromtimestamp(ts).isoformat()
 
     results = []
     plate_history = defaultdict(list)  # track_id -> list of (plate, confidence)
     first_car_image_saved = set()  # track_ids for which image is saved
     car_plate_found = {}  # track_id -> bool (whether plate image has been saved)
     frame_idx = 0
+    # Store car image paths for each track_id
+    car_image_paths = {}
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -144,54 +190,29 @@ def detect_and_track(video_path):
             # Use original_frame for saving cropped car image (no overlays)
             car_img_clean = original_frame[y1:y2, x1:x2]
             color = extract_color(car_img)
-            _, number_plate, number_plate_confidence = detect_number_plate_from_frame(car_img, ocr_reader)
             car_label = f'car{track_id}'
             car_img_path = os.path.join(output_dir, f'car_{track_id}.jpg')
-            # Save/replace car image logic
-            plate_conf_val = None
-            if isinstance(number_plate_confidence, (list, tuple, np.ndarray)):
-                try:
-                    plate_conf_val = float(number_plate_confidence[0])
-                except Exception:
-                    plate_conf_val = None
-            elif number_plate_confidence is not None:
-                try:
-                    plate_conf_val = float(number_plate_confidence)
-                except Exception:
-                    plate_conf_val = None
-            plate_visible = number_plate and plate_conf_val is not None and plate_conf_val > 0.5
+            # Save car image only the first time for this track_id
             if track_id not in first_car_image_saved and car_img_clean.size > 0:
                 cv2.imwrite(car_img_path, car_img_clean)
                 first_car_image_saved.add(track_id)
-                car_plate_found[track_id] = plate_visible
-            elif plate_visible and car_img_clean.size > 0 and not car_plate_found.get(track_id, False):
-                # Replace with image where plate is visible
-                cv2.imwrite(car_img_path, car_img_clean)
-                car_plate_found[track_id] = True
-            # Ensure bbox and color are lists, not numpy arrays
+                car_image_paths[track_id] = car_img_path
             bbox_list = [int(x) for x in [x1, y1, x2, y2]]
             color_str = color if color is not None else None
-            # Ensure number_plate_confidence is a float or None
-            if isinstance(number_plate_confidence, (list, tuple, np.ndarray)):
-                try:
-                    number_plate_confidence = float(number_plate_confidence[0])
-                except Exception:
-                    number_plate_confidence = None
-            elif number_plate_confidence is not None:
-                number_plate_confidence = float(number_plate_confidence)
-            else:
-                number_plate_confidence = None
-            # Save plate and confidence for aggregation
-            if number_plate:
-                plate_history[track_id].append((number_plate, number_plate_confidence))
+            # --- New: Calculate timestamp for this frame ---
+            import datetime
+            try:
+                base_dt = datetime.datetime.fromisoformat(video_capture_time)
+                timestamp = (base_dt + datetime.timedelta(seconds=frame_idx / fps)).isoformat()
+            except Exception:
+                timestamp = video_capture_time  # fallback
             results.append({
                 'frame': frame_idx,
                 'track_id': int(track_id),
                 'bbox': bbox_list,
                 'color': color_str,
-                # 'number_plate': number_plate,  # Remove per-frame plate
-                # 'number_plate_confidence': number_plate_confidence,  # Remove per-frame confidence
-                'label': car_label
+                'label': car_label,
+                'timestamp': timestamp
             })
             # Draw bounding box
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
@@ -204,48 +225,34 @@ def detect_and_track(video_path):
 
     final_mp4_path = os.path.join(output_dir, f'{video_name}_tracked.mp4')
     convert_to_h264(temp_avi_path, final_mp4_path)
-    # Optionally delete the temp file
     os.remove(temp_avi_path)
 
-    # Aggregate number plates for each track_id
-    plate_regex = re.compile(r'^[A-Z0-9\-]{5,12}$')  # Allow hyphens, 5-12 chars
-    track_id_to_plate = {}
-    for tid, plates in plate_history.items():
-        # Clean and filter plates
-        cleaned = []
-        for p, c in plates:
-            if p and c is not None:
-                p_clean = p.strip().replace(' ', '').upper()  # Keep hyphens
-                if plate_regex.match(p_clean):
-                    cleaned.append((p_clean, c))
-        if not cleaned:
-            track_id_to_plate[tid] = (None, None)
-            continue
-        # Levenshtein clustering: merge similar plates (distance <= 2)
-        clusters = []
-        for plate, conf in cleaned:
-            found_cluster = False
-            for cluster in clusters:
-                if levenshtein(plate, cluster['plate']) <= 2:
-                    cluster['votes'].append(conf)
-                    cluster['conf_sum'] += conf
-                    cluster['count'] += 1
-                    found_cluster = True
-                    break
-            if not found_cluster:
-                clusters.append({'plate': plate, 'votes': [conf], 'conf_sum': conf, 'count': 1})
-        # Confidence-weighted voting
-        best_cluster = max(clusters, key=lambda cl: (cl['conf_sum'], cl['count']))
-        best_plate = best_cluster['plate']
-        best_conf = np.mean(best_cluster['votes'])
-        track_id_to_plate[tid] = (best_plate, float(best_conf))
+    # --- Plate Recognizer API: Call once per car using best image ---
+    track_id_to_api_result = {}
+    for track_id, img_path in car_image_paths.items():
+        car_img = cv2.imread(img_path)
+        api_result = call_plate_recognizer_api(car_img)
+        number_plate = None
+        number_plate_confidence = None
+        if api_result and api_result.get('results'):
+            res = api_result['results'][0]
+            number_plate = res.get('plate')
+            number_plate_confidence = res.get('score')
+        # If no plate found, set to empty string
+        if not number_plate:
+            number_plate = ''
+        track_id_to_api_result[str(track_id)] = {
+            'number_plate': number_plate,
+            'number_plate_confidence': number_plate_confidence
+        }
+        time.sleep(1)
 
-    # Assign aggregated plate/confidence to each result using track_id_to_plate
+    # Assign API results to all frames for each track_id
     for r in results:
         tid = str(r['track_id'])
-        plate, conf = track_id_to_plate.get(tid, (None, None))
-        r['number_plate'] = plate
-        r['number_plate_confidence'] = conf
+        api_res = track_id_to_api_result.get(tid, {})
+        r['number_plate'] = api_res.get('number_plate')
+        r['number_plate_confidence'] = api_res.get('number_plate_confidence')
 
     return results
 
@@ -285,6 +292,31 @@ def levenshtein(s1, s2):
             current_row.append(min(insertions, deletions, substitutions))
         previous_row = current_row
     return previous_row[-1]
+
+PLATE_RECOGNIZER_TOKEN = os.getenv("PLATE_RECOGNIZER_TOKEN")  # Set your token as an env variable
+
+def call_plate_recognizer_api(car_img):
+    # Encode image to bytes
+    _, img_encoded = cv2.imencode('.jpg', car_img)
+    img_bytes = img_encoded.tobytes()
+    files = {'upload': ('car.jpg', img_bytes, 'image/jpeg')}
+    data = {
+        'mmc': 'true',  # get make/model/color
+        'detection_mode': 'vehicle'
+        # 'regions': 'by'  # Belarus, optional
+    }
+    headers = {'Authorization': f'Token 1ceed4f85893d80f7afbba83b5bdb5764dad74e1'}
+    response = requests.post(
+        'https://api.platerecognizer.com/v1/plate-reader/',
+        data=data,
+        files=files,
+        headers=headers
+    )
+    if response.status_code == 201:
+        return response.json()
+    else:
+        print("Plate Recognizer API error:", response.text)
+        return None
 
 def main():
     parser = argparse.ArgumentParser(description="Detect and track cars in a video.")
