@@ -377,7 +377,7 @@ function Dashboard() {
       label: 'Brand Exposure',
       data: topBrands.map(brand => brand.count || 1), // Use real count data
       backgroundColor: topBrands.map((brand, index) => 
-        (brand.name || brand).toLowerCase().includes('toyota') ? '#ff6b6b' : '#4ecdc4'
+        '#4ecdc4'
       ),
       borderColor: '#1e293b',
       borderWidth: 1,

@@ -22,13 +22,17 @@ RUN apt-get update && \
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy backend and model files
-COPY main.py app.py video_jobs.py ./
+# Copy backend files
+COPY main.py app.py ./
+COPY postprocessing.py save_to_db.py helper.py ./
+COPY docker-entrypoint.sh ./
+
+# Copy YOLO model files
 COPY yolov8n.pt ./
 COPY yolov8n-seg.pt ./
-COPY store_detections.py transform.py ./
-COPY videos/ ./videos/
-COPY detections.db ./
+
+# Create necessary directories
+RUN mkdir -p videos/uploads videos/processed
 
 # Copy built frontend
 COPY --from=frontend-build /app/frontend/build ./frontend_build
@@ -37,7 +41,6 @@ COPY --from=frontend-build /app/frontend/build ./frontend_build
 EXPOSE 5000 3000
 
 # Entrypoint script
-COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN chmod +x /docker-entrypoint.sh
 
 CMD ["/docker-entrypoint.sh"]
