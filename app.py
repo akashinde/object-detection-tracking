@@ -6,13 +6,23 @@ from flask_cors import CORS
 import redis
 from rq import Queue
 import uuid
-# Import create_tables from store_detections
-from store_detections import create_tables
+import logging
+from dotenv import load_dotenv
+
+from main import run_detection
+from postprocessing import transform_detections_from_obj
+from save_to_db import _create_tables, save_analytics_to_db
+from helper import build_dashboard_from_db
 
 app = Flask(__name__)
 CORS(app)
+load_dotenv()
 
-DB_PATH = 'detections.db'
+# Setup logging
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s [%(levelname)s] %(message)s')
+logger = logging.getLogger(__name__)
+
+DB_PATH = 'analytics.db'
 UPLOAD_FOLDER = 'videos/uploads'
 PROCESSED_FOLDER = 'videos/processed'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -26,8 +36,6 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
-# Redis setup
 redis_conn = redis.Redis()
 q = Queue('video-processing', connection=redis_conn)
 
@@ -37,114 +45,173 @@ def process_video_job(video_path):
         result = subprocess.run([
             'python3', 'main.py', '--video', video_path
         ], capture_output=True, text=True, check=True)
-        # Save output to a file
         output_filename = f"{job_id}_output.txt"
         with open(output_filename, "w") as f:
             f.write("STDOUT:\n" + result.stdout + "\n")
             f.write("STDERR:\n" + (result.stderr or "") + "\n")
-        # Move or copy the processed video to processed_folder if needed
-        # redis_conn.set(f"job_status:{job_id}", "completed")
         return {'status': 'success', 'stdout': result.stdout}
     except subprocess.CalledProcessError as e:
-        # Save error output to a file
         output_filename = f"{job_id}_output.txt"
         with open(output_filename, "w") as f:
             f.write("STDOUT:\n" + (e.stdout or "") + "\n")
             f.write("STDERR:\n" + (e.stderr or "") + "\n")
-        # redis_conn.set(f"job_status:{job_id}", "failed")
         return {'status': 'error', 'stderr': e.stderr}
 
-def ensure_db_tables():
-    conn = get_db_connection()
-    # Check if any tables exist
-    cur = conn.execute("SELECT name FROM sqlite_master WHERE type='table';")
-    tables = cur.fetchall()
-    if not tables:
-        create_tables(conn)
+def ensure_normalized_db_tables():
+    conn = sqlite3.connect(DB_PATH)
+    _create_tables(conn)
     conn.close()
 
-# Ensure tables exist on startup
-ensure_db_tables()
+# Call this on startup
+ensure_normalized_db_tables()
 
 @app.route('/api', methods=['GET'])
 def api():
     return jsonify({"message": "Hello, World!"})
 
-@app.route('/api/cars', methods=['GET'])
-def get_cars():
+@app.route('/api/vehicles', methods=['GET'])
+def get_vehicles():
     conn = get_db_connection()
+    
+    # Get query parameters for filtering
+    search = request.args.get('search', '')
+    brand_filter = request.args.get('brand', '')
+    color_filter = request.args.get('color', '')
+    vehicle_type_filter = request.args.get('vehicleType', '')
+    region_filter = request.args.get('region', '')
+    sponsor_brand = request.args.get('sponsorBrand', '')
+    high_exposure_only = request.args.get('highExposureOnly', 'false').lower() == 'true'
+    
+    # Build the base query
     query = '''
         SELECT 
-            c.track_id, c.label, 
-            t.name as type, 
-            m.name as model, 
-            col.name as color, 
-            c.license_plate,
-            c.license_plate_confidence, 
-            c.track_frame_counts, 
-            c.scene_count, 
-            c.dwell_time_seconds,
-            c.video_id,
-            v.filename as video_filename,
-            c.image_path
-        FROM CARS c
-        LEFT JOIN CAR_TYPES t ON c.type_id = t.id
-        LEFT JOIN CAR_MODELS m ON c.model_id = m.id
-        LEFT JOIN CAR_COLORS col ON c.color_id = col.id
-        LEFT JOIN VIDEOS v ON c.video_id = v.id
-        ORDER BY c.track_id
+            v.id,
+            v.video_id,
+            v.track_id,
+            v.first_seen_sec,
+            v.last_seen_sec,
+            v.dwell_time_seconds,
+            v.type,
+            v.color,
+            v.brand,
+            v.model,
+            v.license_plate,
+            v.license_region,
+            v.is_moving,
+            v.image_path,
+            vid.filename as video_filename,
+            vid.duration_sec as video_duration
+        FROM vehicles v
+        LEFT JOIN videos vid ON v.video_id = vid.video_id
+        WHERE 1=1
     '''
-    cars = [dict(row) for row in conn.execute(query).fetchall()]
-    conn.close()
-    return jsonify({"cars": cars})
+    
+    params = []
+    
+    # Add search filter
+    if search:
+        query += " AND (v.brand LIKE ? OR v.model LIKE ? OR v.license_plate LIKE ? OR v.color LIKE ?)"
+        search_param = f"%{search}%"
+        params.extend([search_param, search_param, search_param, search_param])
+    
+    # Add brand filter
+    if brand_filter:
+        query += " AND v.brand LIKE ?"
+        params.append(f"%{brand_filter}%")
+    
+    # Add color filter
+    if color_filter:
+        query += " AND v.color LIKE ?"
+        params.append(f"%{color_filter}%")
+    
+    # Add vehicle type filter
+    if vehicle_type_filter:
+        query += " AND v.type LIKE ?"
+        params.append(f"%{vehicle_type_filter}%")
+    
+    # Add region filter
+    if region_filter:
+        query += " AND v.license_region LIKE ?"
+        params.append(f"%{region_filter}%")
+    
+    # Add sponsor brand filter
+    if sponsor_brand:
+        query += " AND v.brand LIKE ?"
+        params.append(f"%{sponsor_brand}%")
+    
+    # Add high exposure filter (top 10% by dwell time)
+    if high_exposure_only:
+        query += " AND v.dwell_time_seconds >= (SELECT AVG(dwell_time_seconds) * 1.5 FROM vehicles)"
+    
+    query += " ORDER BY v.track_id"
+    
+    try:
+        vehicles = [dict(row) for row in conn.execute(query, params).fetchall()]
+        conn.close()
+        return jsonify({"vehicles": vehicles})
+    except Exception as e:
+        logger.error(f"Error fetching vehicles: {e}")
+        conn.close()
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/process_video', methods=['POST'])
 def process_video():
+    video_source = request.form.get('videoSource') or \
+                   (request.json.get('videoSource') if request.is_json and 'videoSource' in request.json else None) \
+                   or 'local'
     if 'video' not in request.files:
+        logger.warning('No video file part in request')
         return jsonify({'error': 'No video file part'}), 400
     file = request.files['video']
     if file.filename == '':
+        logger.warning('No selected file for upload')
         return jsonify({'error': 'No selected file'}), 400
-    # Save the uploaded file
-    job_id = str(uuid.uuid4())[:8]  # Use short uuid prefix
+
+    job_id = str(uuid.uuid4())[:8]
     filename = f"{job_id}_{file.filename}"
     video_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    logger.info(f'Saving uploaded video as {video_path}')
     file.save(video_path)
-    # Instead, call directly:
-    result = process_video_job(video_path)
-    transform_result = None
-    store_result = None
-    # After processing, delete the uploaded file
+    logger.debug(f'Video saved: {video_path}')
+
     try:
+        logger.info(f'Running detection for {video_path}')
+        detections, meta = run_detection(video_path)
+        meta['source_video'] = video_source
+        # logger.debug(f'Detection result meta: {meta}')
+        
+        analytics = transform_detections_from_obj(detections, meta)
+        # logger.debug(f'Analytics: {analytics}')
+        
+        db_result = save_analytics_to_db(analytics)
+        # logger.debug(f'DB save result: {db_result}')
+        
+        dashboard = build_dashboard_from_db()
+        # logger.debug(f'Dashboard data: {dashboard}')
+        
         if os.path.exists(video_path):
             os.remove(video_path)
+            # logger.debug(f'Uploaded video deleted: {video_path}')
+        return jsonify({
+            'status': 'success',
+            'job_id': job_id,
+            'analytics': analytics,
+            'db_result': db_result,
+            'meta': meta
+        })
     except Exception as e:
-        # Log error but don't fail the request
-        print(f"Error deleting uploaded file: {e}")
-    if result.get('status') == 'success':
-        # Run transform.py and store_detections.py as function calls
-        try:
-            import transform
-            transform.main()
-            transform_result = {'status': 'success'}
-        except Exception as e:
-            transform_result = {'status': 'error', 'error': str(e)}
-        try:
-            import store_detections
-            store_detections.main(filename)
-            store_result = {'status': 'success'}
-        except Exception as e:
-            store_result = {'status': 'error', 'error': str(e)}
-    return jsonify({'status': result.get('status'), 'job_id': job_id, 'stdout': result.get('stdout'), 'stderr': result.get('stderr'), 'transform_result': transform_result, 'store_result': store_result})
+        logger.exception(f'Error during processing video {video_path}: {e}')
+        if os.path.exists(video_path):
+            os.remove(video_path)
+            logger.debug(f'Uploaded video deleted after error: {video_path}')
+        return jsonify({'status': 'error', 'error': str(e), 'job_id': job_id}), 500
 
 @app.route('/api/videos', methods=['GET'])
 def list_videos():
-    # Get videos from database
     conn = get_db_connection()
     db_videos = conn.execute('SELECT filename FROM VIDEOS').fetchall()
     db_video_set = set(os.path.splitext(row['filename'])[0] for row in db_videos)
     conn.close()
-    # List all folders in videos/processed
     folders = [f for f in os.listdir(app.config['PROCESSED_FOLDER']) if os.path.isdir(os.path.join(app.config['PROCESSED_FOLDER'], f))]
     video_files = []
     for folder in folders:
@@ -164,13 +231,12 @@ def get_video(video_folder, filename):
 @app.route('/api/car_image')
 def get_car_image():
     rel_path = request.args.get('path')
+    logger.debug(f'GET /api/car_image called with path: {rel_path}')
     if not rel_path:
         return jsonify({'error': 'No image path provided'}), 400
-    # Prevent directory traversal
     if '..' in rel_path or rel_path.startswith('/'):
         return abort(403)
     abs_path = os.path.abspath(rel_path)
-    # Only allow serving from videos/processed
     allowed_root = os.path.abspath('videos/processed')
     if not abs_path.startswith(allowed_root):
         return abort(403)
@@ -180,30 +246,19 @@ def get_car_image():
         return abort(404)
     return send_from_directory(dir_name, file_name)
 
-@app.route('/api/summary', methods=['GET'])
+@app.route('/api/dashboard', methods=['GET'])
 def get_summary():
-    conn = get_db_connection()
-    row = conn.execute('SELECT * FROM SUMMARY_STATS ORDER BY created_at DESC LIMIT 1').fetchone()
-    conn.close()
-    if not row:
-        return jsonify({"error": "No summary stats found"}), 404
-    # Parse color_counts_json
-    import json as _json
-    summary = dict(row)
-    if 'color_counts_json' in summary and summary['color_counts_json']:
-        try:
-            summary['color_counts_json'] = _json.loads(summary['color_counts_json'])
-        except Exception:
-            summary['color_counts_json'] = {}
-    return jsonify(summary)
+    try:
+        resp = build_dashboard_from_db()
+        # logger.debug(f'Dashboard summary: {resp}')
+        if not resp:
+            logger.warning('No data found in dashboard summary')
+            return jsonify({'error': 'No data found'}), 404
+        return jsonify(resp)
+    except Exception as e:
+        logger.error(f'Error building dashboard summary: {e}')
+        return jsonify({'error': str(e)}), 500
 
-# Comment out job status endpoint
-# @app.route('/api/job_status/<job_id>', methods=['GET'])
-# def job_status(job_id):
-#     status = redis_conn.get(f"job_status:{job_id}")
-#     if status is None:
-#         return jsonify({'status': 'unknown'}), 404
-#     return jsonify({'status': status.decode()})
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

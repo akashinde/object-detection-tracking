@@ -12,3 +12,5 @@ rq
 flask
 flask-cors
 webcolors
+openai
+python-dotenv

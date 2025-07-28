@@ -1,86 +1,15 @@
 import os
 import cv2
 import numpy as np
-import easyocr
 from ultralytics import YOLO
 from deep_sort_realtime.deepsort_tracker import DeepSort
 import json
 import torch
-import torchvision.transforms as transforms
-from torchvision import models
 import subprocess
 import argparse
-from collections import defaultdict, Counter
-import re
-from sklearn.cluster import KMeans
-import requests
 import base64
-import io
+from openai import OpenAI
 import time
-
-CAR_TYPE_CLASSES = ['sedan', 'suv', 'hatchback', 'truck', 'van', 'coupe', 'convertible', 'wagon', 'other']
-
-# Load ResNet18 pre-trained model
-resnet_model = models.resnet18(pretrained=True)
-resnet_model.fc = torch.nn.Linear(resnet_model.fc.in_features, len(CAR_TYPE_CLASSES))  # Adjust for car types
-resnet_model.eval()  # Set to eval mode
-
-# If you have a trained checkpoint, load it here:
-# resnet_model.load_state_dict(torch.load('car_type_resnet.pth', map_location='cpu'))
-
-# Placeholder for car type/model classifier
-# from car_classifier import classify_car
-
-preprocess = transforms.Compose([
-    transforms.ToPILImage(),
-    transforms.Resize((224, 224)),
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-
-# Define car color labels with RGB hex mapping
-CAR_COLOR_HEX = {
-    "white": (245, 245, 245),
-    "black": (15, 15, 15),
-    "silver": (192, 192, 192),
-    "gray": (128, 128, 128),
-    "blue": (25, 42, 96),
-    "red": (138, 3, 3),
-    "green": (0, 86, 63),
-    "brown": (101, 67, 33),
-    "gold": (212, 175, 55),
-    "beige": (245, 245, 220),
-    "yellow": (255, 211, 0),
-    "orange": (255, 140, 0),
-    "maroon": (128, 0, 0),
-    "purple": (75, 0, 130),
-    "teal": (0, 128, 128),
-    "pink": (255, 182, 193),
-    "navy": (0, 0, 128),
-    "cyan": (0, 255, 255)
-}
-
-def closest_named_color(rgb):
-    min_dist = float('inf')
-    closest_color = None
-    for name, ref_rgb in CAR_COLOR_HEX.items():
-        dist = np.linalg.norm(np.array(rgb) - np.array(ref_rgb))
-        if dist < min_dist:
-            min_dist = dist
-            closest_color = name
-    return closest_color
-
-def extract_color(image, k=3):
-    if image is None or image.size == 0:
-        return None
-    img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    img = img.reshape((-1, 3))
-    kmeans = KMeans(n_clusters=k, n_init='auto')
-    labels = kmeans.fit_predict(img)
-    counts = Counter(labels)
-    dominant = kmeans.cluster_centers_[counts.most_common(1)[0][0]]
-    dominant = [int(v) for v in dominant]
-    return closest_named_color(dominant)
 
 def convert_to_h264(input_path, output_path="output_tracked.mp4"):
     cmd = [
@@ -125,11 +54,123 @@ def get_video_creation_time(video_path):
     except Exception:
         return None
 
+def call_openai_car_analysis(car_img_path):
+    """
+    Sends the cropped car image to OpenAI API and asks for logo, number plate, make, model, color, car type, and their confidences.
+    Returns a dict with the results and always includes the raw OpenAI response.
+    Handles OpenAI's markdown-wrapped JSON output.
+    """
+    import time
+    import re
+    api_key = os.environ.get("OPENAI_API")
+    client = OpenAI(api_key=api_key)
+    def encode_image(image_path):
+        with open(image_path, "rb") as image_file:
+            return base64.b64encode(image_file.read()).decode("utf-8")
+    base64_image = encode_image(car_img_path)
+    prompt = (
+        "You are an expert vehicle analyst. "
+        "Given the following car image, detect and return standardized information. "
+        "IMPORTANT: Use ONLY the exact standardized names listed below. Do not add extra words, descriptions, or variations. "
+        "If any information is not visible or cannot be determined, use Unknown as value. "
+        ""
+        "BRAND/MAKE STANDARDIZED NAMES (use exactly these): "
+        "Volkswagen, Toyota, BMW, Mercedes-Benz, Audi, Ford, Honda, Hyundai, Nissan, Mazda, Kia, "
+        "Chevrolet, Jeep, Subaru, Lexus, Volvo, Porsche, Ferrari, Lamborghini, Tesla, "
+        "Dacia, Renault, Peugeot, Citroën, Fiat, Alfa Romeo, Skoda, Seat, Opel, "
+        "Jaguar, Land Rover, Mini, Smart, Mitsubishi, Suzuki, Daihatsu, "
+        "Chrysler, Dodge, Buick, Cadillac, Lincoln, Pontiac, Saturn, "
+        "Infiniti, Acura, Genesis, Scion, Saab, Lancia, Maserati, "
+        "Bentley, Rolls-Royce, Aston Martin, McLaren, Bugatti, Koenigsegg, "
+        "Lotus, Caterham, Morgan, TVR, Noble, Pagani, Rimac, "
+        "McLaren, Alpina, Brabus, AMG, M, RS, S, GT, ST, Type-R, "
+        "GTR, Nismo, TRD, Mugen, Spoon, HKS, Blitz, "
+        "RUF, Singer, Gunther Werks, Liberty Walk, Rocket Bunny, "
+        "Pandem, Veilside, RE Amemiya, JUN, Top Secret, "
+        "HPA, APR, Unitronic, GIAC, Revo, Cobb, "
+        "Unknown (only if completely uncertain)"
+        ""
+        "COLOR STANDARDIZED NAMES (use exactly these, lowercase): "
+        "white, black, silver, gray, red, blue, green, yellow, orange, purple, pink, brown, "
+        "gold, navy, maroon, olive, lime, aqua, teal, fuchsia, beige, cream, tan, "
+        "bronze, copper, chrome, pearl, metallic, matte, gloss, satin, "
+        "crimson, burgundy, emerald, turquoise, indigo, violet, magenta, "
+        "coral, salmon, peach, lavender, mint, sage, rust, "
+        "charcoal, slate, stone, sand, khaki, camel, taupe, "
+        "Unknown (only if completely uncertain)"
+        ""
+        "CAR TYPE STANDARDIZED NAMES (use exactly these): "
+        "sedan, suv, hatchback, truck, van, coupe, convertible, wagon, "
+        "pickup, minivan, crossover, sports car, luxury car, compact, "
+        "subcompact, midsize, fullsize, executive, limousine, "
+        "roadster, targa, shooting brake, fastback, notchback, "
+        "liftback, estate, touring, grand tourer, supercar, hypercar, "
+        "muscle car, pony car, hot hatch, sleeper, tuner car, "
+        "rally car, drift car, drag car, track car, race car, "
+        "Unknown (only if completely uncertain)"
+        ""
+        "MODEL NAMES: Use the most common/recognizable model name without extra words. "
+        "Examples: 'Civic' not 'Honda Civic', 'Golf' not 'Volkswagen Golf', 'Camry' not 'Toyota Camry' "
+        "If model cannot be determined, use null."
+        ""
+        "Return the answer as a JSON object with keys: "
+        "logo, logo_confidence, number_plate, number_plate_confidence, make, make_confidence, "
+        "model, model_confidence, color, color_confidence, car_type, car_type_confidence. "
+        ""
+        "CONFIDENCE SCORES: Use values between 0.0 and 1.0 (as floats). "
+        "Use 0.0 for null values or when completely uncertain. "
+        "Use higher values (0.7-1.0) when very confident. "
+        ""
+        "EXAMPLE RESPONSE: "
+        '{"logo": "Toyota", "logo_confidence": 0.9, "number_plate": Unknown, "number_plate_confidence": 0.0, '
+        '"make": "Toyota", "make_confidence": 0.95, "model": "Camry", "model_confidence": 0.8, '
+        '"color": "silver", "color_confidence": 0.85, "car_type": "sedan", "car_type_confidence": 0.9}'
+    )
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            response = client.responses.create(
+                model="gpt-4.1",
+                input=[
+                    {
+                        "role": "user",
+                        "content": [
+                            {"type": "input_text", "text": prompt},
+                            {"type": "input_image", "image_url": f"data:image/jpeg;base64,{base64_image}"},
+                        ],
+                    }
+                ],
+                timeout=60  # seconds
+            )
+            import json as pyjson
+            raw = response.output_text
+            cleaned = re.sub(r'^```json|^```|```$', '', raw.strip(), flags=re.MULTILINE).strip()
+            cleaned = cleaned.strip('`').strip()
+            try:
+                result = pyjson.loads(cleaned)
+                result['raw_response'] = raw
+                return result
+            except Exception:
+                if attempt == max_retries - 1:
+                    print(f"[OpenAI API] Failed to parse JSON after {max_retries} attempts. Returning raw response.")
+                    return {"raw_response": raw}
+                else:
+                    print(f"[OpenAI API] JSON parse error, retrying ({attempt+1}/{max_retries})...")
+                    time.sleep(2)
+        except Exception as e:
+            if attempt == max_retries - 1:
+                print(f"OpenAI API error after {max_retries} attempts: {e}")
+                return {"raw_response": str(e)}
+            else:
+                print(f"OpenAI API error, retrying ({attempt+1}/{max_retries}): {e}")
+                time.sleep(2)
+
 def detect_and_track(video_path):
     # Load models
-    detector = YOLO('yolov8n.pt')  # Use YOLOv8 nano for speed; replace with better weights if needed
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    detector = YOLO('yolov8n.pt').to(device)  # Use YOLOv8 nano for speed; replace with better weights if needed
+    seg_model = YOLO('yolov8n-seg.pt').to(device)  # Load YOLOv8 segmentation model
     tracker = DeepSort(max_age=30)
-    ocr_reader = easyocr.Reader(['en'])
     filename = os.path.basename(video_path)
     video_name = os.path.splitext(filename)[0]
     base_output_dir = os.path.join('videos', 'processed')
@@ -144,7 +185,6 @@ def detect_and_track(video_path):
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
-    # Use OpenCV's VideoWriter_fourcc (modern OpenCV >= 3.x)
     fourcc = cv2.VideoWriter_fourcc(*'MJPG')
     temp_avi_path = os.path.join(output_dir, 'temp_output.avi')
     out = cv2.VideoWriter(temp_avi_path, fourcc, fps, (width, height))
@@ -158,18 +198,30 @@ def detect_and_track(video_path):
         video_capture_time = datetime.datetime.fromtimestamp(ts).isoformat()
 
     results = []
-    plate_history = defaultdict(list)  # track_id -> list of (plate, confidence)
-    first_car_image_saved = set()  # track_ids for which image is saved
-    car_plate_found = {}  # track_id -> bool (whether plate image has been saved)
     frame_idx = 0
     # Store car image paths for each track_id
     car_image_paths = {}
+    best_visible_per_track = {}  # track_id -> (percent_visible, img_path)
     while True:
         ret, frame = cap.read()
         if not ret:
             break
         original_frame = frame.copy()  # Save a clean copy for cropping
         detections = detector(frame)[0]
+        # --- Run segmentation model on this frame ---
+        seg_results = seg_model(frame)[0]
+        seg_masks = []
+        for i, det in enumerate(seg_results.boxes):
+            cls = int(det.cls[0])
+            if seg_model.names[cls] == 'car':
+                x1, y1, x2, y2 = map(int, det.xyxy[0])
+                conf = float(det.conf[0])
+                if conf < 0.5:
+                    continue
+                # Get mask for this detection
+                if hasattr(seg_results, 'masks') and seg_results.masks is not None:
+                    mask = seg_results.masks.data[i].cpu().numpy()  # shape: (H, W)
+                    seg_masks.append({'bbox': [x1, y1, x2, y2], 'mask': mask})
         car_detections = []
         for det in detections.boxes:
             cls = int(det.cls[0])
@@ -189,16 +241,9 @@ def detect_and_track(video_path):
             car_img = frame[y1:y2, x1:x2]
             # Use original_frame for saving cropped car image (no overlays)
             car_img_clean = original_frame[y1:y2, x1:x2]
-            color = extract_color(car_img)
             car_label = f'car{track_id}'
             car_img_path = os.path.join(output_dir, f'car_{track_id}.jpg')
-            # Save car image only the first time for this track_id
-            if track_id not in first_car_image_saved and car_img_clean.size > 0:
-                cv2.imwrite(car_img_path, car_img_clean)
-                first_car_image_saved.add(track_id)
-                car_image_paths[track_id] = car_img_path
             bbox_list = [int(x) for x in [x1, y1, x2, y2]]
-            color_str = color if color is not None else None
             # --- New: Calculate timestamp for this frame ---
             import datetime
             try:
@@ -210,14 +255,78 @@ def detect_and_track(video_path):
                 'frame': frame_idx,
                 'track_id': int(track_id),
                 'bbox': bbox_list,
-                'color': color_str,
                 'label': car_label,
-                'timestamp': timestamp
+                'timestamp': timestamp,
             })
             # Draw bounding box
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             label = f'{car_label}'
             cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+            # Find best mask for this car bbox by IoU
+            best_iou = 0
+            best_mask_poly = None
+            for i, seg in enumerate(seg_masks):
+                sx1, sy1, sx2, sy2 = seg['bbox']
+                # Compute IoU between car bbox and seg bbox
+                xx1 = max(x1, sx1)
+                yy1 = max(y1, sy1)
+                xx2 = min(x2, sx2)
+                yy2 = min(y2, sy2)
+                iw = max(0, xx2 - xx1)
+                ih = max(0, yy2 - yy1)
+                inter = iw * ih
+                area1 = (x2 - x1) * (y2 - y1)
+                area2 = (sx2 - sx1) * (sy2 - sy1)
+                union = area1 + area2 - inter
+                iou = inter / union if union > 0 else 0
+                if iou > best_iou:
+                    best_iou = iou
+                    best_mask_poly = seg_results.masks.xy[i] if hasattr(seg_results, 'masks') and seg_results.masks is not None else None
+            # Calculate percent visible
+            percent_visible = 0.0
+            if best_mask_poly is not None and len(best_mask_poly) > 0:
+                poly = np.array(best_mask_poly, dtype=np.int32)
+                # Shift polygon to crop-relative coordinates
+                poly_crop = poly.copy()
+                poly_crop[:, 0] -= x1
+                poly_crop[:, 1] -= y1
+                mask_area = cv2.contourArea(poly_crop)
+                crop_area = car_img_clean.shape[0] * car_img_clean.shape[1]
+                percent_visible = (mask_area / crop_area) if crop_area > 0 else 0.0
+            else:
+                ix1 = max(0, x1)
+                iy1 = max(0, y1)
+                ix2 = min(width, x2)
+                iy2 = min(height, y2)
+                inter_w = max(0, ix2 - ix1)
+                inter_h = max(0, iy2 - iy1)
+                inter_area = inter_w * inter_h
+                bbox_area = max(0, x2 - x1) * max(0, y2 - y1)
+                percent_visible = (inter_area / bbox_area) if bbox_area > 0 else 0.0
+            # Save/overwrite only if this is the best visible for this track
+            if car_img_clean.size > 0 and (track_id not in best_visible_per_track or percent_visible > best_visible_per_track[track_id][0]):
+                cv2.imwrite(car_img_path, car_img_clean)
+                best_visible_per_track[track_id] = (percent_visible, car_img_path)
+                car_image_paths[track_id] = car_img_path  # Ensure this always points to the best crop
+                # --- Segmentation mask overlay using YOLOv8-seg polygons ---
+                if best_mask_poly is not None and len(best_mask_poly) > 0:
+                    poly = np.array(best_mask_poly, dtype=np.int32)
+                    poly[:, 0] -= x1
+                    poly[:, 1] -= y1
+                    seg_img = car_img_clean.copy()
+                    cv2.fillPoly(seg_img, [poly], (0, 0, 255))  # Red overlay
+                    alpha = 0.4
+                    overlay = cv2.addWeighted(car_img_clean, 1 - alpha, seg_img, alpha, 0)
+                else:
+                    mask = np.zeros(car_img_clean.shape[:2], dtype=np.uint8)
+                    mask[:, :] = 255
+                    seg_img = car_img_clean.copy()
+                    seg_img[mask == 255] = [0, 0, 255]
+                    alpha = 0.4
+                    overlay = cv2.addWeighted(car_img_clean, 1 - alpha, seg_img, alpha, 0)
+                seg_filename = f'car_{track_id}_seg.jpg'
+                seg_path = os.path.join(output_dir, seg_filename)
+                cv2.imwrite(seg_path, overlay)
         out.write(frame)
         frame_idx += 1
     cap.release()
@@ -227,111 +336,66 @@ def detect_and_track(video_path):
     convert_to_h264(temp_avi_path, final_mp4_path)
     os.remove(temp_avi_path)
 
-    # --- Plate Recognizer API: Call once per car using best image ---
-    track_id_to_api_result = {}
+    # --- OpenAI API: Call once per car using best image ---
+    track_id_to_openai_result = {}
+    print("[OpenAI API] Starting car analysis...")
     for track_id, img_path in car_image_paths.items():
-        car_img = cv2.imread(img_path)
-        api_result = call_plate_recognizer_api(car_img)
-        number_plate = None
-        number_plate_confidence = None
-        if api_result and api_result.get('results'):
-            res = api_result['results'][0]
-            number_plate = res.get('plate')
-            number_plate_confidence = res.get('score')
-        # If no plate found, set to empty string
-        if not number_plate:
-            number_plate = ''
-        track_id_to_api_result[str(track_id)] = {
-            'number_plate': number_plate,
-            'number_plate_confidence': number_plate_confidence
-        }
-        time.sleep(1)
+        openai_result = call_openai_car_analysis(img_path)
+        print(f"[OpenAI API] Track ID {track_id} analysis result: {openai_result}")
+        track_id_to_openai_result[str(track_id)] = openai_result
+        time.sleep(1)  # avoid rate limits
 
-    # Assign API results to all frames for each track_id
+    # Assign OpenAI results to all frames for each track_id
     for r in results:
         tid = str(r['track_id'])
-        api_res = track_id_to_api_result.get(tid, {})
-        r['number_plate'] = api_res.get('number_plate')
-        r['number_plate_confidence'] = api_res.get('number_plate_confidence')
+        openai_res = track_id_to_openai_result.get(tid, {})
+        r['logo'] = openai_res.get('logo') if openai_res else None
+        r['logo_confidence'] = openai_res.get('logo_confidence') if openai_res else None
+        r['number_plate'] = openai_res.get('number_plate') if openai_res else None
+        r['number_plate_confidence'] = openai_res.get('number_plate_confidence') if openai_res else None
+        r['make'] = openai_res.get('make') if openai_res else None
+        r['make_confidence'] = openai_res.get('make_confidence') if openai_res else None
+        r['model'] = openai_res.get('model') if openai_res else None
+        r['model_confidence'] = openai_res.get('model_confidence') if openai_res else None
+        r['color'] = openai_res.get('color') if openai_res else None
+        r['color_confidence'] = openai_res.get('color_confidence') if openai_res else None
+        r['car_type'] = openai_res.get('car_type') if openai_res else None
+        r['car_type_confidence'] = openai_res.get('car_type_confidence') if openai_res else None
+        r['openai_raw_response'] = openai_res.get('raw_response') if openai_res else None
 
-    return results
+    return results, car_image_paths, final_mp4_path, fps
 
-def detect_number_plate_from_frame(car_img, ocr_reader):
-    # Convert the car image to grayscale (optional but may help OCR)
-    gray = cv2.cvtColor(car_img, cv2.COLOR_BGR2GRAY)
-    result = ocr_reader.readtext(gray)
-    plates = []
-    best_plate = None
-    best_conf = 0.0
-    for (bbox, text, prob) in result:
-        if prob > 0.5 and len(text) >= 5:
-            (top_left, top_right, bottom_right, bottom_left) = bbox
-            top_left = tuple(map(int, top_left))
-            bottom_right = tuple(map(int, bottom_right))
-            cv2.rectangle(car_img, top_left, bottom_right, (0, 255, 0), 2)
-            cv2.putText(car_img, text, (top_left[0], top_left[1] - 10),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
-            plates.append((text, prob))
-            if prob > best_conf:
-                best_plate = text
-                best_conf = prob
-    return car_img, best_plate, best_conf if best_plate else (car_img, None, None)
+def run_detection(video_path):
+    """
+    Run detection + tracking on a video and return:
+      • detections:  list[dict]   raw per-frame objects
+      • meta:        dict         {car_image_paths, video_filepath, fps, ...}
+    No writes to disk except the tracked MP4 + cropped JPEGs produced
+    internally by detect_and_track().
+    """
+    start_time = time.time()
+    detections, car_image_paths, final_mp4_path, fps = detect_and_track(video_path)
+    end_time = time.time()
+    avg_processing_time = end_time - start_time
 
-def levenshtein(s1, s2):
-    if len(s1) < len(s2):
-        return levenshtein(s2, s1)
-    if len(s2) == 0:
-        return len(s1)
-    previous_row = range(len(s2) + 1)
-    for i, c1 in enumerate(s1):
-        current_row = [i + 1]
-        for j, c2 in enumerate(s2):
-            insertions = previous_row[j + 1] + 1
-            deletions = current_row[j] + 1
-            substitutions = previous_row[j] + (c1 != c2)
-            current_row.append(min(insertions, deletions, substitutions))
-        previous_row = current_row
-    return previous_row[-1]
-
-PLATE_RECOGNIZER_TOKEN = os.getenv("PLATE_RECOGNIZER_TOKEN")  # Set your token as an env variable
-
-def call_plate_recognizer_api(car_img):
-    # Encode image to bytes
-    _, img_encoded = cv2.imencode('.jpg', car_img)
-    img_bytes = img_encoded.tobytes()
-    files = {'upload': ('car.jpg', img_bytes, 'image/jpeg')}
-    data = {
-        'mmc': 'true',  # get make/model/color
-        'detection_mode': 'vehicle'
-        # 'regions': 'by'  # Belarus, optional
+    # Prepare metadata object
+    meta = {
+        "car_image_paths": car_image_paths,  # dict: track_id -> image path
+        "video_filepath": final_mp4_path,
+        "avg_processing_time": avg_processing_time,
+        "fps": fps
     }
-    headers = {'Authorization': f'Token 1ceed4f85893d80f7afbba83b5bdb5764dad74e1'}
-    response = requests.post(
-        'https://api.platerecognizer.com/v1/plate-reader/',
-        data=data,
-        files=files,
-        headers=headers
-    )
-    if response.status_code == 201:
-        return response.json()
-    else:
-        print("Plate Recognizer API error:", response.text)
-        return None
 
-def main():
-    parser = argparse.ArgumentParser(description="Detect and track cars in a video.")
-    parser.add_argument('--video', type=str, required=True, help='Path to the input video file')
-    args = parser.parse_args()
-    video = args.video
-    output = "detection.json"
-    results = detect_and_track(video)
-    with open(output, 'w') as f:
-        json.dump(results, f, indent=2)
-    print(f'Results saved to {output}')
-    # Save the processed video filename for downstream use
-    processed_video_filename = os.path.basename(video)
-    with open('processed_video.txt', 'w') as f:
-        f.write(processed_video_filename)
+    return detections, meta
 
-if __name__ == '__main__':
-    main()
+
+# --- CLI helper for ad‑hoc testing (optional) ------------------------------
+if __name__ == "__main__":                 # pragma: no cover
+    import argparse, json, pprint, textwrap
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--video", required=True)
+    args = ap.parse_args()
+    det, meta = run_detection(args.video)
+    print("▶︎ detections =", len(det))
+    print("▶︎ meta =")
+    pprint.pprint(meta, indent=2, width=120)

@@ -21,3 +21,6 @@ Thumbs.db
 videos/
 
 .env
+
+analytics.db
+processed_video.txt

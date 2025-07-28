@@ -25,7 +25,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy backend and model files
 COPY main.py app.py video_jobs.py ./
 COPY yolov8n.pt ./
-COPY detection.json ./
+COPY yolov8n-seg.pt ./
 COPY store_detections.py transform.py ./
 COPY videos/ ./videos/
 COPY detections.db ./
