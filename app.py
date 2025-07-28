@@ -8,6 +8,9 @@ from rq import Queue
 import uuid
 import logging
 from dotenv import load_dotenv
+import json
+import threading
+import time
 
 from main import run_detection
 from postprocessing import transform_detections_from_obj
@@ -36,8 +39,34 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-redis_conn = redis.Redis()
-q = Queue('video-processing', connection=redis_conn)
+# Initialize Redis connection with fallback
+try:
+    redis_conn = redis.Redis()
+    redis_conn.ping()  # Test connection
+    REDIS_AVAILABLE = True
+    logger.info("Redis connection established successfully")
+except Exception as e:
+    logger.warning(f"Redis not available: {e}. Progress tracking will be disabled.")
+    REDIS_AVAILABLE = False
+    redis_conn = None
+
+q = Queue('video-processing', connection=redis_conn) if REDIS_AVAILABLE else None
+
+def update_progress(job_id, progress, status="processing", message=""):
+    """Update progress in Redis"""
+    if not REDIS_AVAILABLE or not job_id:
+        return
+    
+    try:
+        progress_data = {
+            "progress": progress,
+            "status": status,
+            "message": message,
+            "timestamp": time.time()
+        }
+        redis_conn.setex(f"progress:{job_id}", 3600, json.dumps(progress_data))  # Expire in 1 hour
+    except Exception as e:
+        logger.error(f"Error updating progress: {e}")
 
 def process_video_job(video_path):
     job_id = os.path.splitext(os.path.basename(video_path))[0]
@@ -154,6 +183,59 @@ def get_vehicles():
         conn.close()
         return jsonify({"error": str(e)}), 500
 
+def process_video_with_progress(video_path, job_id):
+    """Process video with progress updates"""
+    try:
+        update_progress(job_id, 0, "processing", "Starting video processing...")
+        
+        # Update progress to 10% - Initializing models
+        update_progress(job_id, 10, "processing", "Loading YOLO models...")
+        
+        logger.info(f'Running detection for {video_path}')
+        detections, meta = run_detection(video_path, job_id)
+        
+        # Update progress to 80% - Detection complete
+        update_progress(job_id, 80, "processing", "Processing detection results...")
+        
+        meta['source_video'] = 'local'
+        
+        # Update progress to 85% - Analytics transformation
+        update_progress(job_id, 85, "processing", "Transforming analytics data...")
+        
+        analytics = transform_detections_from_obj(detections, meta)
+        
+        # Update progress to 90% - Saving to database
+        update_progress(job_id, 90, "processing", "Saving to database...")
+        
+        db_result = save_analytics_to_db(analytics)
+        
+        # Update progress to 95% - Building dashboard
+        update_progress(job_id, 95, "processing", "Building dashboard...")
+        
+        dashboard = build_dashboard_from_db()
+        
+        # Update progress to 100% - Complete
+        update_progress(job_id, 100, "completed", "Video processing completed successfully!")
+        
+        if os.path.exists(video_path):
+            os.remove(video_path)
+            logger.debug(f'Uploaded video deleted: {video_path}')
+        
+        return {
+            'status': 'success',
+            'job_id': job_id,
+            'analytics': analytics,
+            'db_result': db_result,
+            'meta': meta
+        }
+    except Exception as e:
+        logger.exception(f'Error during processing video {video_path}: {e}')
+        update_progress(job_id, 0, "error", f"Error: {str(e)}")
+        if os.path.exists(video_path):
+            os.remove(video_path)
+            logger.debug(f'Uploaded video deleted after error: {video_path}')
+        return {'status': 'error', 'error': str(e), 'job_id': job_id}
+
 @app.route('/api/process_video', methods=['POST'])
 def process_video():
     video_source = request.form.get('videoSource') or \
@@ -174,37 +256,45 @@ def process_video():
     file.save(video_path)
     logger.debug(f'Video saved: {video_path}')
 
-    try:
-        logger.info(f'Running detection for {video_path}')
-        detections, meta = run_detection(video_path)
-        meta['source_video'] = video_source
-        # logger.debug(f'Detection result meta: {meta}')
-        
-        analytics = transform_detections_from_obj(detections, meta)
-        # logger.debug(f'Analytics: {analytics}')
-        
-        db_result = save_analytics_to_db(analytics)
-        # logger.debug(f'DB save result: {db_result}')
-        
-        dashboard = build_dashboard_from_db()
-        # logger.debug(f'Dashboard data: {dashboard}')
-        
-        if os.path.exists(video_path):
-            os.remove(video_path)
-            # logger.debug(f'Uploaded video deleted: {video_path}')
+    # Start processing in background thread
+    def process_thread():
+        process_video_with_progress(video_path, job_id)
+    
+    thread = threading.Thread(target=process_thread)
+    thread.daemon = True
+    thread.start()
+
+    return jsonify({
+        'status': 'processing',
+        'job_id': job_id,
+        'message': 'Video processing started'
+    })
+
+@app.route('/api/progress/<job_id>', methods=['GET'])
+def get_progress(job_id):
+    """Get progress for a specific job"""
+    if not REDIS_AVAILABLE:
         return jsonify({
-            'status': 'success',
-            'job_id': job_id,
-            'analytics': analytics,
-            'db_result': db_result,
-            'meta': meta
+            "progress": 0,
+            "status": "redis_unavailable",
+            "message": "Progress tracking not available",
+            "timestamp": time.time()
         })
+    
+    try:
+        progress_data = redis_conn.get(f"progress:{job_id}")
+        if progress_data:
+            return jsonify(json.loads(progress_data))
+        else:
+            return jsonify({
+                "progress": 0,
+                "status": "not_found",
+                "message": "Job not found",
+                "timestamp": time.time()
+            })
     except Exception as e:
-        logger.exception(f'Error during processing video {video_path}: {e}')
-        if os.path.exists(video_path):
-            os.remove(video_path)
-            logger.debug(f'Uploaded video deleted after error: {video_path}')
-        return jsonify({'status': 'error', 'error': str(e), 'job_id': job_id}), 500
+        logger.error(f"Error getting progress for job {job_id}: {e}")
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/videos', methods=['GET'])
 def list_videos():

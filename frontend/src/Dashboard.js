@@ -40,6 +40,9 @@ function Dashboard() {
   const [uploading, setUploading] = useState(false);
   const [uploadMsg, setUploadMsg] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const [currentJobId, setCurrentJobId] = useState(null);
+  const [progressData, setProgressData] = useState(null);
+  const [progressInterval, setProgressInterval] = useState(null);
   
   // Video Explorer Table states
   const [searchTerm, setSearchTerm] = useState('');
@@ -127,6 +130,9 @@ function Dashboard() {
     }
     setUploading(true);
     setUploadMsg('');
+    setProgressData(null);
+    setCurrentJobId(null);
+    
     const formData = new FormData();
     formData.append('video', selectedFile);
     try {
@@ -135,11 +141,10 @@ function Dashboard() {
         body: formData,
       });
       const result = await response.json();
-      if (response.ok && result.status === 'success') {
-        setUploadMsg('Video processed successfully!');
-        setUploading(false);
-        await fetchDashboard();
-        await fetchVehicles();
+      if (response.ok && result.status === 'processing') {
+        setCurrentJobId(result.job_id);
+        setUploadMsg('Video processing started. Monitoring progress...');
+        startProgressPolling(result.job_id);
       } else {
         setUploadMsg(result.error || result.stderr || 'Processing failed.');
         setUploading(false);
@@ -149,6 +154,67 @@ function Dashboard() {
       setUploading(false);
     }
   };
+
+  const startProgressPolling = (jobId) => {
+    // Clear any existing interval
+    if (progressInterval) {
+      clearInterval(progressInterval);
+    }
+    
+    const interval = setInterval(async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/progress/${jobId}`);
+        const progressData = await response.json();
+        
+        setProgressData(progressData);
+        
+        if (progressData.status === 'completed' || progressData.status === 'error' || progressData.status === 'redis_unavailable') {
+          clearInterval(interval);
+          setProgressInterval(null);
+          setUploading(false);
+          setCurrentJobId(null);
+          
+          if (progressData.status === 'completed') {
+            setUploadMsg('Video processed successfully!');
+            await fetchDashboard();
+            await fetchVehicles();
+          } else if (progressData.status === 'redis_unavailable') {
+            setUploadMsg('Video processing started (progress tracking unavailable). Please wait...');
+            // Continue polling for a longer time since we can't track progress
+            setTimeout(() => {
+              clearInterval(interval);
+              setProgressInterval(null);
+              setUploading(false);
+              setCurrentJobId(null);
+              setUploadMsg('Video processing completed (progress tracking was unavailable).');
+              fetchDashboard();
+              fetchVehicles();
+            }, 300000); // Wait 5 minutes then assume completion
+          } else {
+            setUploadMsg(progressData.message || 'Processing failed.');
+          }
+        }
+      } catch (err) {
+        console.error('Error polling progress:', err);
+      }
+    }, 1000); // Poll every second
+    
+    setProgressInterval(interval);
+  };
+
+  const stopProgressPolling = () => {
+    if (progressInterval) {
+      clearInterval(progressInterval);
+      setProgressInterval(null);
+    }
+  };
+
+  // Cleanup interval on component unmount
+  useEffect(() => {
+    return () => {
+      stopProgressPolling();
+    };
+  }, []);
 
   const handleSort = (key) => {
     setSortConfig(prev => ({
@@ -525,10 +591,32 @@ function Dashboard() {
             disabled={!selectedFile || uploading}
             className="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white rounded font-semibold"
           >
-            {uploading ? 'Uploading...' : 'Upload'}
+            {uploading ? 'Processing...' : 'Upload'}
           </button>
         </div>
-        {uploadMsg && (
+        
+        {/* Progress Bar */}
+        {uploading && progressData && (
+          <div className="mt-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm text-gray-300">{progressData.message}</span>
+              <span className="text-sm text-blue-400">{progressData.progress}%</span>
+            </div>
+            <div className="w-full bg-gray-700 rounded-full h-2">
+              <div 
+                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                style={{ width: `${progressData.progress}%` }}
+              ></div>
+            </div>
+            {progressData.status === 'processing' && (
+              <div className="mt-2 text-xs text-gray-400">
+                Job ID: {currentJobId}
+              </div>
+            )}
+          </div>
+        )}
+        
+        {uploadMsg && !uploading && (
           <div className={`mt-4 p-3 rounded ${uploadMsg.includes('success') ? 'bg-green-700' : 'bg-red-700'} text-white`}>
             {uploadMsg}
           </div>

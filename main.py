@@ -10,6 +10,7 @@ import argparse
 import base64
 from openai import OpenAI
 import time
+import redis
 
 def convert_to_h264(input_path, output_path="output_tracked.mp4"):
     cmd = [
@@ -53,6 +54,23 @@ def get_video_creation_time(video_path):
         return None
     except Exception:
         return None
+
+def update_progress(job_id, progress, status="processing", message=""):
+    """Update progress in Redis"""
+    if not job_id:
+        return
+    
+    try:
+        redis_conn = redis.Redis()
+        progress_data = {
+            "progress": progress,
+            "status": status,
+            "message": message,
+            "timestamp": time.time()
+        }
+        redis_conn.setex(f"progress:{job_id}", 3600, json.dumps(progress_data))  # Expire in 1 hour
+    except Exception as e:
+        print(f"Error updating progress: {e}")
 
 def call_openai_car_analysis(car_img_path):
     """
@@ -165,12 +183,19 @@ def call_openai_car_analysis(car_img_path):
                 print(f"OpenAI API error, retrying ({attempt+1}/{max_retries}): {e}")
                 time.sleep(2)
 
-def detect_and_track(video_path):
+def detect_and_track(video_path, job_id=None):
     # Load models
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    update_progress(job_id, 15, "processing", "Loading YOLO detection model...")
     detector = YOLO('yolov8n.pt').to(device)  # Use YOLOv8 nano for speed; replace with better weights if needed
+    
+    update_progress(job_id, 20, "processing", "Loading YOLO segmentation model...")
     seg_model = YOLO('yolov8n-seg.pt').to(device)  # Load YOLOv8 segmentation model
+    
+    update_progress(job_id, 25, "processing", "Initializing DeepSORT tracker...")
     tracker = DeepSort(max_age=30)
+    
     filename = os.path.basename(video_path)
     video_name = os.path.splitext(filename)[0]
     base_output_dir = os.path.join('videos', 'processed')
@@ -185,6 +210,8 @@ def detect_and_track(video_path):
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
+    total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    
     fourcc = cv2.VideoWriter_fourcc(*'MJPG')
     temp_avi_path = os.path.join(output_dir, 'temp_output.avi')
     out = cv2.VideoWriter(temp_avi_path, fourcc, fps, (width, height))
@@ -202,10 +229,20 @@ def detect_and_track(video_path):
     # Store car image paths for each track_id
     car_image_paths = {}
     best_visible_per_track = {}  # track_id -> (percent_visible, img_path)
+    
+    update_progress(job_id, 30, "processing", "Starting video frame processing...")
+    
     while True:
         ret, frame = cap.read()
         if not ret:
             break
+            
+        # Update progress based on frame processing
+        if total_frames > 0:
+            frame_progress = 30 + (frame_idx / total_frames) * 45  # 30% to 75%
+            if frame_idx % 30 == 0:  # Update every 30 frames to avoid too many Redis calls
+                update_progress(job_id, int(frame_progress), "processing", f"Processing frame {frame_idx}/{total_frames}...")
+        
         original_frame = frame.copy()  # Save a clean copy for cropping
         detections = detector(frame)[0]
         # --- Run segmentation model on this frame ---
@@ -332,6 +369,7 @@ def detect_and_track(video_path):
     cap.release()
     out.release()
 
+    update_progress(job_id, 75, "processing", "Converting video to H.264 format...")
     final_mp4_path = os.path.join(output_dir, f'{video_name}_tracked.mp4')
     convert_to_h264(temp_avi_path, final_mp4_path)
     os.remove(temp_avi_path)
@@ -339,10 +377,18 @@ def detect_and_track(video_path):
     # --- OpenAI API: Call once per car using best image ---
     track_id_to_openai_result = {}
     print("[OpenAI API] Starting car analysis...")
-    for track_id, img_path in car_image_paths.items():
+    update_progress(job_id, 78, "processing", "Analyzing car images with AI...")
+    
+    total_cars = len(car_image_paths)
+    for idx, (track_id, img_path) in enumerate(car_image_paths.items()):
         openai_result = call_openai_car_analysis(img_path)
         print(f"[OpenAI API] Track ID {track_id} analysis result: {openai_result}")
         track_id_to_openai_result[str(track_id)] = openai_result
+        
+        # Update progress for AI analysis
+        ai_progress = 78 + (idx / total_cars) * 2  # 78% to 80%
+        update_progress(job_id, int(ai_progress), "processing", f"AI analysis: {idx+1}/{total_cars} cars...")
+        
         time.sleep(1)  # avoid rate limits
 
     # Assign OpenAI results to all frames for each track_id
@@ -365,7 +411,7 @@ def detect_and_track(video_path):
 
     return results, car_image_paths, final_mp4_path, fps
 
-def run_detection(video_path):
+def run_detection(video_path, job_id=None):
     """
     Run detection + tracking on a video and return:
       • detections:  list[dict]   raw per-frame objects
@@ -374,7 +420,7 @@ def run_detection(video_path):
     internally by detect_and_track().
     """
     start_time = time.time()
-    detections, car_image_paths, final_mp4_path, fps = detect_and_track(video_path)
+    detections, car_image_paths, final_mp4_path, fps = detect_and_track(video_path, job_id)
     end_time = time.time()
     avg_processing_time = end_time - start_time
 
