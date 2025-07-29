@@ -8,6 +8,7 @@ venv/
 
 # VS Code
 .vscode/
+.continue
 
 # System files
 .DS_Store

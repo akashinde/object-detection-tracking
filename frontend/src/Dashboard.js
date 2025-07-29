@@ -481,10 +481,15 @@ function Dashboard() {
 
   // Color Distribution Chart (Pie)
   const colorData = {
-    labels: topColors.map(color => color.name || color),
+    labels: topColors.map(color => typeof color === 'string' ? color : (color && color.name ? color.name : 'Unknown')),
     datasets: [{
       data: topColors.map(color => color.count || 1), // Use real count data
-      backgroundColor: topColors.map(color => colorNameToCss[(color.name || color).toLowerCase()] || '#808080'),
+      backgroundColor: topColors.map(color => {
+        let colorName = typeof color === 'string'
+          ? color
+          : (color && typeof color.name === 'string' ? color.name : '');
+        return colorNameToCss[(colorName || '').toLowerCase()] || '#808080';
+      }),
       borderColor: '#1e293b',
       borderWidth: 2,
     }]

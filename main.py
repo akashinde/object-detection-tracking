@@ -12,6 +12,21 @@ from openai import OpenAI
 import time
 import redis
 
+def get_yolo_model(model_type="det", model_pre="yolo8"):
+    """
+    Loads a YOLO model.
+    If CUDA is available, use yolov8m.engine, else yolo8n.pt.
+    model_type: "det" (detection) or "seg" (segmentation)
+    Returns: YOLO model object
+    """
+    if torch.cuda.is_available():
+        print("CUDA detected: Using yolov8m.engine model (TensorRT, GPU).")
+        model_path = f"{model_pre}m.engine" if model_type == "det" else f"{model_pre}m-seg.engine"
+    else:
+        print("No CUDA: Using yolo8n.pt model (CPU/other).")
+        model_path = f"{model_pre}n.pt" if model_type == "det" else f"{model_pre}n-seg.pt"
+    return YOLO(model_path)
+
 def convert_to_h264(input_path, output_path="output_tracked.mp4"):
     cmd = [
         "ffmpeg", "-y", "-i", input_path,
@@ -183,15 +198,24 @@ def call_openai_car_analysis(car_img_path):
                 print(f"OpenAI API error, retrying ({attempt+1}/{max_retries}): {e}")
                 time.sleep(2)
 
+# --- Utility for sampling and interpolation ---
+def get_sampled_indices(total_frames, fps, samples_per_sec=2):
+    stride = int(fps / samples_per_sec)
+    indices = list(range(0, total_frames, stride))
+    # Ensure last frame is included
+    if indices[-1] != total_frames - 1:
+        indices.append(total_frames - 1)
+    return indices
+
+def interpolate_bbox(bbox1, bbox2, alpha):
+    return [int((1 - alpha) * b1 + alpha * b2) for b1, b2 in zip(bbox1, bbox2)]
+
 def detect_and_track(video_path, job_id=None):
-    # Load models
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     update_progress(job_id, 15, "processing", "Loading YOLO detection model...")
-    detector = YOLO('yolov8n.pt').to(device)  # Use YOLOv8 nano for speed; replace with better weights if needed
-    
+    detector = get_yolo_model("det", "yolo11")
     update_progress(job_id, 20, "processing", "Loading YOLO segmentation model...")
-    seg_model = YOLO('yolov8n-seg.pt').to(device)  # Load YOLOv8 segmentation model
+    seg_model = get_yolo_model("seg", "yolo11")
     
     update_progress(job_id, 25, "processing", "Initializing DeepSORT tracker...")
     tracker = DeepSort(max_age=30)
@@ -216,37 +240,46 @@ def detect_and_track(video_path, job_id=None):
     temp_avi_path = os.path.join(output_dir, 'temp_output.avi')
     out = cv2.VideoWriter(temp_avi_path, fourcc, fps, (width, height))
 
-    # --- New: Extract video creation time ---
     video_capture_time = get_video_creation_time(video_path)
     if video_capture_time is None:
-        # Fallback: use file modification time
         import datetime
         ts = os.path.getmtime(video_path)
         video_capture_time = datetime.datetime.fromtimestamp(ts).isoformat()
 
     results = []
-    frame_idx = 0
-    # Store car image paths for each track_id
     car_image_paths = {}
-    best_visible_per_track = {}  # track_id -> (percent_visible, img_path)
+    best_visible_per_track = {}
+    update_progress(job_id, 30, "processing", "Sampling frames for batch detection...")
     
-    update_progress(job_id, 30, "processing", "Starting video frame processing...")
-    
-    while True:
+    samples_per_sec = 2
+    sampled_indices = get_sampled_indices(total_frames, fps, samples_per_sec)
+    frames = {}
+    for idx in sampled_indices:
+        cap.set(cv2.CAP_PROP_POS_FRAMES, idx)
         ret, frame = cap.read()
         if not ret:
-            break
-            
-        # Update progress based on frame processing
-        if total_frames > 0:
-            frame_progress = 30 + (frame_idx / total_frames) * 45  # 30% to 75%
-            if frame_idx % 30 == 0:  # Update every 30 frames to avoid too many Redis calls
-                update_progress(job_id, int(frame_progress), "processing", f"Processing frame {frame_idx}/{total_frames}...")
-        
-        original_frame = frame.copy()  # Save a clean copy for cropping
-        detections = detector(frame)[0]
-        # --- Run segmentation model on this frame ---
-        seg_results = seg_model(frame)[0]
+            continue
+        frames[idx] = frame.copy()
+    cap.release()
+    
+
+    batch_size = 32  # <-- CHANGE THIS VALUE
+    valid_indices = [i for i in sampled_indices if i in frames]
+    batch_frames = [frames[i] for i in valid_indices]
+    batch_detections = []
+    batch_seg_results = []
+
+    for i in range(0, len(batch_frames), batch_size):
+        batch = batch_frames[i:i+batch_size]
+        batch_detections.extend(list(detector(batch, stream=True)))
+        batch_seg_results.extend(list(seg_model(batch, stream=True)))
+
+    frame_idx_map = {}
+    for k, idx in enumerate(valid_indices):
+        frame = batch_frames[k]
+        det_out = batch_detections[k]
+        seg_results = batch_seg_results[k]
+        original_frame = frame.copy()
         seg_masks = []
         for i, det in enumerate(seg_results.boxes):
             cls = int(det.cls[0])
@@ -255,12 +288,11 @@ def detect_and_track(video_path, job_id=None):
                 conf = float(det.conf[0])
                 if conf < 0.5:
                     continue
-                # Get mask for this detection
                 if hasattr(seg_results, 'masks') and seg_results.masks is not None:
-                    mask = seg_results.masks.data[i].cpu().numpy()  # shape: (H, W)
+                    mask = seg_results.masks.data[i].cpu().numpy()
                     seg_masks.append({'bbox': [x1, y1, x2, y2], 'mask': mask})
         car_detections = []
-        for det in detections.boxes:
+        for det in det_out.boxes:
             cls = int(det.cls[0])
             if detector.names[cls] == 'car':
                 x1, y1, x2, y2 = map(int, det.xyxy[0])
@@ -269,104 +301,89 @@ def detect_and_track(video_path, job_id=None):
                     continue
                 car_detections.append(([x1, y1, x2-x1, y2-y1], conf, 'car'))
         tracks = tracker.update_tracks(car_detections, frame=frame)
+        frame_idx_map[idx] = []
         for track in tracks:
             if not track.is_confirmed():
                 continue
             track_id = track.track_id
             ltrb = track.to_ltrb()
             x1, y1, x2, y2 = map(int, ltrb)
-            car_img = frame[y1:y2, x1:x2]
-            # Use original_frame for saving cropped car image (no overlays)
             car_img_clean = original_frame[y1:y2, x1:x2]
             car_label = f'car{track_id}'
             car_img_path = os.path.join(output_dir, f'car_{track_id}.jpg')
             bbox_list = [int(x) for x in [x1, y1, x2, y2]]
-            # --- New: Calculate timestamp for this frame ---
             import datetime
             try:
                 base_dt = datetime.datetime.fromisoformat(video_capture_time)
-                timestamp = (base_dt + datetime.timedelta(seconds=frame_idx / fps)).isoformat()
+                timestamp = (base_dt + datetime.timedelta(seconds=idx / fps)).isoformat()
             except Exception:
-                timestamp = video_capture_time  # fallback
-            results.append({
-                'frame': frame_idx,
+                timestamp = video_capture_time
+            frame_idx_map[idx].append({
+                'frame': idx,
                 'track_id': int(track_id),
                 'bbox': bbox_list,
                 'label': car_label,
                 'timestamp': timestamp,
             })
-            # Draw bounding box
-            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            label = f'{car_label}'
-            cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
-            # Find best mask for this car bbox by IoU
-            best_iou = 0
-            best_mask_poly = None
-            for i, seg in enumerate(seg_masks):
-                sx1, sy1, sx2, sy2 = seg['bbox']
-                # Compute IoU between car bbox and seg bbox
-                xx1 = max(x1, sx1)
-                yy1 = max(y1, sy1)
-                xx2 = min(x2, sx2)
-                yy2 = min(y2, sy2)
-                iw = max(0, xx2 - xx1)
-                ih = max(0, yy2 - yy1)
-                inter = iw * ih
-                area1 = (x2 - x1) * (y2 - y1)
-                area2 = (sx2 - sx1) * (sy2 - sy1)
-                union = area1 + area2 - inter
-                iou = inter / union if union > 0 else 0
-                if iou > best_iou:
-                    best_iou = iou
-                    best_mask_poly = seg_results.masks.xy[i] if hasattr(seg_results, 'masks') and seg_results.masks is not None else None
-            # Calculate percent visible
-            percent_visible = 0.0
-            if best_mask_poly is not None and len(best_mask_poly) > 0:
-                poly = np.array(best_mask_poly, dtype=np.int32)
-                # Shift polygon to crop-relative coordinates
-                poly_crop = poly.copy()
-                poly_crop[:, 0] -= x1
-                poly_crop[:, 1] -= y1
-                mask_area = cv2.contourArea(poly_crop)
-                crop_area = car_img_clean.shape[0] * car_img_clean.shape[1]
-                percent_visible = (mask_area / crop_area) if crop_area > 0 else 0.0
-            else:
-                ix1 = max(0, x1)
-                iy1 = max(0, y1)
-                ix2 = min(width, x2)
-                iy2 = min(height, y2)
-                inter_w = max(0, ix2 - ix1)
-                inter_h = max(0, iy2 - iy1)
-                inter_area = inter_w * inter_h
-                bbox_area = max(0, x2 - x1) * max(0, y2 - y1)
-                percent_visible = (inter_area / bbox_area) if bbox_area > 0 else 0.0
-            # Save/overwrite only if this is the best visible for this track
+            percent_visible = 1
             if car_img_clean.size > 0 and (track_id not in best_visible_per_track or percent_visible > best_visible_per_track[track_id][0]):
                 cv2.imwrite(car_img_path, car_img_clean)
                 best_visible_per_track[track_id] = (percent_visible, car_img_path)
-                car_image_paths[track_id] = car_img_path  # Ensure this always points to the best crop
-                # --- Segmentation mask overlay using YOLOv8-seg polygons ---
-                if best_mask_poly is not None and len(best_mask_poly) > 0:
-                    poly = np.array(best_mask_poly, dtype=np.int32)
-                    poly[:, 0] -= x1
-                    poly[:, 1] -= y1
-                    seg_img = car_img_clean.copy()
-                    cv2.fillPoly(seg_img, [poly], (0, 0, 255))  # Red overlay
-                    alpha = 0.4
-                    overlay = cv2.addWeighted(car_img_clean, 1 - alpha, seg_img, alpha, 0)
-                else:
-                    mask = np.zeros(car_img_clean.shape[:2], dtype=np.uint8)
-                    mask[:, :] = 255
-                    seg_img = car_img_clean.copy()
-                    seg_img[mask == 255] = [0, 0, 255]
-                    alpha = 0.4
-                    overlay = cv2.addWeighted(car_img_clean, 1 - alpha, seg_img, alpha, 0)
-                seg_filename = f'car_{track_id}_seg.jpg'
-                seg_path = os.path.join(output_dir, seg_filename)
-                cv2.imwrite(seg_path, overlay)
+                car_image_paths[track_id] = car_img_path
+    update_progress(job_id, 55, "processing", "Interpolating tracks for skipped frames...")
+    all_results = []
+    prev_idx = None
+    for ki, key_idx in enumerate(valid_indices):
+        if prev_idx is not None:
+            prev_tracks = {d['track_id']: d for d in frame_idx_map[prev_idx]}
+            next_tracks = {d['track_id']: d for d in frame_idx_map[key_idx]}
+            num_gaps = key_idx - prev_idx
+            for step in range(1, num_gaps):
+                interp_idx = prev_idx + step
+                interp_list = []
+                for tid in prev_tracks:
+                    if tid in next_tracks:
+                        bbox1 = prev_tracks[tid]['bbox']
+                        bbox2 = next_tracks[tid]['bbox']
+                        label = prev_tracks[tid]['label']
+                        timestamp = None
+                        try:
+                            base_dt = datetime.datetime.fromisoformat(video_capture_time)
+                            timestamp = (base_dt + datetime.timedelta(seconds=interp_idx / fps)).isoformat()
+                        except Exception:
+                            timestamp = video_capture_time
+                        alpha = step / num_gaps
+                        interp_bbox_vals = interpolate_bbox(bbox1, bbox2, alpha)
+                        interp_list.append({
+                            'frame': interp_idx,
+                            'track_id': tid,
+                            'bbox': interp_bbox_vals,
+                            'label': label,
+                            'timestamp': timestamp,
+                        })
+                all_results.extend(interp_list)
+        all_results.extend(frame_idx_map[key_idx])
+        prev_idx = key_idx
+
+    update_progress(job_id, 65, "processing", "Writing output video with tracks...")
+    cap2 = cv2.VideoCapture(video_path)
+    frame_idx = 0
+    all_results_map = {}
+    for r in all_results:
+        all_results_map.setdefault(r['frame'], []).append(r)
+    while True:
+        ret, frame = cap2.read()
+        if not ret:
+            break
+        tracked_this_frame = all_results_map.get(frame_idx, [])
+        for r in tracked_this_frame:
+            x1, y1, x2, y2 = r['bbox']
+            label = r['label']
+            cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0,255,0), 2)
         out.write(frame)
         frame_idx += 1
-    cap.release()
+    cap2.release()
     out.release()
 
     update_progress(job_id, 75, "processing", "Converting video to H.264 format...")
@@ -374,25 +391,19 @@ def detect_and_track(video_path, job_id=None):
     convert_to_h264(temp_avi_path, final_mp4_path)
     os.remove(temp_avi_path)
 
-    # --- OpenAI API: Call once per car using best image ---
     track_id_to_openai_result = {}
     print("[OpenAI API] Starting car analysis...")
     update_progress(job_id, 78, "processing", "Analyzing car images with AI...")
-    
     total_cars = len(car_image_paths)
     for idx, (track_id, img_path) in enumerate(car_image_paths.items()):
         openai_result = call_openai_car_analysis(img_path)
         print(f"[OpenAI API] Track ID {track_id} analysis result: {openai_result}")
         track_id_to_openai_result[str(track_id)] = openai_result
-        
-        # Update progress for AI analysis
-        ai_progress = 78 + (idx / total_cars) * 2  # 78% to 80%
+        ai_progress = 78 + (idx / total_cars) * 2
         update_progress(job_id, int(ai_progress), "processing", f"AI analysis: {idx+1}/{total_cars} cars...")
+        time.sleep(1)
         
-        time.sleep(1)  # avoid rate limits
-
-    # Assign OpenAI results to all frames for each track_id
-    for r in results:
+    for r in all_results:
         tid = str(r['track_id'])
         openai_res = track_id_to_openai_result.get(tid, {})
         r['logo'] = openai_res.get('logo') if openai_res else None
@@ -409,7 +420,7 @@ def detect_and_track(video_path, job_id=None):
         r['car_type_confidence'] = openai_res.get('car_type_confidence') if openai_res else None
         r['openai_raw_response'] = openai_res.get('raw_response') if openai_res else None
 
-    return results, car_image_paths, final_mp4_path, fps
+    return all_results, car_image_paths, final_mp4_path, fps
 
 def run_detection(video_path, job_id=None):
     """
@@ -424,9 +435,8 @@ def run_detection(video_path, job_id=None):
     end_time = time.time()
     avg_processing_time = end_time - start_time
 
-    # Prepare metadata object
     meta = {
-        "car_image_paths": car_image_paths,  # dict: track_id -> image path
+        "car_image_paths": car_image_paths,
         "video_filepath": final_mp4_path,
         "avg_processing_time": avg_processing_time,
         "fps": fps
@@ -435,8 +445,7 @@ def run_detection(video_path, job_id=None):
     return detections, meta
 
 
-# --- CLI helper for ad‑hoc testing (optional) ------------------------------
-if __name__ == "__main__":                 # pragma: no cover
+if __name__ == "__main__":
     import argparse, json, pprint, textwrap
     ap = argparse.ArgumentParser()
     ap.add_argument("--video", required=True)
@@ -445,3 +454,6 @@ if __name__ == "__main__":                 # pragma: no cover
     print("▶︎ detections =", len(det))
     print("▶︎ meta =")
     pprint.pprint(meta, indent=2, width=120)
+    # Save detections to detection.json
+    # with open("detection.json", "w") as f:
+    #     json.dump(det, f, indent=2)
