@@ -33,8 +33,7 @@ COPY docker-entrypoint.sh ./
 COPY redis.conf ./
 
 # Copy YOLO model files
-COPY yolov8n.pt ./
-COPY yolov8n-seg.pt ./
+COPY yolo*.pt ./
 
 # Create necessary directories
 RUN mkdir -p videos/uploads videos/processed
