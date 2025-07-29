@@ -188,10 +188,13 @@ def detect_and_track(video_path, job_id=None):
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     
     update_progress(job_id, 15, "processing", "Loading YOLO detection model...")
-    detector = YOLO('yolov8n.pt').to(device)  # Use YOLOv8 nano for speed; replace with better weights if needed
+    # Prefer TensorRT engine if available for faster inference
+    det_weights = 'yolov8n.engine' if os.path.exists('yolov8n.engine') else 'yolov8n.pt'
+    detector = YOLO(det_weights).to(device)
     
     update_progress(job_id, 20, "processing", "Loading YOLO segmentation model...")
-    seg_model = YOLO('yolov8n-seg.pt').to(device)  # Load YOLOv8 segmentation model
+    seg_weights = 'yolov8n-seg.engine' if os.path.exists('yolov8n-seg.engine') else 'yolov8n-seg.pt'
+    seg_model = YOLO(seg_weights).to(device)  # Load YOLOv8 segmentation model or TensorRT engine
     
     update_progress(job_id, 25, "processing", "Initializing DeepSORT tracker...")
     tracker = DeepSort(max_age=30)
@@ -211,6 +214,9 @@ def detect_and_track(video_path, job_id=None):
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    # process only ~2 frames per second for faster inference
+    detection_stride = max(1, int(round(fps / 2)))
+    detection_batch_size = 8  # process frames in small batches
     
     fourcc = cv2.VideoWriter_fourcc(*'MJPG')
     temp_avi_path = os.path.join(output_dir, 'temp_output.avi')
@@ -232,52 +238,65 @@ def detect_and_track(video_path, job_id=None):
     
     update_progress(job_id, 30, "processing", "Starting video frame processing...")
     
-    while True:
-        ret, frame = cap.read()
-        if not ret:
-            break
-            
-        # Update progress based on frame processing
-        if total_frames > 0:
-            frame_progress = 30 + (frame_idx / total_frames) * 45  # 30% to 75%
-            if frame_idx % 30 == 0:  # Update every 30 frames to avoid too many Redis calls
-                update_progress(job_id, int(frame_progress), "processing", f"Processing frame {frame_idx}/{total_frames}...")
-        
-        original_frame = frame.copy()  # Save a clean copy for cropping
-        detections = detector(frame)[0]
-        # --- Run segmentation model on this frame ---
-        seg_results = seg_model(frame)[0]
-        seg_masks = []
-        for i, det in enumerate(seg_results.boxes):
-            cls = int(det.cls[0])
-            if seg_model.names[cls] == 'car':
-                x1, y1, x2, y2 = map(int, det.xyxy[0])
-                conf = float(det.conf[0])
-                if conf < 0.5:
-                    continue
-                # Get mask for this detection
-                if hasattr(seg_results, 'masks') and seg_results.masks is not None:
-                    mask = seg_results.masks.data[i].cpu().numpy()  # shape: (H, W)
-                    seg_masks.append({'bbox': [x1, y1, x2, y2], 'mask': mask})
-        car_detections = []
-        for det in detections.boxes:
-            cls = int(det.cls[0])
-            if detector.names[cls] == 'car':
-                x1, y1, x2, y2 = map(int, det.xyxy[0])
-                conf = float(det.conf[0])
-                if conf < 0.5:
-                    continue
-                car_detections.append(([x1, y1, x2-x1, y2-y1], conf, 'car'))
-        tracks = tracker.update_tracks(car_detections, frame=frame)
+    frame_buffer = []
+    orig_buffer = []
+    idx_buffer = []
+
+    def process_batch():
+        nonlocal frame_buffer, orig_buffer, idx_buffer
+        if not frame_buffer:
+            return
+
+        det_indices = [i for i, idx in enumerate(idx_buffer) if idx % detection_stride == 0]
+        det_frames = [frame_buffer[i] for i in det_indices]
+        det_results = [None] * len(frame_buffer)
+        seg_results = [None] * len(frame_buffer)
+        if det_frames:
+            det_outs = detector(det_frames)
+            seg_outs = seg_model(det_frames)
+            for j, idx in enumerate(det_indices):
+                det_results[idx] = det_outs[j][0]
+                seg_results[idx] = seg_outs[j][0]
+
+        for local_i, frame in enumerate(frame_buffer):
+            f_idx = idx_buffer[local_i]
+            if total_frames > 0 and f_idx % 30 == 0:
+                frame_progress = 30 + (f_idx / total_frames) * 45
+                update_progress(job_id, int(frame_progress), "processing", f"Processing frame {f_idx}/{total_frames}...")
+
+            original_frame = orig_buffer[local_i]
+            perform_detection = det_results[local_i] is not None
+            seg_masks = []
+            car_detections = []
+            if perform_detection:
+                detections = det_results[local_i]
+                seg_res = seg_results[local_i]
+                for i, det in enumerate(seg_res.boxes):
+                    cls = int(det.cls[0])
+                    if seg_model.names[cls] == 'car':
+                        x1, y1, x2, y2 = map(int, det.xyxy[0])
+                        conf = float(det.conf[0])
+                        if conf < 0.5:
+                            continue
+                        if hasattr(seg_res, 'masks') and seg_res.masks is not None:
+                            mask = seg_res.masks.data[i].cpu().numpy()
+                            seg_masks.append({'bbox': [x1, y1, x2, y2], 'mask': mask})
+                for det in detections.boxes:
+                    cls = int(det.cls[0])
+                    if detector.names[cls] == 'car':
+                        x1, y1, x2, y2 = map(int, det.xyxy[0])
+                        conf = float(det.conf[0])
+                        if conf < 0.5:
+                            continue
+                        car_detections.append(([x1, y1, x2 - x1, y2 - y1], conf, 'car'))
+
+            tracks = tracker.update_tracks(car_detections, frame=frame)
         for track in tracks:
             if not track.is_confirmed():
                 continue
             track_id = track.track_id
             ltrb = track.to_ltrb()
             x1, y1, x2, y2 = map(int, ltrb)
-            car_img = frame[y1:y2, x1:x2]
-            # Use original_frame for saving cropped car image (no overlays)
-            car_img_clean = original_frame[y1:y2, x1:x2]
             car_label = f'car{track_id}'
             car_img_path = os.path.join(output_dir, f'car_{track_id}.jpg')
             bbox_list = [int(x) for x in [x1, y1, x2, y2]]
@@ -285,11 +304,11 @@ def detect_and_track(video_path, job_id=None):
             import datetime
             try:
                 base_dt = datetime.datetime.fromisoformat(video_capture_time)
-                timestamp = (base_dt + datetime.timedelta(seconds=frame_idx / fps)).isoformat()
+                timestamp = (base_dt + datetime.timedelta(seconds=f_idx / fps)).isoformat()
             except Exception:
                 timestamp = video_capture_time  # fallback
             results.append({
-                'frame': frame_idx,
+                'frame': f_idx,
                 'track_id': int(track_id),
                 'bbox': bbox_list,
                 'label': car_label,
@@ -299,6 +318,13 @@ def detect_and_track(video_path, job_id=None):
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
             label = f'{car_label}'
             cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0), 2)
+
+            if not perform_detection:
+                continue
+
+            car_img = frame[y1:y2, x1:x2]
+            # Use original_frame for saving cropped car image (no overlays)
+            car_img_clean = original_frame[y1:y2, x1:x2]
             # Find best mask for this car bbox by IoU
             best_iou = 0
             best_mask_poly = None
@@ -318,7 +344,7 @@ def detect_and_track(video_path, job_id=None):
                 iou = inter / union if union > 0 else 0
                 if iou > best_iou:
                     best_iou = iou
-                    best_mask_poly = seg_results.masks.xy[i] if hasattr(seg_results, 'masks') and seg_results.masks is not None else None
+                    best_mask_poly = seg_res.masks.xy[i] if hasattr(seg_res, 'masks') and seg_res.masks is not None else None
             # Calculate percent visible
             percent_visible = 0.0
             if best_mask_poly is not None and len(best_mask_poly) > 0:
@@ -364,8 +390,26 @@ def detect_and_track(video_path, job_id=None):
                 seg_filename = f'car_{track_id}_seg.jpg'
                 seg_path = os.path.join(output_dir, seg_filename)
                 cv2.imwrite(seg_path, overlay)
-        out.write(frame)
+            out.write(frame)
+
+        frame_buffer = []
+        orig_buffer = []
+        idx_buffer = []
+
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        frame_buffer.append(frame)
+        orig_buffer.append(frame.copy())
+        idx_buffer.append(frame_idx)
         frame_idx += 1
+
+        if len(frame_buffer) >= detection_batch_size:
+            process_batch()
+
+    process_batch()
     cap.release()
     out.release()
 
