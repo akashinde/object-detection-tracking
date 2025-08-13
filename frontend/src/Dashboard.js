@@ -3,6 +3,11 @@ import { Pie, Bar } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import { CategoryScale, LinearScale, BarElement } from 'chart.js';
 
+import VideoUpload from './components/VideoUpload';
+import SummaryCards from './components/SummaryCards';
+import TopCharts from './components/TopCharts';
+import FiltersSection from './components/FiltersSection';
+import VideoExplorer from './components/VideoExplorer';
 Chart.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement);
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
@@ -36,14 +41,6 @@ function Dashboard() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // Video states
-  const [uploading, setUploading] = useState(false);
-  const [uploadMsg, setUploadMsg] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [currentJobId, setCurrentJobId] = useState(null);
-  const [progressData, setProgressData] = useState(null);
-  const [progressInterval, setProgressInterval] = useState(null);
-  
   // Video Explorer Table states
   const [searchTerm, setSearchTerm] = useState('');
   const [filterBrand, setFilterBrand] = useState('');
@@ -118,103 +115,6 @@ function Dashboard() {
     fetchVehicles();
   }, [detectionsSearchTerm, filterBrand, filterColor, filterVehicleType, filterRegion, sponsorBrand, showHighExposureOnly]);
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-    setUploadMsg('');
-  };
-
-  const handleUpload = async () => {
-    if (!selectedFile) {
-      setUploadMsg('Please select a video file.');
-      return;
-    }
-    setUploading(true);
-    setUploadMsg('');
-    setProgressData(null);
-    setCurrentJobId(null);
-    
-    const formData = new FormData();
-    formData.append('video', selectedFile);
-    try {
-      const response = await fetch(`${API_BASE_URL}/api/process_video`, {
-        method: 'POST',
-        body: formData,
-      });
-      const result = await response.json();
-      if (response.ok && result.status === 'processing') {
-        setCurrentJobId(result.job_id);
-        setUploadMsg('Video processing started. Monitoring progress...');
-        startProgressPolling(result.job_id);
-      } else {
-        setUploadMsg(result.error || result.stderr || 'Processing failed.');
-        setUploading(false);
-      }
-    } catch (err) {
-      setUploadMsg('Upload failed. Please try again.');
-      setUploading(false);
-    }
-  };
-
-  const startProgressPolling = (jobId) => {
-    // Clear any existing interval
-    if (progressInterval) {
-      clearInterval(progressInterval);
-    }
-    
-    const interval = setInterval(async () => {
-      try {
-        const response = await fetch(`${API_BASE_URL}/api/progress/${jobId}`);
-        const progressData = await response.json();
-        
-        setProgressData(progressData);
-        
-        if (progressData.status === 'completed' || progressData.status === 'error' || progressData.status === 'redis_unavailable') {
-          clearInterval(interval);
-          setProgressInterval(null);
-          setUploading(false);
-          setCurrentJobId(null);
-          
-          if (progressData.status === 'completed') {
-            setUploadMsg('Video processed successfully!');
-            await fetchDashboard();
-            await fetchVehicles();
-          } else if (progressData.status === 'redis_unavailable') {
-            setUploadMsg('Video processing started (progress tracking unavailable). Please wait...');
-            // Continue polling for a longer time since we can't track progress
-            setTimeout(() => {
-              clearInterval(interval);
-              setProgressInterval(null);
-              setUploading(false);
-              setCurrentJobId(null);
-              setUploadMsg('Video processing completed (progress tracking was unavailable).');
-              fetchDashboard();
-              fetchVehicles();
-            }, 300000); // Wait 5 minutes then assume completion
-          } else {
-            setUploadMsg(progressData.message || 'Processing failed.');
-          }
-        }
-      } catch (err) {
-        console.error('Error polling progress:', err);
-      }
-    }, 1000); // Poll every second
-    
-    setProgressInterval(interval);
-  };
-
-  const stopProgressPolling = () => {
-    if (progressInterval) {
-      clearInterval(progressInterval);
-      setProgressInterval(null);
-    }
-  };
-
-  // Cleanup interval on component unmount
-  useEffect(() => {
-    return () => {
-      stopProgressPolling();
-    };
-  }, []);
 
   const handleSort = (key) => {
     setSortConfig(prev => ({
@@ -581,363 +481,56 @@ function Dashboard() {
         Car Detection & Tracking Dashboard
       </h1>
 
-      {/* Video Upload UI */}
-      <div className="mb-8 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-        <h2 className="text-xl font-semibold text-blue-400 mb-4">Upload Video</h2>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <input
-            type="file"
-            accept="video/*"
-            onChange={handleFileChange}
-            className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100"
-          />
-          <button
-            onClick={handleUpload}
-            disabled={!selectedFile || uploading}
-            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 text-white rounded font-semibold"
-          >
-            {uploading ? 'Processing...' : 'Upload'}
-          </button>
-        </div>
-        
-        {/* Progress Bar */}
-        {uploading && progressData && (
-          <div className="mt-4">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-sm text-gray-300">{progressData.message}</span>
-              <span className="text-sm text-blue-400">{progressData.progress}%</span>
-            </div>
-            <div className="w-full bg-gray-700 rounded-full h-2">
-              <div 
-                className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                style={{ width: `${progressData.progress}%` }}
-              ></div>
-            </div>
-            {progressData.status === 'processing' && (
-              <div className="mt-2 text-xs text-gray-400">
-                Job ID: {currentJobId}
-              </div>
-            )}
-          </div>
-        )}
-        
-        {uploadMsg && !uploading && (
-          <div className={`mt-4 p-3 rounded ${uploadMsg.includes('success') ? 'bg-green-700' : 'bg-red-700'} text-white`}>
-            {uploadMsg}
-          </div>
-        )}
-      </div>
-
+      <VideoUpload onComplete={() => { fetchDashboard(); fetchVehicles(); }} />
       {/* Summary KPI Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-12">
-        {summaryCards.map(card => (
-          <div key={card.label} className={`rounded-lg shadow-lg p-6 border border-gray-700 flex flex-col items-center ${card.color}`}>
-            <div className="text-4xl font-extrabold mb-2">{card.value}</div>
-            <div className="text-md font-semibold text-gray-100 text-center">{card.label}</div>
-          </div>
-        ))}
-      </div>
+      <SummaryCards cards={summaryCards} />
 
       {/* Top Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-        {/* Brand Exposure Chart */}
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-          <h2 className="text-lg font-semibold text-blue-400 mb-4">Brand Exposure</h2>
-          <div className="h-64">
-            <Bar data={brandData} options={brandOptions} />
-          </div>
-        </div>
-
-        {/* Color Distribution Chart */}
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-          <h2 className="text-lg font-semibold text-blue-400 mb-4">Color Distribution</h2>
-          <div className="h-64 flex justify-center">
-            <Pie data={colorData} options={colorOptions} />
-          </div>
-        </div>
-
-        {/* Model Breakdown Chart */}
-        <div className="bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-          <h2 className="text-lg font-semibold text-blue-400 mb-4">Model Breakdown</h2>
-          <div className="h-64">
-            <Bar data={modelData} options={modelOptions} />
-          </div>
-        </div>
-      </div>
+      <TopCharts
+        brandData={brandData}
+        brandOptions={brandOptions}
+        colorData={colorData}
+        colorOptions={colorOptions}
+        modelData={modelData}
+        modelOptions={modelOptions}
+      />
 
       {/* Optional Filters / Insights */}
-      <div className="mb-8 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-          <h2 className="text-xl font-semibold text-blue-400">Filters & Insights</h2>
-          <div className="flex flex-wrap gap-2 mt-4 md:mt-0">
-            <button
-              onClick={() => {
-                setFilterBrand('');
-                setFilterColor('');
-                setFilterVehicleType('');
-                setFilterRegion('');
-                setSponsorBrand('');
-                setShowHighExposureOnly(false);
-              }}
-              className="px-3 py-1 bg-gray-600 hover:bg-gray-700 text-white rounded text-sm"
-            >
-              Clear All Filters
-            </button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-          {/* Brand Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Filter by Brand</label>
-            <select
-              value={filterBrand}
-              onChange={(e) => setFilterBrand(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100 text-sm"
-            >
-              <option value="">All Brands</option>
-              {getUniqueBrands().map(brand => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Color Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Filter by Color</label>
-            <select
-              value={filterColor}
-              onChange={(e) => setFilterColor(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100 text-sm"
-            >
-              <option value="">All Colors</option>
-              {getUniqueColors().map(color => (
-                <option key={color} value={color}>{color}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Vehicle Type Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Filter by Vehicle Type</label>
-            <select
-              value={filterVehicleType}
-              onChange={(e) => setFilterVehicleType(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100 text-sm"
-            >
-              <option value="">All Types</option>
-              {getUniqueVehicleTypes().map(type => (
-                <option key={type} value={type}>{type}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Region Filter */}
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Filter by Region</label>
-            <select
-              value={filterRegion}
-              onChange={(e) => setFilterRegion(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100 text-sm"
-            >
-              <option value="">All Regions</option>
-              {getUniqueRegions().map(region => (
-                <option key={region} value={region}>{region}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* Sponsor-Focused Toggles */}
-        <div className="border-t border-gray-600 pt-6">
-          <h3 className="text-lg font-semibold text-green-400 mb-4">🎯 Sponsor-Focused Insights</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Sponsor Brand Toggle */}
-            <div className="bg-gray-700 rounded-lg p-4">
-              <div className="flex items-center justify-between mb-3">
-                <label className="text-sm font-medium text-gray-300">Show only videos with specific brand</label>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={sponsorBrand !== ''}
-                    onChange={(e) => {
-                      if (!e.target.checked) setSponsorBrand('');
-                    }}
-                    className="mr-2"
-                  />
-                </div>
-              </div>
-              <select
-                value={sponsorBrand}
-                onChange={(e) => setSponsorBrand(e.target.value)}
-                disabled={sponsorBrand === ''}
-                className="w-full px-3 py-2 bg-gray-600 border border-gray-500 rounded text-gray-100 text-sm disabled:opacity-50"
-              >
-                <option value="">Select Brand</option>
-                {getUniqueBrands().map(brand => (
-                  <option key={brand} value={brand}>{brand}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* High Exposure Toggle */}
-            <div className="bg-gray-700 rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <label className="text-sm font-medium text-gray-300">Show top 10% high exposure clips</label>
-                  <p className="text-xs text-gray-400 mt-1">Videos with highest car detection counts</p>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    checked={showHighExposureOnly}
-                    onChange={(e) => setShowHighExposureOnly(e.target.checked)}
-                    className="mr-2"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Active Filters Display */}
-        {(filterBrand || filterColor || filterVehicleType || filterRegion || sponsorBrand || showHighExposureOnly) && (
-          <div className="mt-6 pt-4 border-t border-gray-600">
-            <h4 className="text-sm font-medium text-gray-300 mb-3">Active Filters:</h4>
-            <div className="flex flex-wrap gap-2">
-              {filterBrand && (
-                <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-xs">
-                  Brand: {filterBrand} ✕
-                </span>
-              )}
-              {filterColor && (
-                <span className="px-3 py-1 bg-green-600 text-white rounded-full text-xs">
-                  Color: {filterColor} ✕
-                </span>
-              )}
-              {filterVehicleType && (
-                <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-xs">
-                  Type: {filterVehicleType} ✕
-                </span>
-              )}
-              {filterRegion && (
-                <span className="px-3 py-1 bg-yellow-600 text-white rounded-full text-xs">
-                  Region: {filterRegion} ✕
-                </span>
-              )}
-              {sponsorBrand && (
-                <span className="px-3 py-1 bg-red-600 text-white rounded-full text-xs">
-                  Sponsor: {sponsorBrand} ✕
-                </span>
-              )}
-              {showHighExposureOnly && (
-                <span className="px-3 py-1 bg-orange-600 text-white rounded-full text-xs">
-                  High Exposure Only ✕
-                </span>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
+      <FiltersSection
+        filterBrand={filterBrand}
+        setFilterBrand={setFilterBrand}
+        filterColor={filterColor}
+        setFilterColor={setFilterColor}
+        filterVehicleType={filterVehicleType}
+        setFilterVehicleType={setFilterVehicleType}
+        filterRegion={filterRegion}
+        setFilterRegion={setFilterRegion}
+        sponsorBrand={sponsorBrand}
+        setSponsorBrand={setSponsorBrand}
+        showHighExposureOnly={showHighExposureOnly}
+        setShowHighExposureOnly={setShowHighExposureOnly}
+        getUniqueBrands={getUniqueBrands}
+        getUniqueColors={getUniqueColors}
+        getUniqueVehicleTypes={getUniqueVehicleTypes}
+        getUniqueRegions={getUniqueRegions}
+      />
 
       {/* Video Explorer Table */}
-      <div className="mb-8 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
-        <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold text-blue-400">Video Explorer</h2>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <input
-              type="text"
-              placeholder="Search videos..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-4 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100 placeholder-gray-400"
-            />
-            <select
-              value={filterBrand}
-              onChange={(e) => setFilterBrand(e.target.value)}
-              className="px-4 py-2 bg-gray-700 border border-gray-600 rounded text-gray-100"
-            >
-              <option value="">All Brands</option>
-              {getUniqueBrands().map(brand => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-gray-700 border-b border-gray-600">
-                <th className="px-4 py-3 text-left text-gray-300 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('filename')}>
-                  File Name {sortConfig.key === 'filename' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-                <th className="px-4 py-3 text-left text-gray-300 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('durationSec')}>
-                  Duration {sortConfig.key === 'durationSec' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-                <th className="px-4 py-3 text-left text-gray-300 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('totalCarsDetected')}>
-                  Cars Detected {sortConfig.key === 'totalCarsDetected' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-                <th className="px-4 py-3 text-left text-gray-300 cursor-pointer hover:bg-gray-600" onClick={() => handleSort('avgCarsPerFrame')}>
-                  Avg Cars/sec {sortConfig.key === 'avgCarsPerFrame' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
-                </th>
-                <th className="px-4 py-3 text-left text-gray-300">Brand Logos</th>
-                <th className="px-4 py-3 text-left text-gray-300">Color Distribution</th>
-                <th className="px-4 py-3 text-left text-gray-300">Regions</th>
-                <th className="px-4 py-3 text-left text-gray-300">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAndSortedVideos.map((video, index) => (
-                <tr key={video.videoId} className={`border-b border-gray-600 ${index % 2 === 0 ? 'bg-gray-800' : 'bg-gray-750'} hover:bg-gray-700`}>
-                  <td className="px-4 py-3 text-gray-300">
-                    {video.filename ? video.filename.split('/').pop() : 'Unknown'}
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {video.durationSec ? `${(video.durationSec / 60).toFixed(1)} min` : 'N/A'}
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {video.totalCarsDetected || 0}
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {video.mostActiveSegment?.avgCarsPerFrame?.toFixed(2) || 'N/A'}
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-1">
-                      {getTopBrands(video.brandLogoStats).map((brand, idx) => (
-                        <span key={idx} className="px-2 py-1 bg-blue-600 text-white text-xs rounded">
-                          {brand}
-                        </span>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-1">
-                      {getColorDistribution(video.colorDistribution).map(([color, count], idx) => (
-                        <span key={idx} className="px-2 py-1 text-xs rounded" 
-                              style={{ backgroundColor: colorNameToCss[color.toLowerCase()] || '#808080', color: ['white', 'silver'].includes(color.toLowerCase()) ? '#000' : '#fff' }}>
-                          {color} ({count})
-                        </span>
-                      ))}
-                    </div>
-                  </td>
-                  <td className="px-4 py-3 text-gray-300">
-                    {getTopRegion(video.numberPlateSummary?.estimatedRegions)}
-                  </td>
-                  <td className="px-4 py-3">
-                    <button
-                      onClick={() => handleViewInsights(video)}
-                      className="px-3 py-1 bg-green-600 hover:bg-green-700 text-white rounded text-xs"
-                    >
-                      View Insights
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+      <VideoExplorer
+        videos={filteredAndSortedVideos}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        filterBrand={filterBrand}
+        setFilterBrand={setFilterBrand}
+        getUniqueBrands={getUniqueBrands}
+        colorMap={colorNameToCss}
+        sortConfig={sortConfig}
+        handleSort={handleSort}
+        getTopBrands={getTopBrands}
+        getColorDistribution={getColorDistribution}
+        getTopRegion={getTopRegion}
+        onViewInsights={handleViewInsights}
+      />
 
       {/* Final Detections Table */}
       <div className="mb-8 bg-gray-800 rounded-lg shadow-lg p-6 border border-gray-700">
